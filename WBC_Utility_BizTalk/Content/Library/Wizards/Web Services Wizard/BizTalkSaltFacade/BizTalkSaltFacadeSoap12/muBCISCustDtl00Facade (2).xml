@@ -1,0 +1,1895 @@
+<flow id="bc07ac29-be10-4c89-8a54-83198e3c42e2">
+  <descriptionCdata><![CDATA[bc07ac29-be10-4c89-8a54-83198e3c42e2.4bdf95ca-effc-4f34-8a83-d3809b71751d.description=<pre>\nThe operation invokes web service methods.  This operation should not be used directly\!  Please use the wizard to build flows that use this operation.\n\nInputs\:\n    xmlTemplate - The template of the soap request to make.\n    inputMap - A map used to map between template names and user-friendly names. The template names are pipe-delimited xpaths of the xmltemplate location, with a numerical element for lists.\nValue format\: A list of elements separated by the new line delimiter. Eache element hes the format\: <name>\=<new name>.\nExample\: A line in the "inputMap" could be\: "Request|Details|0|Input|x\=input0.x"\n    url - The url to Post to. \n    header_SOAPAction - The SOAPAction http header field, defined by many web services for indicating the intent of the request\n    wswAuthenticationType - The authentication type to use for the "username" and "password" input.\nDefault value\: http\nValid values\: http, ntlm, ws-security digest, ws-security text\n    WSSecuritySignRequest - Should the SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityEncryptRequest - Should the entire SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityTimestampRequest - Should the Timestamp attribute be added to the WS-Security header\nDefault value\: false\nValid values true, false\n    WSSecurityKeystore - Keystore to use for encrypting and signing requests.\n    WSSecurityKeystoreType - The type of "WSSecurityKeystore".\n    WSSecurityKeystorePassword - The password for "WSSecurityKeystore".\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    contentType - Value to be used in the Content-Type HTTP header. If Content-Type header is also passed in "headers" input, the "contentType" input will override the value provided in "headers".\nDefault value\: text/xml\n    characterSet - The character set for HTTP Get request and response.\nDefault value\: UTF-8\n    username - The username to use for authenticating with the web service.\nValue format\: For NTLM authentication, the required format is domain\\user.\n    password - The password to use for authenticating with the web service.\n    trustAllRoots - Enables weak security over SSL. A SSH certificate is trusted even if no trusted CA issued it.\nDefault value\: false\nValid values\: true, false\n    useCookies - Enables cookie tracking. Cookies will be stored between consecutive calls.\nDefault value\: false\nValid values\: true, false\n    usesJSON - Use JSON arrays for the SOAP Request for all Array types.\nDefault value\: false\nValid values\: true, false\n    timeout - a timeout after which the connection should be terminated or 0 for no timeout.\n    socketTimeout - The time to wait for data to be retrieved, in milliseconds. This input needs a value greater than or equal to zero. A "socketTimeout" value of '0' represents an infinite timeout.\nDefault value\: 0\n    proxy - A proxy to use when accessing the web service.\n    proxyPort - A port on the proxy to connect to.\n    proxyUsername - A username to use when connecting to the proxy.\n    proxyPassword - A password to use when connecting to the proxy.\n    keystore - The path to the keystore to use for SSL Client Certificates when using http authentication.\n    keystorePassword - The password for the keystore when using http authentication.\n    ICONCLUDE_WSW_VERSION - This value is used internally by the operation.\n    returnXMLRequest - If this input is set to true, a new output named "rawXMLRequest" is returned from the operation which contains the text of the SOAP request that will be sent. This can be very valuable in troubleshooting.\nDefault value\: false\nValid values\: true, false\n\nResults\:\n    returnCode - This is the primary output. It contains the value 0 if the operation successfully completes and the value -1 otherwise.\n    document - Raw XML response.\n    documentStripped - Raw XML response stripped of namespaces for ease in parsing with XML XPath operations.\n    jsonStripped - Raw XML response stripped of namespaces for ease in parsing with JSON operations, input usesJSON must be set to true for this to be populated.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n              Transfer-Encoding\: chunked\n\nResponses\:\n    success - SOAP request completed successfully.\n    failure - Something went wrong.\n\nNotes\:\n1.If wswAuthenticationType\=ws-security text then this operation transmits passwords in clear-text.\n2.Any additional inputs that follow these are added by the Web Service Wizard, and they are specific to the particular web service method being called.\n3.If you add new step-level inputs with the name header_<headername>, where <headername> is the name of an html header, then that html header will be set to the given value in the HTTP request.\n4.This operation will not allow connection through secure transport layers below TLS 1.0.\n</pre>
+bc07ac29-be10-4c89-8a54-83198e3c42e2.description=<pre>\nThis subflow was created by the Web Services Wizard to invoke the muBCISCustDtl00Facade operation on http\://aulknpesva118/HP.WestPac.OVM.BiztalkSaltFacade/BizTalkSaltFacade.asmx?WSDL. Note that the inputs to this flow which correspond to web service inputs are optional inputs.  This is due to the fact that web services definitions usually incorrectly indicate that too many inputs are required, and mirroring those settings in the flow would force you to enter unused values when running the flow.  The xmlTemplate input on the Invoke Method 2 step of this flow contains a template of the xml message to be sent, and the fields preceded by the comment "<\!--Optional\:-->" or "<\!--zero or more repetitions-->" are those which the web service indicates are optional; all others are indicated to be required.\n\nInputs\:\n    webserviceHost - The host that is running the web service\n    webservicePort - The port on the host running the web service\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.CIS_KEY - The input named muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|CIS_KEY of the complex type\: muBCISCustDtl00Facade|muBCISCustDtl00|inbuf\n    muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.FLAGS - The input named muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|FLAGS of the complex type\: muBCISCustDtl00Facade|muBCISCustDtl00|inbuf\n    muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.GENERIC_DIST - The input named muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|GENERIC_DIST of the complex type\: muBCISCustDtl00Facade|muBCISCustDtl00|inbuf\n    muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.TRACE - The input named muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|TRACE of the complex type\: muBCISCustDtl00Facade|muBCISCustDtl00|inbuf\n\nResults\:\n    document - The raw XML response of the web service\n    documentStripped - The XML response of the web service stripped of namespaces\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n               Transfer-Encoding\: chunkedWebServiceWizard.repo.successDesc\=The SOAP command was accepted by the web service\n    muBCISCustDtl00ResponseHierarchical - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical\n    CIS_ABN - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_ABN/text()\n    CIS_CUST_ABN - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_ABN/text()\n    CIS_CUST_ASCO_CODE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_ASCO_CODE/text()\n    CIS_CUST_CHNG_DATE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_CHNG_DATE/text()\n    CIS_CUST_DRIVE_LICENSE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_DRIVE_LICENSE/text()\n    CIS_CUST_EMP_CITY - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_CITY/text()\n    CIS_CUST_EMP_COUNTRY - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_COUNTRY/text()\n    CIS_CUST_EMP_NAME - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_NAME/text()\n    CIS_CUST_EMP_POSTCODE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_POSTCODE/text()\n    CIS_CUST_EMP_SINCE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_SINCE/text()\n    CIS_CUST_EXPIRY_DATE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EXPIRY_DATE/text()\n    CIS_CUST_FIRST_NAME - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_FIRST_NAME/text()\n    CIS_CUST_HOME_PHONE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_HOME_PHONE/text()\n    CIS_CUST_LAST_NAME - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_LAST_NAME/text()\n    CIS_CUST_LINEAGE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_LINEAGE/text()\n    CIS_CUST_MARITAL_STATUS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_MARITAL_STATUS/text()\n    CIS_CUST_NUMBER - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_NUMBER/text()\n    CIS_CUST_NUM_OF_DEP - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_NUM_OF_DEP/text()\n    CIS_CUST_OCCUP_CLASS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_OCCUP_CLASS/text()\n    CIS_CUST_OCCUP_NAME - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_OCCUP_NAME/text()\n    CIS_CUST_RBA_FLAG - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_RBA_FLAG/text()\n    CIS_CUST_SEX - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_SEX/text()\n    CIS_CUST_SINCE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_SINCE/text()\n    CIS_CUST_STAGE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_STAGE/text()\n    CIS_CUST_STATUS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_STATUS/text()\n    CIS_CUST_STATUS_DATE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_STATUS_DATE/text()\n    CIS_CUST_TELEBANK_STATUS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_TELEBANK_STATUS/text()\n    CIS_CUST_TYPE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_TYPE/text()\n    CIS_CUST_WORK_PHONE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_WORK_PHONE/text()\n    CIS_DATE_OF_BIRTH - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_DATE_OF_BIRTH/text()\n    CIS_KEY - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_KEY/text()\n    CIS_MARKET_BANK_BSB - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MARKET_BANK_BSB/text()\n    CIS_MQ_ERROR_CATEGORY - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MQ_ERROR_CATEGORY/text()\n    CIS_MQ_ERROR_CODE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MQ_ERROR_CODE/text()\n    CIS_MQ_ERROR_DESCRIPTION - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MQ_ERROR_DESCRIPTION/text()\n    CIS_NON_WPAC_MKT_FLAG - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NON_WPAC_MKT_FLAG/text()\n    CIS_NUM_OF_ACCOUNTS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_ACCOUNTS/text()\n    CIS_NUM_OF_ADDRS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_ADDRS/text()\n    CIS_NUM_OF_CARDS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_CARDS/text()\n    CIS_NUM_OF_CONTACTS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_CONTACTS/text()\n    CIS_NUM_OF_MANAGERS - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_MANAGERS/text()\n    CIS_NUM_OF_SERVICES - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_SERVICES/text()\n    CIS_NUM_OF_TRD_PTY_ACCT - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_TRD_PTY_ACCT/text()\n    CIS_SVCE_HEAD_VERSION - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_HEAD_VERSION/text()\n    CIS_SVCE_INTERFACE_CODE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_INTERFACE_CODE/text()\n    CIS_SVCE_PROCESS_CODE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_PROCESS_CODE/text()\n    CIS_SVCE_REQUEST_VERSION - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_REQUEST_VERSION/text()\n    CIS_SVCE_SERVICE_CODE - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_SERVICE_CODE/text()\n    CIS_TELEBANK_NUMBER - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_TELEBANK_NUMBER/text()\n    CIS_TFN_IND - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_TFN_IND/text()\n    CIS_TITLE_PREFIX - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_TITLE_PREFIX/text()\n    CIS_WHLD_TAX_IND - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_WHLD_TAX_IND/text()\n    CIS_WPAC_MKT_FLAG - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_WPAC_MKT_FLAG/text()\n    ERROR_GRP - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/ERROR_GRP/text()\n    ERROR_MSG - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/ERROR_MSG/text()\n    ERROR_NO - The output given by the XPath\: /Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/ERROR_NO/text()\n\nResponses\:\n    success - The SOAP command was accepted by the web service\n    failure - Something went wrong while making the SOAP request\n</pre>
+]]></descriptionCdata>
+  <annotation>bc07ac29-be10-4c89-8a54-83198e3c42e2.description</annotation>
+  <name>muBCISCustDtl00Facade (2)</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="0e09dabf-12b1-4944-ab5b-695a5a8dc972">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webserviceHost</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Biztalk_utilities_dev_WebService_Host}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0df140ab-9470-43f5-ad90-1726aac05f8f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webservicePort</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Biztalk_utilities_dev_WebService_Port}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7977e54a-2b97-4235-b5e8-b988e1fa2f00">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>headers</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="775885eb-bcdf-43b7-9517-c11456fe0495">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.CIS_KEY</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="3bb839fa-2788-4d50-a582-70c19e6caed1">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.FLAGS</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f1d69920-1ed2-4bb4-9335-0a3d4d672e33">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.GENERIC_DIST</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="13386e5e-2ae2-4d6e-8071-a32d3f0254d4">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.TRACE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="95f3c13c-3693-4154-8a55-d5869bfb6e4b">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+    </opResponse>
+    <opResponse id="5661f654-9597-4db1-811f-23906dd39d07">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="c070f584-a584-41e3-a17b-744325ad1e80">
+    <annotation></annotation>
+    <name>document</name>
+    <fieldName>document</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="7b102c6d-e32f-49f3-a0e7-9e9532a5ff10">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>false</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>false</historyCheckPointFlow>
+  <steps>
+    <step id="4bdf95ca-effc-4f34-8a83-d3809b71751d">
+      <annotation>bc07ac29-be10-4c89-8a54-83198e3c42e2.4bdf95ca-effc-4f34-8a83-d3809b71751d.description</annotation>
+      <name>Invoke Method 2</name>
+      <bounds>
+        <x>0.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>Invoke Method 2</resultContextKey>
+      <bindings>
+        <staticBinding id="d648471f-7363-4fa0-b0f1-13e9a6c87dc1">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>url</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http://${webserviceHost}:${webservicePort}/HP.WestPac.OVM.BiztalkSaltFacade/BizTalkSaltFacade.asmx</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f91296ed-01f3-4021-aaf6-643f9a5ed944">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>xmlTemplate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot; xmlns:urn=&quot;urn:hp.westpac.ovm&quot; xmlns:urn1=&quot;urn:pack.gsmSVClist_typedef.salt11&quot;&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;urn:muBCISCustDtl00Facade&gt;
+         &lt;!--Optional:--&gt;
+         &lt;urn1:muBCISCustDtl00&gt;
+            &lt;!--Optional:--&gt;
+            &lt;urn1:inbuf&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:GENERIC_DIST&gt;?&lt;/urn1:GENERIC_DIST&gt;
+               &lt;urn1:TRACE&gt;?&lt;/urn1:TRACE&gt;
+               &lt;urn1:FLAGS&gt;?&lt;/urn1:FLAGS&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:CIS_KEY&gt;?&lt;/urn1:CIS_KEY&gt;
+            &lt;/urn1:inbuf&gt;
+         &lt;/urn1:muBCISCustDtl00&gt;
+      &lt;/urn:muBCISCustDtl00Facade&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="20b124ce-6371-4dea-bcb2-da4e46545ed4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>header_SOAPAction</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>urn:hp.westpac.ovm/BizTalkSaltFacade/muBCISCustDtl00Facade</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="572de65d-b02e-423b-97d3-571c59d0c68a">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>inputMap</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|CIS_KEY=muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.CIS_KEY
+muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|FLAGS=muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.FLAGS
+muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|GENERIC_DIST=muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.GENERIC_DIST
+muBCISCustDtl00Facade|muBCISCustDtl00|inbuf|TRACE=muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.TRACE</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="704a511b-05b3-45bd-b10f-113c79ca7b9e">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>usesJSON</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a4b68727-0381-4625-9e73-fd27c1a23207">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>wswAuthenticationType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="251a442e-c508-45f0-9f20-fe37ae2a5848">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecuritySignRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="021489d7-8ea8-4a29-8bf2-14a6a054b949">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityEncryptRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1075557d-8652-49fb-88b1-56a1f41b5516">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityTimestampRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8611e63c-9d8d-46c0-bc62-dbad52c16023">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="caa562a7-79b8-442c-82dd-0113452dcceb">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystoreType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ce2ae903-d69a-4e90-b71d-073f29e4a334">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6ee8a938-c9f1-40af-a70c-c9289dccce18">
+          <fromContextKey>headers</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>headers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5a35fe99-facb-4f4a-99b3-17a08d852d5f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>contentType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>text/xml</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d92f361e-c7d4-4a8e-9fc8-f05262121871">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>UTF-8</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="910b6a5f-40ca-4570-a55b-63cac76e3451">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="edc9f2cf-00c9-4ba9-808c-9c5cf491e1e4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0a098c10-51de-4885-a7be-4e9b41c6bf14">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>trustAllRoots</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="47c626c2-4aa7-45d4-beaf-0c60024f4cea">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>useCookies</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5a7703ef-8f72-431b-b991-b4e7db19d6fa">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d08bbbef-0558-4bb5-8038-f3d35d2a1be8">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>socketTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3939108e-1222-49e9-9cde-87a8e04a7e43">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8dd4a242-8215-474d-ab9d-cb19a27ea31c">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="189e85ae-d7bc-415d-82a1-8f6616d28118">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ad49490b-e583-4035-a871-2bb24d422780">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6eba4de7-d389-4d2c-8b88-c85d6078420b">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9eb71605-aab3-4a65-bfba-751a46828e35">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="122e8867-9bd1-42a7-a01c-c9b23620b19c">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>ICONCLUDE_WSW_VERSION</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>2</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="488295ad-cc7b-4bd2-81c6-3264fdf53136">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>returnXMLRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="47cddfc8-3343-4ba5-a71b-f2bd54b31f07">
+          <fromContextKey>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.CIS_KEY</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.CIS_KEY</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ab1d01d9-4675-4d44-b01e-b9308f0a49a4">
+          <fromContextKey>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.FLAGS</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.FLAGS</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c2be3d08-994f-49a0-9bc7-518e343470a6">
+          <fromContextKey>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.GENERIC_DIST</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.GENERIC_DIST</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="789fc887-4ca0-4124-993e-d6be6285a496">
+          <fromContextKey>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.TRACE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muBCISCustDtl00Facade.muBCISCustDtl00.inbuf.TRACE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="e13d5fc8-d605-4da5-ac31-3536921e01b3">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>7f475d35-de85-458e-b7f1-83a03f1aadf8</refId>
+          </destination>
+          <source>
+            <refId>4bdf95ca-effc-4f34-8a83-d3809b71751d</refId>
+          </source>
+          <positions/>
+        </transition>
+        <transition id="455eea63-6cf8-449b-9dde-965743fa7f11">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>80e75ab2-e25f-4ee2-8519-aae2c056320d</refId>
+          </destination>
+          <source>
+            <refId>4bdf95ca-effc-4f34-8a83-d3809b71751d</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>962ffbf8-4105-46bb-8c71-84f037c4de61</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="560b5810-edab-4068-8886-8ca3bb19e108">
+          <annotation></annotation>
+          <name>document</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>document</contextKey>
+          <expression id="65d2d23b-d45f-4225-b810-2f8571bb0e87">
+            <annotation></annotation>
+            <name>document</name>
+            <fieldName>document</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="03e0adf2-5259-4062-8c68-4dbbcec9ca14">
+          <annotation></annotation>
+          <name>documentStripped</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>documentStripped</contextKey>
+          <expression id="041b6c44-6c0e-4945-978f-1168140766dc">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7a6ed3a6-9099-4bff-87cc-9faae774e1f6">
+          <annotation></annotation>
+          <name>responseHeaders</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>responseHeaders</contextKey>
+          <expression id="78575748-67ba-4814-a49d-eecb03a40cd7">
+            <annotation></annotation>
+            <name>responseHeaders</name>
+            <fieldName>responseHeaders</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="82663f87-b759-4033-ae0a-83066b8d14d0">
+          <annotation></annotation>
+          <name>muBCISCustDtl00ResponseHierarchical</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>muBCISCustDtl00ResponseHierarchical</contextKey>
+          <expression id="49de0ce6-490b-4fd4-b3e0-b85c84ad54f0">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="69d73804-da63-4d0a-8c76-0521a4a197df">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="3a4a983f-1e0a-4e39-bc9c-033c0d34990e">
+          <annotation></annotation>
+          <name>CIS_ABN</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_ABN</contextKey>
+          <expression id="4e33bc40-7ac0-4580-8011-3dbb6e678caa">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="f2ce6e56-897d-4a35-ad3d-8593c932f385">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_ABN/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="03ca19e3-7670-46dc-87d9-27b5a6563323">
+          <annotation></annotation>
+          <name>CIS_CUST_ABN</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_ABN</contextKey>
+          <expression id="ab647495-5833-4504-9106-e71514feb3fb">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="a189c771-4cb6-44f6-8e98-2ee76010f479">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_ABN/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="662e2514-207f-4182-80bd-cb3e2ed23b0f">
+          <annotation></annotation>
+          <name>CIS_CUST_ASCO_CODE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_ASCO_CODE</contextKey>
+          <expression id="37f08ce2-6931-4adb-8a62-5f0aa7525c4e">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="7a41daed-ddb4-4c06-b611-3fc9b95ea5e0">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_ASCO_CODE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="5158ab34-2439-49bf-a65c-138b39b89e8e">
+          <annotation></annotation>
+          <name>CIS_CUST_CHNG_DATE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_CHNG_DATE</contextKey>
+          <expression id="d83ed866-14f4-494e-b3db-d9f67853073b">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="3d27b871-e0a0-4c41-be6b-bf0c6dd435f7">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_CHNG_DATE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="cb28610b-9ed0-4017-af3a-6b6b20d64478">
+          <annotation></annotation>
+          <name>CIS_CUST_DRIVE_LICENSE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_DRIVE_LICENSE</contextKey>
+          <expression id="29a230dc-5fe3-4648-8952-f11f66f1b685">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="ccbd45f4-18d8-40b0-bad2-280a43ba03fa">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_DRIVE_LICENSE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="23b2a367-5c29-40ea-948f-b31c2245b3a9">
+          <annotation></annotation>
+          <name>CIS_CUST_EMP_CITY</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_EMP_CITY</contextKey>
+          <expression id="8cca7f18-3bb4-4888-960a-1bdd5e8e534f">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="dccc4765-c065-44b2-989b-792295673287">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_CITY/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9eed9068-30bd-46d4-b67b-94ddf1434cf8">
+          <annotation></annotation>
+          <name>CIS_CUST_EMP_COUNTRY</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_EMP_COUNTRY</contextKey>
+          <expression id="b5f471a0-146f-48d7-863e-7af35448a65b">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="5457f7b6-65d9-48d9-9d5d-05acb0a89b6d">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_COUNTRY/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c9314fad-c549-427e-ab87-abc40ac7050f">
+          <annotation></annotation>
+          <name>CIS_CUST_EMP_NAME</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_EMP_NAME</contextKey>
+          <expression id="164a7faa-5e45-4906-816e-0c2659f48dc7">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="a75aac81-839d-470d-ba23-c63c356a1cf0">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_NAME/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="012eb671-54b7-4f4b-bb0b-78b6ba3b9676">
+          <annotation></annotation>
+          <name>CIS_CUST_EMP_POSTCODE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_EMP_POSTCODE</contextKey>
+          <expression id="a9cc5eae-f73c-4d29-824e-0b5f2b1aff4d">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="6c8202d7-8601-49ac-b2ec-4fac8338e7be">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_POSTCODE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="edac7663-e48e-4e77-a6bb-2593aa553fcc">
+          <annotation></annotation>
+          <name>CIS_CUST_EMP_SINCE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_EMP_SINCE</contextKey>
+          <expression id="a4d8a9a3-d627-4c74-b54d-edfec6a5ea13">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="5f83aeae-506a-42ef-a25f-7e86a39bbe7c">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EMP_SINCE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="063730a6-9c03-41f5-9b8f-d4d49ea871d2">
+          <annotation></annotation>
+          <name>CIS_CUST_EXPIRY_DATE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_EXPIRY_DATE</contextKey>
+          <expression id="bc2d9aac-75ac-46e7-a338-643e6117a37c">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="99375837-20a4-47c0-b89c-a38c9226edfd">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_EXPIRY_DATE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="189d14dd-9cc8-44a2-a10a-1e9cec020198">
+          <annotation></annotation>
+          <name>CIS_CUST_FIRST_NAME</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_FIRST_NAME</contextKey>
+          <expression id="7f7cc91d-78a6-4efd-bb62-9ef01a617733">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="1f5a0057-497f-47ee-93d5-94e20024c80e">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_FIRST_NAME/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="70b582e4-7a08-4667-b85b-7c6674dd8b45">
+          <annotation></annotation>
+          <name>CIS_CUST_HOME_PHONE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_HOME_PHONE</contextKey>
+          <expression id="1c510be0-6c98-4aba-929e-bcc0fb36616e">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="e3933627-e811-4570-b4a8-4342b5043961">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_HOME_PHONE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c9c0d6b2-aa79-4a90-bc22-f74ebc2276dd">
+          <annotation></annotation>
+          <name>CIS_CUST_LAST_NAME</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_LAST_NAME</contextKey>
+          <expression id="124a221a-2956-479f-b569-c8578d059453">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="e4b67ed9-6354-4a4d-834e-fa58d742ef19">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_LAST_NAME/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="5ad6dc62-96bc-41df-a26e-4a33f0bc0cc0">
+          <annotation></annotation>
+          <name>CIS_CUST_LINEAGE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_LINEAGE</contextKey>
+          <expression id="d2f07dbb-2e76-44c0-90b1-ec4cddd9faea">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="8d26d665-3f9a-4c15-9292-a67c63e56895">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_LINEAGE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="549a397b-c21e-4904-a087-1c399672620d">
+          <annotation></annotation>
+          <name>CIS_CUST_MARITAL_STATUS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_MARITAL_STATUS</contextKey>
+          <expression id="634a64b3-ad18-4b27-bb4a-83800464260a">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="ce1ae1b7-a8a4-4041-aae3-06ac5d64a084">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_MARITAL_STATUS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="05f6171c-acc2-411d-937c-ba5aa66e42bc">
+          <annotation></annotation>
+          <name>CIS_CUST_NUMBER</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_NUMBER</contextKey>
+          <expression id="3e42225a-4362-4b6d-aef6-1fe8014a2b4b">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="45516cf9-4cdc-45ca-a572-152cab10b914">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_NUMBER/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d6f3e019-6a52-4014-b130-fcfc33451bb2">
+          <annotation></annotation>
+          <name>CIS_CUST_NUM_OF_DEP</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_NUM_OF_DEP</contextKey>
+          <expression id="2b0b001d-e4a9-45af-bcdb-d35534202b91">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="4f36520a-19f9-4a09-86e4-d761692c169c">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_NUM_OF_DEP/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fd0ae00e-5028-45ac-9dff-9813a102ee1d">
+          <annotation></annotation>
+          <name>CIS_CUST_OCCUP_CLASS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_OCCUP_CLASS</contextKey>
+          <expression id="aefc116d-3b77-49db-90b8-85847e6c7f56">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="4c1e9f10-bb74-409b-b85f-9202f1feee47">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_OCCUP_CLASS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0f07f226-d86c-4164-a1bb-7ee093bb4b00">
+          <annotation></annotation>
+          <name>CIS_CUST_OCCUP_NAME</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_OCCUP_NAME</contextKey>
+          <expression id="69ca297f-e450-4e35-8ed5-bdb278d37ea4">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="c3412c65-46a2-458e-8df5-6f7e31c7d9ab">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_OCCUP_NAME/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b76b92ce-d2e7-4fe1-b641-fb816e18ee1f">
+          <annotation></annotation>
+          <name>CIS_CUST_RBA_FLAG</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_RBA_FLAG</contextKey>
+          <expression id="4702705f-327d-4baa-ba5c-f6787e9dc8b3">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="9caa8d4d-a7e9-4431-b674-18fe6087b482">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_RBA_FLAG/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7eb35942-c844-494a-80ad-7ca9ff8b5082">
+          <annotation></annotation>
+          <name>CIS_CUST_SEX</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_SEX</contextKey>
+          <expression id="b957ef27-f649-4785-8e5c-c1f34075af6c">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="27db9264-51fb-421b-95ee-89fe31b35615">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_SEX/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="01f75a21-80fd-44c4-8c79-518b4ff64933">
+          <annotation></annotation>
+          <name>CIS_CUST_SINCE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_SINCE</contextKey>
+          <expression id="80e7a7d4-b84e-4836-93cb-ef05210be744">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="caa0cd47-25f3-4eac-8d62-1790686437ac">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_SINCE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="ec7d6e10-bf9e-429b-a1f2-cb4c9e180626">
+          <annotation></annotation>
+          <name>CIS_CUST_STAGE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_STAGE</contextKey>
+          <expression id="86f94f82-e002-43dd-8e0f-71cb596988e2">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="7526067c-5581-488d-bbc9-b057ac784be5">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_STAGE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b012eab5-8d1e-43f1-8ae5-9d8fac1d75e1">
+          <annotation></annotation>
+          <name>CIS_CUST_STATUS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_STATUS</contextKey>
+          <expression id="fd831aaa-b8fd-4d03-b882-86ea3de65878">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="51929ccc-333c-44d7-9369-0623809c16d2">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_STATUS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a68c51b4-96c3-453a-ab47-5425d8e073cf">
+          <annotation></annotation>
+          <name>CIS_CUST_STATUS_DATE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_STATUS_DATE</contextKey>
+          <expression id="59d8f44e-3a2d-486a-a0ac-7be0a9cc20db">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="faf414b9-2c8f-4c79-9c38-22810f4beebc">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_STATUS_DATE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f1e3b086-f1e6-4f28-9813-be1fbb9aae30">
+          <annotation></annotation>
+          <name>CIS_CUST_TELEBANK_STATUS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_TELEBANK_STATUS</contextKey>
+          <expression id="fdcff185-c773-44c0-a00c-114bfe0002dd">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="ce0a8815-5a62-46ad-9287-b926068cd45f">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_TELEBANK_STATUS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="36ff92a5-6367-47fd-abaa-4f73c28150bf">
+          <annotation></annotation>
+          <name>CIS_CUST_TYPE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_TYPE</contextKey>
+          <expression id="c2bac5b0-fb57-4155-8185-43e5330540b4">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="dc1126ef-f662-44ea-97e3-500f97b8b0c5">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_TYPE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="64139f64-f62b-407c-a6b2-506a817bcf88">
+          <annotation></annotation>
+          <name>CIS_CUST_WORK_PHONE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_CUST_WORK_PHONE</contextKey>
+          <expression id="8caa5fd1-dbde-4dff-9ca8-69c067d07085">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="0e898a0a-cb40-426f-a48d-9ebd55d424a6">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_CUST_WORK_PHONE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b89c9379-1ced-467c-bdd2-d1a5f91119bc">
+          <annotation></annotation>
+          <name>CIS_DATE_OF_BIRTH</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_DATE_OF_BIRTH</contextKey>
+          <expression id="8a33ef8d-4053-43a2-8df8-31de685cef8f">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="04007c98-9a07-4a71-bae3-9d9a0064402c">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_DATE_OF_BIRTH/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="549c6507-0c24-4791-8431-e8393fcb64b4">
+          <annotation></annotation>
+          <name>CIS_KEY</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_KEY</contextKey>
+          <expression id="437cfc00-0cab-4bf7-a838-5f5e47c88142">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="f64068b2-c580-4439-8235-3fb85156f4a0">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_KEY/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="aeaf24f5-9849-4e3d-b114-f66ab6799972">
+          <annotation></annotation>
+          <name>CIS_MARKET_BANK_BSB</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_MARKET_BANK_BSB</contextKey>
+          <expression id="faf11292-e1dd-4982-a33d-eb2e77ef73cd">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="c8562867-f85a-44bf-aed3-3b6c3b4654c8">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MARKET_BANK_BSB/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="8cf90a47-4770-4870-be3c-25bf514d0a86">
+          <annotation></annotation>
+          <name>CIS_MQ_ERROR_CATEGORY</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_MQ_ERROR_CATEGORY</contextKey>
+          <expression id="517c0659-4998-4a80-be3b-4ddc1e824ffa">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="880c8d61-cb0a-4c4b-a386-d5f5449e164a">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MQ_ERROR_CATEGORY/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b106d3f7-e1f5-4817-874e-ab879348d7be">
+          <annotation></annotation>
+          <name>CIS_MQ_ERROR_CODE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_MQ_ERROR_CODE</contextKey>
+          <expression id="af0012db-1bb4-4e8e-95af-4a367c67bca4">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="64e6bcac-f64c-4246-abb8-40e301b33ab8">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MQ_ERROR_CODE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="082a4313-1801-4114-a5bb-4e41744208ac">
+          <annotation></annotation>
+          <name>CIS_MQ_ERROR_DESCRIPTION</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_MQ_ERROR_DESCRIPTION</contextKey>
+          <expression id="05478d00-991a-4510-b301-7f3b0052da85">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="3d5bbdca-5fb7-42c7-b42d-4fa15c903299">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_MQ_ERROR_DESCRIPTION/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="3e791f59-0278-4450-81a3-8875f730fb82">
+          <annotation></annotation>
+          <name>CIS_NON_WPAC_MKT_FLAG</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NON_WPAC_MKT_FLAG</contextKey>
+          <expression id="01137fdc-113f-4163-b618-e8876de1885d">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="5661b77d-9e51-4edd-8708-947faeecb011">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NON_WPAC_MKT_FLAG/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fcfdbbb3-aaec-46cb-aaec-7c27df3d39c9">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_ACCOUNTS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_ACCOUNTS</contextKey>
+          <expression id="19c76422-bb89-426b-909a-095f72dc5891">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="5a060114-39aa-4ee5-b7fb-27b3511f219e">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_ACCOUNTS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c3cd74a5-3c62-41c4-b2f8-15f6db5b5d5b">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_ADDRS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_ADDRS</contextKey>
+          <expression id="ea2ee5bf-4647-4b11-91ea-29a2a228a461">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="94643575-a477-4ce2-bf3d-701af83d3dea">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_ADDRS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b70c1af4-88c3-46ba-9dfe-fa640c0f7270">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_CARDS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_CARDS</contextKey>
+          <expression id="ef3afdfa-ac0a-493a-8617-b79ceb82ebc4">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="a6fef3c5-2331-4838-8bb3-6825278e3452">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_CARDS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="1bba8412-d203-49de-a7f4-be33355cd12e">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_CONTACTS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_CONTACTS</contextKey>
+          <expression id="803ca67e-9335-47be-86c6-ee56789f1a84">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="12f3c0fd-8ca7-4e85-9dfa-9683dfd48769">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_CONTACTS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0ad0de72-ccb0-4f4a-8e2e-742ff799038a">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_MANAGERS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_MANAGERS</contextKey>
+          <expression id="1703798c-5ba7-4375-b8b5-d0d80dab5ffa">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="be19d9c9-67bc-46dc-8dda-1745cbd38812">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_MANAGERS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f15be1c9-346d-45d6-93ce-42e888219619">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_SERVICES</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_SERVICES</contextKey>
+          <expression id="1dde3d19-abf7-4823-a8e0-dd582ff17ef1">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="2c249e7e-0100-4178-9c22-5a46ab8e1954">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_SERVICES/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="5102d5de-e266-47ad-a0c1-7599903cd1c8">
+          <annotation></annotation>
+          <name>CIS_NUM_OF_TRD_PTY_ACCT</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_NUM_OF_TRD_PTY_ACCT</contextKey>
+          <expression id="076d13f7-0b5a-4d89-b586-a2c358909807">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="476d39d8-a2ee-49fd-9577-145cf7171887">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_NUM_OF_TRD_PTY_ACCT/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="959cc6a6-cd89-43e5-9f57-fc76fe967515">
+          <annotation></annotation>
+          <name>CIS_SVCE_HEAD_VERSION</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_SVCE_HEAD_VERSION</contextKey>
+          <expression id="bd9b8fc6-82fe-4b95-b39f-46d3eb1ceba0">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="3cf07cf1-f7d5-4e26-8b00-8d88eb34715a">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_HEAD_VERSION/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="2ec3ee43-b7a0-4ab4-8dfe-da05f4566d89">
+          <annotation></annotation>
+          <name>CIS_SVCE_INTERFACE_CODE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_SVCE_INTERFACE_CODE</contextKey>
+          <expression id="bf7ecd13-e4ce-4940-b45a-655e9da63697">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="c83da3c0-f0d3-49ad-a0be-ce95328522b8">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_INTERFACE_CODE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7311ba5f-b4d2-4bc8-8519-c8a5b1ecd6df">
+          <annotation></annotation>
+          <name>CIS_SVCE_PROCESS_CODE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_SVCE_PROCESS_CODE</contextKey>
+          <expression id="21eb14b5-d32b-4afb-8707-4459d40616ee">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="76327eae-79d2-4311-81af-620c04e552dd">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_PROCESS_CODE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="8eb9f9cb-e88f-4127-90ad-ce8c6de9a323">
+          <annotation></annotation>
+          <name>CIS_SVCE_REQUEST_VERSION</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_SVCE_REQUEST_VERSION</contextKey>
+          <expression id="50055f95-1be5-4751-b893-3b7d42ce3cbf">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="cb0a5954-b99d-4701-b366-a27d851aea59">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_REQUEST_VERSION/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c5a505ed-7209-4807-ac9d-f4085d5f734d">
+          <annotation></annotation>
+          <name>CIS_SVCE_SERVICE_CODE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_SVCE_SERVICE_CODE</contextKey>
+          <expression id="22074169-aa64-4809-9a2f-929aae77ebaf">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="cd09eac9-d1ee-400f-b11e-1a28d5c1d48d">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_SVCE_SERVICE_CODE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4a4cb215-aefe-43f4-96a3-c478fa62ca67">
+          <annotation></annotation>
+          <name>CIS_TELEBANK_NUMBER</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_TELEBANK_NUMBER</contextKey>
+          <expression id="62fa6aa5-df6b-4642-9331-ca4fa551c51e">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="c6855212-2d17-4d64-95d9-383507c5a687">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_TELEBANK_NUMBER/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d56e7d68-fa99-4232-b1fd-e9356805918d">
+          <annotation></annotation>
+          <name>CIS_TFN_IND</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_TFN_IND</contextKey>
+          <expression id="501e859b-f217-453d-a1a6-579958943702">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="363eba38-b724-4981-bf9f-02ac08689b60">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_TFN_IND/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0879fe80-4110-4ebf-879d-e9c697bef28b">
+          <annotation></annotation>
+          <name>CIS_TITLE_PREFIX</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_TITLE_PREFIX</contextKey>
+          <expression id="0a54c536-b1f7-4fe7-aafe-c8439b3c7649">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="f0fc6893-53bc-403e-9f49-ffe838771e94">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_TITLE_PREFIX/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f0d2771c-cb78-4fdf-b4bc-d81e6f60e756">
+          <annotation></annotation>
+          <name>CIS_WHLD_TAX_IND</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_WHLD_TAX_IND</contextKey>
+          <expression id="67881ab2-5440-4c70-ad9d-630f7245b987">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="b1313941-6b77-4f5c-a11f-3a0609ce0698">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_WHLD_TAX_IND/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="bfc07eb8-f9cb-4808-9606-43d2fadf9a3e">
+          <annotation></annotation>
+          <name>CIS_WPAC_MKT_FLAG</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>CIS_WPAC_MKT_FLAG</contextKey>
+          <expression id="19092549-3631-4258-8c40-b6406a0dd60e">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="b3202bf6-7fdc-47b4-abac-9f953ac44f26">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/CIS_WPAC_MKT_FLAG/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="90e33c65-8439-47cf-873a-15ce5c3696e5">
+          <annotation></annotation>
+          <name>ERROR_GRP</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_GRP</contextKey>
+          <expression id="0a746682-c5e6-4001-814d-bf0f6a2a2bbe">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="3550b9f4-5b1e-45ce-a129-783eeaf34fdf">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/ERROR_GRP/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7067f2ff-7544-4cb0-8adf-b1f69c2db83c">
+          <annotation></annotation>
+          <name>ERROR_MSG</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_MSG</contextKey>
+          <expression id="8d175e85-d3cc-4344-b77b-6954db2d94c4">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="01b1fdd4-2687-4416-b2b5-01ea2ccfdfa6">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/ERROR_MSG/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="1b80a13b-5605-40b5-8d72-0871a0d8aac4">
+          <annotation></annotation>
+          <name>ERROR_NO</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_NO</contextKey>
+          <expression id="6b25d6f9-a845-492d-a687-0cb3e7b61ccb">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="4f0b878d-2134-4db1-9dcf-1c82ce0060ac">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muBCISCustDtl00FacadeResponse/muBCISCustDtl00ResponseHierarchical/ERROR_NO/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="7f475d35-de85-458e-b7f1-83a03f1aadf8">
+      <annotation></annotation>
+      <name>RESOLVED : success</name>
+      <bounds>
+        <x>0.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>RESOLVED : success</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="efda276c-6afd-4a55-bc81-7f7d9e47c97f">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>7f475d35-de85-458e-b7f1-83a03f1aadf8</refId>
+          </destination>
+          <source>
+            <refId>7f475d35-de85-458e-b7f1-83a03f1aadf8</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="80e75ab2-e25f-4ee2-8519-aae2c056320d">
+      <annotation></annotation>
+      <name>ERROR : failure</name>
+      <bounds>
+        <x>150.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>ERROR : failure</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="d71582ca-c52f-4057-8a85-966bc32e8b2f">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>80e75ab2-e25f-4ee2-8519-aae2c056320d</refId>
+          </destination>
+          <source>
+            <refId>80e75ab2-e25f-4ee2-8519-aae2c056320d</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>4bdf95ca-effc-4f34-8a83-d3809b71751d</startSteps>
+</flow>

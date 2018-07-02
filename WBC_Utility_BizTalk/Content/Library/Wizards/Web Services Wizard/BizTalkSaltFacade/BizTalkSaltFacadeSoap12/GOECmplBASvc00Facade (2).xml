@@ -1,0 +1,912 @@
+<flow id="e88f7be7-92d9-4f9b-b269-17ef73c65eb6">
+  <descriptionCdata><![CDATA[e88f7be7-92d9-4f9b-b269-17ef73c65eb6.35b30fb4-7a78-416d-9897-b4bf4aae0b5a.description=<pre>\nThe operation invokes web service methods.  This operation should not be used directly\!  Please use the wizard to build flows that use this operation.\n\nInputs\:\n    xmlTemplate - The template of the soap request to make.\n    inputMap - A map used to map between template names and user-friendly names. The template names are pipe-delimited xpaths of the xmltemplate location, with a numerical element for lists.\nValue format\: A list of elements separated by the new line delimiter. Eache element hes the format\: <name>\=<new name>.\nExample\: A line in the "inputMap" could be\: "Request|Details|0|Input|x\=input0.x"\n    url - The url to Post to. \n    header_SOAPAction - The SOAPAction http header field, defined by many web services for indicating the intent of the request\n    wswAuthenticationType - The authentication type to use for the "username" and "password" input.\nDefault value\: http\nValid values\: http, ntlm, ws-security digest, ws-security text\n    WSSecuritySignRequest - Should the SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityEncryptRequest - Should the entire SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityTimestampRequest - Should the Timestamp attribute be added to the WS-Security header\nDefault value\: false\nValid values true, false\n    WSSecurityKeystore - Keystore to use for encrypting and signing requests.\n    WSSecurityKeystoreType - The type of "WSSecurityKeystore".\n    WSSecurityKeystorePassword - The password for "WSSecurityKeystore".\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    contentType - Value to be used in the Content-Type HTTP header. If Content-Type header is also passed in "headers" input, the "contentType" input will override the value provided in "headers".\nDefault value\: text/xml\n    characterSet - The character set for HTTP Get request and response.\nDefault value\: UTF-8\n    username - The username to use for authenticating with the web service.\nValue format\: For NTLM authentication, the required format is domain\\user.\n    password - The password to use for authenticating with the web service.\n    trustAllRoots - Enables weak security over SSL. A SSH certificate is trusted even if no trusted CA issued it.\nDefault value\: false\nValid values\: true, false\n    useCookies - Enables cookie tracking. Cookies will be stored between consecutive calls.\nDefault value\: false\nValid values\: true, false\n    usesJSON - Use JSON arrays for the SOAP Request for all Array types.\nDefault value\: false\nValid values\: true, false\n    timeout - a timeout after which the connection should be terminated or 0 for no timeout.\n    socketTimeout - The time to wait for data to be retrieved, in milliseconds. This input needs a value greater than or equal to zero. A "socketTimeout" value of '0' represents an infinite timeout.\nDefault value\: 0\n    proxy - A proxy to use when accessing the web service.\n    proxyPort - A port on the proxy to connect to.\n    proxyUsername - A username to use when connecting to the proxy.\n    proxyPassword - A password to use when connecting to the proxy.\n    keystore - The path to the keystore to use for SSL Client Certificates when using http authentication.\n    keystorePassword - The password for the keystore when using http authentication.\n    ICONCLUDE_WSW_VERSION - This value is used internally by the operation.\n    returnXMLRequest - If this input is set to true, a new output named "rawXMLRequest" is returned from the operation which contains the text of the SOAP request that will be sent. This can be very valuable in troubleshooting.\nDefault value\: false\nValid values\: true, false\n\nResults\:\n    returnCode - This is the primary output. It contains the value 0 if the operation successfully completes and the value -1 otherwise.\n    document - Raw XML response.\n    documentStripped - Raw XML response stripped of namespaces for ease in parsing with XML XPath operations.\n    jsonStripped - Raw XML response stripped of namespaces for ease in parsing with JSON operations, input usesJSON must be set to true for this to be populated.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n              Transfer-Encoding\: chunked\n\nResponses\:\n    success - SOAP request completed successfully.\n    failure - Something went wrong.\n\nNotes\:\n1.If wswAuthenticationType\=ws-security text then this operation transmits passwords in clear-text.\n2.Any additional inputs that follow these are added by the Web Service Wizard, and they are specific to the particular web service method being called.\n3.If you add new step-level inputs with the name header_<headername>, where <headername> is the name of an html header, then that html header will be set to the given value in the HTTP request.\n4.This operation will not allow connection through secure transport layers below TLS 1.0.\n</pre>
+e88f7be7-92d9-4f9b-b269-17ef73c65eb6.description=<pre>\nThis subflow was created by the Web Services Wizard to invoke the GOECmplBASvc00Facade operation on http\://aulknpesva118/HP.WestPac.OVM.BiztalkSaltFacade/BizTalkSaltFacade.asmx?WSDL. Note that the inputs to this flow which correspond to web service inputs are optional inputs.  This is due to the fact that web services definitions usually incorrectly indicate that too many inputs are required, and mirroring those settings in the flow would force you to enter unused values when running the flow.  The xmlTemplate input on the Invoke Method 2 step of this flow contains a template of the xml message to be sent, and the fields preceded by the comment "<\!--Optional\:-->" or "<\!--zero or more repetitions-->" are those which the web service indicates are optional; all others are indicated to be required.\n\nInputs\:\n    webserviceHost - The host that is running the web service\n    webservicePort - The port on the host running the web service\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.CREDIT_APPL_ID - The input named GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|CREDIT_APPL_ID of the complex type\: GOECmplBASvc00Facade|GOECmplBASvc00|inbuf\n    GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.FLAGS - The input named GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|FLAGS of the complex type\: GOECmplBASvc00Facade|GOECmplBASvc00|inbuf\n    GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.GENERIC_DIST - The input named GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|GENERIC_DIST of the complex type\: GOECmplBASvc00Facade|GOECmplBASvc00|inbuf\n    GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.OPERATOR_CODE - The input named GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|OPERATOR_CODE of the complex type\: GOECmplBASvc00Facade|GOECmplBASvc00|inbuf\n    GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.STATUS - The input named GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|STATUS of the complex type\: GOECmplBASvc00Facade|GOECmplBASvc00|inbuf\n    GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.TRACE - The input named GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|TRACE of the complex type\: GOECmplBASvc00Facade|GOECmplBASvc00|inbuf\n\nResults\:\n    document - The raw XML response of the web service\n    documentStripped - The XML response of the web service stripped of namespaces\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n               Transfer-Encoding\: chunkedWebServiceWizard.repo.successDesc\=The SOAP command was accepted by the web service\n    ERROR_GRP - The output given by the XPath\: /Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/ERROR_GRP/text()\n    ERROR_MSG - The output given by the XPath\: /Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/ERROR_MSG/text()\n    ERROR_NO - The output given by the XPath\: /Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/ERROR_NO/text()\n    FLAGS - The output given by the XPath\: /Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/FLAGS/text()\n    TRACE - The output given by the XPath\: /Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/TRACE/text()\n\nResponses\:\n    success - The SOAP command was accepted by the web service\n    failure - Something went wrong while making the SOAP request\n</pre>
+]]></descriptionCdata>
+  <annotation>e88f7be7-92d9-4f9b-b269-17ef73c65eb6.description</annotation>
+  <name>GOECmplBASvc00Facade (2)</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="f2cd7a29-4e77-4891-95ca-c30d92fae9b4">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webserviceHost</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Biztalk_utilities_dev_WebService_Host}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="241c2ddd-840e-4052-ac35-a1a3284ac7e4">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webservicePort</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Biztalk_utilities_dev_WebService_Port}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9296767b-6011-4601-8010-a20d1b6f407d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>headers</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7b5046e1-8796-4c10-b284-bd5d18093c5d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.CREDIT_APPL_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5b5369e8-055f-4781-9e06-40a81d40bb95">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.FLAGS</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c7a4e038-408f-4932-a908-b9f896f65417">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.GENERIC_DIST</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="99a1894b-da1a-499d-a72e-62cecb11551f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.OPERATOR_CODE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ed26f38c-ad3e-4e98-ad86-8a275f7e7ba0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.STATUS</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7d123133-14a8-40da-8bac-f158f7c79803">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.TRACE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="7b7743f1-0244-478d-8820-b59a24249985">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+    </opResponse>
+    <opResponse id="a7e32133-ad94-4c41-9740-032c7bbc5167">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="0d609a04-8af1-41a4-b4cf-cfdaacd5cffe">
+    <annotation></annotation>
+    <name>document</name>
+    <fieldName>document</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="2a75244f-98c8-42c7-af6f-ce16938f2f4e">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>false</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>false</historyCheckPointFlow>
+  <steps>
+    <step id="35b30fb4-7a78-416d-9897-b4bf4aae0b5a">
+      <annotation>e88f7be7-92d9-4f9b-b269-17ef73c65eb6.35b30fb4-7a78-416d-9897-b4bf4aae0b5a.description</annotation>
+      <name>Invoke Method 2</name>
+      <bounds>
+        <x>0.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>Invoke Method 2</resultContextKey>
+      <bindings>
+        <staticBinding id="e2c621fa-4abe-436a-a004-370b68f716ab">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>url</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http://${webserviceHost}:${webservicePort}/HP.WestPac.OVM.BiztalkSaltFacade/BizTalkSaltFacade.asmx</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5d0c1839-c721-4b77-b60e-a737975bab7f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>xmlTemplate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot; xmlns:urn=&quot;urn:hp.westpac.ovm&quot; xmlns:urn1=&quot;urn:pack.gsmSVClist_typedef.salt11&quot;&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;urn:GOECmplBASvc00Facade&gt;
+         &lt;!--Optional:--&gt;
+         &lt;urn1:GOECmplBASvc00&gt;
+            &lt;!--Optional:--&gt;
+            &lt;urn1:inbuf&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:GENERIC_DIST&gt;?&lt;/urn1:GENERIC_DIST&gt;
+               &lt;urn1:TRACE&gt;?&lt;/urn1:TRACE&gt;
+               &lt;urn1:FLAGS&gt;?&lt;/urn1:FLAGS&gt;
+               &lt;urn1:CREDIT_APPL_ID&gt;?&lt;/urn1:CREDIT_APPL_ID&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:OPERATOR_CODE&gt;?&lt;/urn1:OPERATOR_CODE&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:STATUS&gt;?&lt;/urn1:STATUS&gt;
+            &lt;/urn1:inbuf&gt;
+         &lt;/urn1:GOECmplBASvc00&gt;
+      &lt;/urn:GOECmplBASvc00Facade&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9f157c0d-2515-4291-bfa5-edfd67914d77">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>header_SOAPAction</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>urn:hp.westpac.ovm/BizTalkSaltFacade/GOECmplBASvc00Facade</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a3ff8cfe-3763-42ce-8c0d-c2dec3d4c5c4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>inputMap</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|CREDIT_APPL_ID=GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.CREDIT_APPL_ID
+GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|FLAGS=GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.FLAGS
+GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|GENERIC_DIST=GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.GENERIC_DIST
+GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|OPERATOR_CODE=GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.OPERATOR_CODE
+GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|STATUS=GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.STATUS
+GOECmplBASvc00Facade|GOECmplBASvc00|inbuf|TRACE=GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.TRACE</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="88b15106-a5d3-4d03-a20b-db99a3a486e6">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>usesJSON</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f833cdde-d2d6-47ef-bf90-6bdca0f02072">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>wswAuthenticationType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="de19edd8-db8a-424e-aa25-51f15c183eb5">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecuritySignRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="330a2b1a-9302-4c59-a106-53a25ab02278">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityEncryptRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b1d0a8da-36a1-467c-9229-b2d477c0b846">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityTimestampRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e4aca77b-5b3b-4bfd-b4a7-192da691831f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d6ff7ae6-9846-4c53-a2c8-0ba21efda356">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystoreType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5a89ab7a-5414-407d-ae29-dc359353da94">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f67cbbc8-7601-411a-8eda-36ea4ca44b35">
+          <fromContextKey>headers</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>headers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="65a5ac27-6794-4dff-a447-3a3083798ad9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>contentType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>text/xml</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c1c80d88-00d8-4f4d-a789-5fc7a2cefb57">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>UTF-8</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="243fdd33-23a7-40da-aaf6-2b7fc57a4af7">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="56523401-3a66-4f5a-ac34-fdd56f4dcf51">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ad4facf9-f647-4092-936d-959b8588a164">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>trustAllRoots</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e4edd089-d66e-4166-abd9-c77096a1c7ca">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>useCookies</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8008ae69-50f3-4995-8084-abbc22f9bc5f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c0da3371-6389-443f-bc4f-e7a43163b784">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>socketTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="908031c1-f2ab-4f76-9732-999909afc65f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="98799124-5919-4ff8-b440-f564769a991d">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b39c9ef0-f172-4940-a856-816b8d0597f4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4ed89499-d87e-40ef-9339-daa1bf935cd1">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3ec4a379-294b-4a3e-af70-c75dd55092a9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4ab84416-e616-4198-a017-5a7726295e64">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6afb2e68-2698-40c7-8cea-93ab2ac76d01">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>ICONCLUDE_WSW_VERSION</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>2</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="fbfd080d-a315-4d45-a7f0-57e92acf9385">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>returnXMLRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3bfb4cfe-e5f0-4afe-a509-71e56f27e351">
+          <fromContextKey>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.CREDIT_APPL_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.CREDIT_APPL_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="21e05a4a-fc03-4427-8e56-9e15cefc9d17">
+          <fromContextKey>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.FLAGS</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.FLAGS</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a41f4977-645e-47d3-8f20-cd1f96b3d40e">
+          <fromContextKey>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.GENERIC_DIST</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.GENERIC_DIST</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4b2a6731-8b38-4be6-9e62-9e2d76917520">
+          <fromContextKey>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.OPERATOR_CODE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.OPERATOR_CODE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="aa1a0613-7685-4403-89d7-c0cceee53e75">
+          <fromContextKey>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.STATUS</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.STATUS</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e4eb7068-2374-498a-85ab-633e6ef595a7">
+          <fromContextKey>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.TRACE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>GOECmplBASvc00Facade.GOECmplBASvc00.inbuf.TRACE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b902654a-0893-4e2e-b627-9dad52232fb7">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9ecd6c1c-3d7b-48a7-a22c-6a72c5134172</refId>
+          </destination>
+          <source>
+            <refId>35b30fb4-7a78-416d-9897-b4bf4aae0b5a</refId>
+          </source>
+          <positions/>
+        </transition>
+        <transition id="e19d4348-14ce-4863-b1c7-a19ae0095b76">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>e6b8262b-8aaf-46af-88bb-9c90f1e0287a</refId>
+          </destination>
+          <source>
+            <refId>35b30fb4-7a78-416d-9897-b4bf4aae0b5a</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>962ffbf8-4105-46bb-8c71-84f037c4de61</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="cf03980a-2b39-4d2d-b761-3c5b5a210207">
+          <annotation></annotation>
+          <name>document</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>document</contextKey>
+          <expression id="d09f9710-e2d5-4cf7-9c99-28dd8ae6837d">
+            <annotation></annotation>
+            <name>document</name>
+            <fieldName>document</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7cf89e5e-d2ae-4841-a3c5-4804d63c7099">
+          <annotation></annotation>
+          <name>documentStripped</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>documentStripped</contextKey>
+          <expression id="84e831e0-4af3-43a4-9d53-67238ec37e0d">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9351f3d3-9ffa-4741-afa9-d3eea64548cb">
+          <annotation></annotation>
+          <name>responseHeaders</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>responseHeaders</contextKey>
+          <expression id="e331c3f0-2616-4074-946e-e2d1eb475628">
+            <annotation></annotation>
+            <name>responseHeaders</name>
+            <fieldName>responseHeaders</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b15fc042-bd48-4cbe-99de-c180c279e1cc">
+          <annotation></annotation>
+          <name>ERROR_GRP</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_GRP</contextKey>
+          <expression id="6578c95b-79ea-41d0-b2f7-24ffa8e30bdc">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="9dba850c-1a0a-45ab-b2b9-c75492c9f6f3">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/ERROR_GRP/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="537f7e7d-2a6e-4e68-a8d5-4f715796d9d0">
+          <annotation></annotation>
+          <name>ERROR_MSG</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_MSG</contextKey>
+          <expression id="69c1e792-f7f4-457f-a158-b419c086600c">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="786fa732-bffb-4087-9fb9-c63e8a1994e9">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/ERROR_MSG/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fa1c965b-2eed-432a-873e-aa5b6358c263">
+          <annotation></annotation>
+          <name>ERROR_NO</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_NO</contextKey>
+          <expression id="d69e383b-197b-454d-a7f6-e37932993082">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="b3faa433-e8d2-42cb-afbb-b3f630b8341f">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/ERROR_NO/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="eff902ff-84f0-4829-94a5-965b940449f1">
+          <annotation></annotation>
+          <name>FLAGS</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>FLAGS</contextKey>
+          <expression id="e8adecfd-1fca-48a2-92a6-119e9f301a16">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="24458b02-7231-4592-a213-e473c7f8d4fb">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/FLAGS/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="dd31e411-dc6d-4ad3-bb05-f065225ab5a2">
+          <annotation></annotation>
+          <name>TRACE</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>TRACE</contextKey>
+          <expression id="2e11ce76-958f-4acb-a6c5-7e0c57403ebc">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="bf27153c-080c-4c7b-942e-a6510e72652e">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/GOECmplBASvc00FacadeResponse/GOECmplBASvc00Response/outbuf/TRACE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="9ecd6c1c-3d7b-48a7-a22c-6a72c5134172">
+      <annotation></annotation>
+      <name>RESOLVED : success</name>
+      <bounds>
+        <x>0.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>RESOLVED : success</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="94e5cea8-541d-4c97-b037-f28f913ce661">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9ecd6c1c-3d7b-48a7-a22c-6a72c5134172</refId>
+          </destination>
+          <source>
+            <refId>9ecd6c1c-3d7b-48a7-a22c-6a72c5134172</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="e6b8262b-8aaf-46af-88bb-9c90f1e0287a">
+      <annotation></annotation>
+      <name>ERROR : failure</name>
+      <bounds>
+        <x>150.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>ERROR : failure</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="9600808a-0c9c-4d0f-975b-6b6cc1a20b11">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>e6b8262b-8aaf-46af-88bb-9c90f1e0287a</refId>
+          </destination>
+          <source>
+            <refId>e6b8262b-8aaf-46af-88bb-9c90f1e0287a</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>35b30fb4-7a78-416d-9897-b4bf4aae0b5a</startSteps>
+</flow>

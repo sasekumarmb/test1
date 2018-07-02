@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="b6788a0b-1a7d-4475-a122-ec0622520d65">
+  <descriptionCdata><![CDATA[b6788a0b-1a7d-4475-a122-ec0622520d65.23c2bcd8-962f-4898-b761-1e31e0f0404d.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
+b6788a0b-1a7d-4475-a122-ec0622520d65.description=<pre>\nTranslate the output from DDR Form into a common input to create DDR Record\n\nInputs\:\n    accountType - \u201CSV\u201D Type of the account\n    paymentType - type of the payment\n    mandatoryFields - this field determines whether document signed\n    ddrType - type of the DDR\n    CustomerLastName - last name of the customer\n    loanNumberC - calculated loan Number\n    requestedPaymentFrequencyC - calculated payment frequency\n    requestedRepaymentOptionC - calculated Repayment option\n    repaymentDay - day of the repayment (Ex\: Sunday, Monday...)\n    preferredStartDay - preferred start day is in date format\n    additionalAmountC - calculated additional amount\n    draftAmountC - calculated draft amount\n    draftAccountName - name of the account\n    draftBSB - Draft BSB first 6 charectors of the account number\n    accountNumber - account number of the customer\n    draftFinancialInstitution - name of the Bank\n    readFormFailFlag - if failed to read the email then set this flag True else False\n    signaturesFlag - data recieved from DDRForm values will be True or False\n    branchStampFlag - data recieved from DDRForm values will be True or False\n\n\nResults\:\n    accountType - \u201CSV\u201D Type of the account\n    paymentType - type of the payment\n    mandatoryFields - this field determines whether document signed\n    ddrType - type of the DDR\n    CustomerName - last name of the customer\n    loanNumber - calculated loan Number\n    paymentFrequency - calculated payment frequency\n    requestedRepaymentOptionC - calculated Repayment option\n    repaymentDay - day of the repayment (Ex\: Sunday, Monday...)\n    preferredStartDay - preferred start day is in date format\n    additionalAmount - calculated additional amount\n    draftAmount - calculated draft amount\n    draftAccountName - name of the account\n    draftBSB - Draft BSB first 6 charectors of the account number\n    accountNumber - account number of the customer\n    draftFinancialInstitution - name of the Bank\n    readFormFailFlag - if failed to read the email then set this flag True else False\n    signaturesFlag - data recieved from DDRForm values will be True or False\n    branchStampFlag - data recieved from DDRForm values will be True or False\n\nResponses\:\n    Success \u2013 Proceed to Validate New Application Number.\n\n\n</pre>
+]]></descriptionCdata>
+  <annotation>b6788a0b-1a7d-4475-a122-ec0622520d65.description</annotation>
+  <name>Standardize_Email_Contet_DDROnline</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="78926219-95ee-4db9-a022-93f9ad12812b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>ddrType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7af28854-97d7-4578-9616-4bb86bc3983e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>nominatedDisbursementDate</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c731f28e-7c93-44bf-986d-cd441bfe22ef">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>minimumRepaymentAmount</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4efdda13-7a72-4b17-b14f-5771682e144e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>customerZNumber</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="12ea0113-35c3-41f2-9914-678c45c52aa7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>customerName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9509791c-0d26-4aae-ad67-d89195b899c1">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>loanNumberC</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="930ffb31-5e21-4277-89aa-b2f18752cf36">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>requestedPaymentFrequencyC</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5a83ea80-ce44-4d86-842f-73ae977e520d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>requestedRepaymentOptionC</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f6f51580-4d6d-4b01-a8c5-e5ce90163d1c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>additionalAmountC</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="feb7f91b-581d-4bf4-a17a-8608137091c0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>draftAmountC</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5eba7ecd-77fa-414c-9df9-a3cba98d288b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>nominatedRepaymentDay</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8dfc3a94-4cd8-47f5-9589-ed8ab3114305">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>readOnlineFailFlag</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9c5eddb4-d1f5-4b6a-9646-9ad7a838544e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>signaturesFlag</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="91febb78-fea9-4ec6-a42a-b2c36e66425e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>branchStampFlag</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="e87bed1f-7f54-4c25-a46e-a4118aebb62a">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="3473ac77-196c-4195-b65c-4848f22d75a3">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="0b7fe9c3-e1e1-47a7-aa4e-1d8451bdf3c1">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="23c2bcd8-962f-4898-b761-1e31e0f0404d">
+      <annotation>b6788a0b-1a7d-4475-a122-ec0622520d65.23c2bcd8-962f-4898-b761-1e31e0f0404d.description</annotation>
+      <name>Do Nothing</name>
+      <bounds>
+        <x>19.0</x>
+        <y>41.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="c073988b-a0ea-45c7-b175-bf4a2ab27cd9">
+        <baseIcon>display_report.png</baseIcon>
+        <basePath>Utilities/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="7c27f476-d8fd-4002-89c3-0fbe68c495a8">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>ccb879b5-3082-40b4-b758-2fda98c32902</refId>
+          </destination>
+          <source>
+            <refId>23c2bcd8-962f-4898-b761-1e31e0f0404d</refId>
+          </source>
+          <positions>
+            <point>
+              <x>69.0</x>
+              <y>75.0</y>
+            </point>
+            <point>
+              <x>322.0</x>
+              <y>71.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>363.1179518571156</x>
+            <y>-3.968304861657296</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="ccb879b5-3082-40b4-b758-2fda98c32902">
+      <annotation></annotation>
+      <name>Resolved: success</name>
+      <bounds>
+        <x>272.0</x>
+        <y>37.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="9f070dbd-4d73-44fa-9f68-2b2681a038a1">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ddrType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a100df6b-0892-43b5-bf97-6532fbfec88f">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>minimumRepaymentAmount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f91e14d0-c081-4941-aa17-3378bd3aadcd">
+          <annotation></annotation>
+          <fromContextKey>loanNumberC</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>loanNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d5a0c27c-746d-4698-9fb5-24767a539647">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>customerName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0127255a-ddaa-4915-ba37-1fa3ec049dcc">
+          <annotation></annotation>
+          <fromContextKey>requestedPaymentFrequencyC</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>paymentFrequency</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4501aa23-8b80-4ab5-90dc-21d528b49e68">
+          <annotation></annotation>
+          <fromContextKey>requestedRepaymentOptionC</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>repaymentOption</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="28d4bb32-ec7e-4035-ba6c-996091e8c810">
+          <annotation></annotation>
+          <fromContextKey>additionalAmountC</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>additionalAmount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1379e6c4-57c7-4d14-b8a0-44befe491c37">
+          <annotation></annotation>
+          <fromContextKey>draftAmountC</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>draftAmount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8d80256d-bd14-4a67-83de-f163484a6049">
+          <annotation></annotation>
+          <fromContextKey>nominatedRepaymentDay</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>repaymentDay</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9ad4d5b2-1d82-4376-bd89-f505ed6517b0">
+          <annotation></annotation>
+          <fromContextKey>nominatedDisbursementDate</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>repaymentDate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a21a064d-5266-471f-9d7b-e598a835c785">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>readFormFailFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="dd4de84e-602a-4f1a-aa4d-1c6e3eab9fc0">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>signaturesFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d1f251d7-a7cd-4d5d-823f-dc047ae85e94">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>branchStampFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="e74a7384-78f1-457f-b642-779f2cee6794">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>ccb879b5-3082-40b4-b758-2fda98c32902</refId>
+          </destination>
+          <source>
+            <refId>ccb879b5-3082-40b4-b758-2fda98c32902</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="9ebedb8f-bb55-4756-b4f0-b5fe65f4da75">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>minimumRepaymentAmount</contextKey>
+          <expression id="7094b735-9989-47b5-b623-eb94e493fd0d">
+            <annotation></annotation>
+            <name>Input: minimumRepaymentAmount</name>
+            <fieldName>minimumRepaymentAmount</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="64091022-1d1d-4d21-a438-8a34531e1520">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>repaymentOption</contextKey>
+          <expression id="c5662de4-976f-451b-9854-c0cf84624fce">
+            <annotation></annotation>
+            <name>Input: repaymentOption</name>
+            <fieldName>repaymentOption</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d5704bfd-d75c-480c-a101-030722078f2c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>repaymentDate</contextKey>
+          <expression id="eab44244-d548-4638-b969-265357cc3d7b">
+            <annotation></annotation>
+            <name>Input: repaymentDate</name>
+            <fieldName>repaymentDate</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c00d252a-524c-4a0d-9d08-1c04c5ce84be">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ddrType</contextKey>
+          <expression id="1613eb5e-8016-40c4-b39b-3ff13f834a61">
+            <annotation></annotation>
+            <name>Input: ddrType</name>
+            <fieldName>ddrType</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="199f6ee9-b571-4315-82c5-4002d8ad39b3">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>loanNumber</contextKey>
+          <expression id="005821c2-7533-4d9d-9a51-235601a288c2">
+            <annotation></annotation>
+            <name>Input: loanNumber</name>
+            <fieldName>loanNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6da6b5b3-622d-4630-9f74-5e64b8dfbfe7">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>customerName</contextKey>
+          <expression id="4c147a9c-e97d-4a07-b3ea-480233d8930f">
+            <annotation></annotation>
+            <name>Input: customerName</name>
+            <fieldName>customerName</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7e609785-451c-44be-beb1-657c9be8d2c0">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>paymentFrequency</contextKey>
+          <expression id="67f54b8e-0f33-4d39-a7e2-9e56d6967e83">
+            <annotation></annotation>
+            <name>Input: paymentFrequency</name>
+            <fieldName>paymentFrequency</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="5c6c3937-650b-46fb-970c-7524adefb1b3">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>additionalAmount</contextKey>
+          <expression id="46303f26-e25f-48ab-8ce3-056a63595f49">
+            <annotation></annotation>
+            <name>Input: additionalAmount</name>
+            <fieldName>additionalAmount</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9a01e9d1-c370-49ec-96cd-93ef0655b601">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>draftAmount</contextKey>
+          <expression id="172ddfcf-687d-4016-978b-48287895ab25">
+            <annotation></annotation>
+            <name>Input: draftAmount</name>
+            <fieldName>draftAmount</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9894cf2a-e839-41c8-81c7-1c02130b3a02">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>repaymentDay</contextKey>
+          <expression id="97a45ebf-07ba-4a7a-8399-6404044f7ccc">
+            <annotation></annotation>
+            <name>Input: repaymentDay</name>
+            <fieldName>repaymentDay</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4b7f3595-1b05-4aa8-8afa-c88b4ba464cd">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>signaturesFlag</contextKey>
+          <expression id="88fc1090-0c6e-48df-8844-ea31dae6f027">
+            <annotation></annotation>
+            <name>Input: signaturesFlag</name>
+            <fieldName>signaturesFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="694c7807-d2f3-492d-9141-5f4cf1280010">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>branchStampFlag</contextKey>
+          <expression id="7b1ce9f4-841f-4a52-a40b-730f846016db">
+            <annotation></annotation>
+            <name>Input: branchStampFlag</name>
+            <fieldName>branchStampFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4c1ec389-407c-4fd4-8fb0-09b2751a7e3a">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>readFormFailFlag</contextKey>
+          <expression id="13af7147-6650-4ae4-8023-f46917802214">
+            <annotation></annotation>
+            <name>Input: readFormFailFlag</name>
+            <fieldName>readFormFailFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+  </steps>
+  <startSteps>23c2bcd8-962f-4898-b761-1e31e0f0404d</startSteps>
+</flow>

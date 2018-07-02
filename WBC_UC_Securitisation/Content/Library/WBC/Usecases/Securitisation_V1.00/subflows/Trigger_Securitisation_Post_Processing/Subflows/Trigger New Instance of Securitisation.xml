@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="59918ad1-c76c-430f-a7c9-47f498e53e8d">
+  <descriptionCdata><![CDATA[59918ad1-c76c-430f-a7c9-47f498e53e8d.4918b865-11fb-4e25-9b2c-4f374c74ddc3.description=<pre>\nLaunches a specified flow immediately. See the notes below for more details.\n\nInputs\:\n    centralServer - The host running the Central service.\nDefault value\: localhost\n    centralUsername - The username to use when connecting to the Central service.\n    centralPassword - The password to use when connecting to the Central service.\n    centralProtocol - The protocol used to communicate to the Central service.\nDefault value\: http\nValid values\: http, https \n    centralPort - The port the Central service is running on.\nDefault\: 8080\nValid values\: 8080, 8443 \n    authType - The type of authentication used by this operation when trying to execute the request on the target server.\nValid values\: basic, form, springForm, digest, ntlm, kerberos, anonymous (no authentication).\nDefault value\: anonymous - authentication not used when executing the request.\n    proxy - The proxy server used to access the Central host.\n    proxyPort - The proxy server port.\nDefault value\: 8080\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the "proxyUsername" input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL. An SSL certificate is trusted even if no trusted certification authority issued it.\nValid values\: true, false\nDefault value\: true\n    keystore - The location of the KeyStore file - a URL or the local path to it. This input is empty if no HTTPS client authentication is used. The default value will be provided if "trustAllRoots" is "false".\nDefault\: "OO_Home"/java/lib/security/cacerts\n    keystorePassword - The password associated with the KeyStore file. If "trustAllRoots" is "false" and "keystore" is empty, "keystorePassword" default will be supplied.\nDefault value\: changeit\n    trustKeystore - The location of the TrustStore file - a URL or the local path to it. This input is empty if no HTTPS server authentication is used. The default value will be provided if "trustAllRoots" is "false".\nDefault\: "OO_Home"/java/lib/security/cacerts\n    trustPassword - The password associated with the TrustStore file.  If "trustAllRoots" is "false" and "trustKeystore" is empty, "trustPassword" default will be supplied.\nDefault value\: changeit\n    centralFlowPath - The path or the UUID of the flow to launch. When dealing with CloudSlang flows this input accepts also a flow namespace. \nExample 1\: 06fe8531-868b-4e79-aa7a-13a5e30a66ec\nExample 2\: Library\\Utility Operations\\Samples\\Generate Random Number.xml\n    centralFlowLaunchWaitForFlow - A boolean value indicating whether the flow should run asynchronously, returning immediately. Otherwise, the operation waits for execution to complete.\nDefault value\: false \nValid values\: false, true \n    runName - The run name of the flow to launch.\n    inputs - The list of input names (separated by delimiter) to pass to the invoked flow.\n    values - The list of input values (separated by delimiter) to pass to the invoked flow.\n    delimiter - The delimiter separating the items in lists.\nDefault value\: , (comma). \n    socketTimeout - The time to wait between two consecutive data packets received from the server, in milliseconds. The response may consist in more data packets and this value represents the maximum waiting time between any two consecutive of them. \nValid values\: This input needs a value greater than or equal to zero. A "socketTimeout" value of '0' represents an infinite timeout.\nDefault value\: 0 \n    logLevel - The level of the logs. For platform versions up to and included 10.22 the valid values are\:  DEBUG, INFO, ERROR (with INFO as a default value). For platform versions 10.50 and higher the valid values are\: STANDARD and EXTENDED (with STANDARD as a default value).\n    waitingTime - The time to wait for retrieving the triggered flow status (milliseconds). \nValid values\: This input needs a value greater than or equal to zero. A "timeout" value of '0' means that operation will not wait for triggered flow execution to complete instead will return the status immeaditely after the flow is triggered.\n\nResults\:\n    returnResult - This is the primary output. Returns "success" if the targeted flow is triggered.\n    runId - The id of the run. \n    feedUrl - The URL of the triggered execution details. \n    errorCode - The status of the triggering process. \n    status - The status of the triggered flow execution. \n    startTime - The starting time of the triggered flow execution. \n    endTime - The ending time of the triggered flow execution.\n    \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n\nNote\: \n1. If the targeted flow has specific names and values to be run with, then provide these by using "inputs" and "values" for them. \nExample\: If the "Generated Random Number" flow (found in\: Base/Library/Utility Operations/Samples) is needed to be run in Central then for "inputs" input provide\: min,max and for "values" input provide the inferior and superior limit to be used for generated number (i.e.\: 1,300).\n2. You can use KeyTool to import a SSL certificate in a KeyStore. For example, to import a certificate in the Java cacerts KeyStore, run\: keytool -import -file c\:/../"your_cert".cer -alias "your_alias" -keystore "OO_Home"/java/lib/security/cacerts -keystorepass changeit. If the KeyStore does not exist, the command tries to create a new one containing only your certificate.\n3. You can use KeyTool to create a certificate chain through the following command\: \n   keytool -genkey -dname "cn\=Mark Jones, ou\=JavaSoft, o\=Sun, c\=US" \n       -alias business -keypass kpi135 -keystore C\:\\working\\mykeystore \n       -storepass ab987c -validity 180\nThis creates a certificate chain in a new KeyStore containing only one certificate. It is useful in SSL client authentication because the KeyManager ignores any certificates not included in a certificate chain.\n4. If the value assigned to the "trustAllRoots" input is "false" and "trustKeystore" is empty, the operation tries to use the default trust store, using the password "changeit". \n5. If the authentication type is Kerberos, you might need to add an SPN (Service Principal Name) for the web server's computer account.  In order to do this, you can use ADUC (Active Directory Users and Computers) with enabled "Advanced Features". Go to the web server's computer account (example\: CN\="web_server_name",CN\=Computers,DC\=domain,DC\=com), open the Properties window and press the "Attribute Editor" tab. Check the values of the "servicePrincipalName" attribute and add your SPN if not present. For example, http\://"web_server_FQDN"\:port.\n6. Apache Tomcat is currently the only supported application server when using form-based authentication.\n7. The "socketTimeout" can be used for diagnosis purpose, when the server is up, but slowly responding. It does not represent the timeout for establishing a connection, neither the timeout for executing the operation.\n</pre>
+59918ad1-c76c-430f-a7c9-47f498e53e8d.ae1e9080-8716-438e-9a5a-012fde771d5b.transition.description=failed to Trigger new instance Securitisation
+59918ad1-c76c-430f-a7c9-47f498e53e8d.d1e378ce-f931-4ea4-ab42-74d06a7264ce.description=Retrieves a system account username and password and stores the values as flow variables.\n\nInputs\:\n    accountName - The name of the system account. Starting with OO Platform version 10.20, the relative path of the system account can also be used. \n    flowVariable - The flow variables prefix to store the system account into. The operation will receive one input with the flow variable name to assign to, but will actually assign the account to two separate variables. So if the input flowVar was "sysAcct" then two flow vars will be created "sysAcctUsername" and "sysAcctPassword".\n\nResults\:\n    Result - A message indicating if the operation was successful or not.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.
+59918ad1-c76c-430f-a7c9-47f498e53e8d.description=Dynamically trigger a new execution of the Trigger Securitisation flow
+59918ad1-c76c-430f-a7c9-47f498e53e8d.f8accfc9-b3f5-4edf-9aa3-60594a4609ee.transition.description=failed to fetch central username and password
+]]></descriptionCdata>
+  <annotation>59918ad1-c76c-430f-a7c9-47f498e53e8d.description</annotation>
+  <name>Trigger New Instance of Securitisation</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="1f6031de-0c73-42c1-833a-a867abb30f2e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>centralFlowPath</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>e00f62e7-17df-4868-8823-3b0f87c6767d</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="6dc97598-6148-45f4-874b-4e2d38825f70">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>runName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="1caa14ca-ad54-46e2-b641-b0be0c07b86d">
+      <annotation></annotation>
+      <name>Triggered new instance of Securitisation</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="5a2d81ef-cef1-45e9-b909-b36669ea1a2b">
+      <annotation></annotation>
+      <name>failed to trigger new instance of Securitisation</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="617c9ca4-df11-41f4-a410-735283dccade">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="c37eb686-d964-4fb7-abae-11b49e1d70b0">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="d1e378ce-f931-4ea4-ab42-74d06a7264ce">
+      <annotation>59918ad1-c76c-430f-a7c9-47f498e53e8d.d1e378ce-f931-4ea4-ab42-74d06a7264ce.description</annotation>
+      <name>Store System Account in Flow Variables</name>
+      <bounds>
+        <x>70.0</x>
+        <y>223.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="2c48fa76-a5f2-4966-b325-9da2076fdb13">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>accountName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>WBC/Utility Operations/Global_V1.00/OOCentralUser</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d43c316e-4653-42cd-acad-4babba688669">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flowVariable</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>oo</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="32dcd3a7-eaa3-4d47-bc5e-e3997130040b">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>4918b865-11fb-4e25-9b2c-4f374c74ddc3</refId>
+          </destination>
+          <source>
+            <refId>d1e378ce-f931-4ea4-ab42-74d06a7264ce</refId>
+          </source>
+          <positions>
+            <point>
+              <x>120.0</x>
+              <y>257.0</y>
+            </point>
+            <point>
+              <x>325.0</x>
+              <y>257.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="f8accfc9-b3f5-4edf-9aa3-60594a4609ee">
+          <annotation>59918ad1-c76c-430f-a7c9-47f498e53e8d.f8accfc9-b3f5-4edf-9aa3-60594a4609ee.transition.description</annotation>
+          <name>failed to fetch central username and password</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a8d3d4d7-d8a9-4b24-8053-9d31457d13e8</refId>
+          </destination>
+          <source>
+            <refId>d1e378ce-f931-4ea4-ab42-74d06a7264ce</refId>
+          </source>
+          <positions>
+            <point>
+              <x>132.0</x>
+              <y>270.1518987341772</y>
+            </point>
+            <point>
+              <x>120.0</x>
+              <y>437.0</y>
+            </point>
+            <point>
+              <x>120.0</x>
+              <y>437.0</y>
+            </point>
+            <point>
+              <x>120.0</x>
+              <y>437.0</y>
+            </point>
+            <point>
+              <x>592.0</x>
+              <y>450.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>147.78437147514316</x>
+            <y>-3.6859362211386224</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>92691ce9-2262-45d8-b2c3-3ae7c44d7e47</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="f5f0fe05-55ad-4e8a-86d8-36a47b7ef5f6">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="d602aada-816c-4821-87d6-22bb468857de">
+            <annotation></annotation>
+            <name>Result Field: FailureMessage</name>
+            <fieldName>FailureMessage</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="a8d3d4d7-d8a9-4b24-8053-9d31457d13e8">
+      <annotation></annotation>
+      <name>Error : failed to trigger new instance of Securitisation</name>
+      <bounds>
+        <x>542.0</x>
+        <y>400.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="4e039811-1722-48a4-bfd6-f2c5f7dc9c3a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0c5dab9a-6505-41f1-82a0-f6d493a28b72">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>failureFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="756a259c-ea0e-482e-b7f1-6df4022df0ba">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failed to trigger new instance of Securitisation</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a8d3d4d7-d8a9-4b24-8053-9d31457d13e8</refId>
+          </destination>
+          <source>
+            <refId>a8d3d4d7-d8a9-4b24-8053-9d31457d13e8</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="57f1ef1d-b531-41b7-a919-fc3f9831161f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="e0aec022-6a36-493b-9e48-c6e7c7ab8f40">
+            <annotation></annotation>
+            <name>Input: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="09b67f72-6f4e-4ed7-8693-5edf79bbdf66">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>failureFlag</contextKey>
+          <expression id="b3d5c162-e78c-4106-9225-a5bd6271dcac">
+            <annotation></annotation>
+            <name>Input: failureFlag</name>
+            <fieldName>failureFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <step id="4918b865-11fb-4e25-9b2c-4f374c74ddc3">
+      <annotation>59918ad1-c76c-430f-a7c9-47f498e53e8d.4918b865-11fb-4e25-9b2c-4f374c74ddc3.description</annotation>
+      <name>Dynamically Launch Flow In Central</name>
+      <bounds>
+        <x>275.0</x>
+        <y>223.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="d70651e5-1460-45b6-a22a-296c8076e556">
+        <baseIcon>document_text.png</baseIcon>
+        <basePath>/Operating System/</basePath>
+        <readOnly>false</readOnly>
+        <layers>
+          <iconSpec id="78890d5e-06b2-422d-9721-7f262d1498f0">
+            <baseIcon>iterate.png</baseIcon>
+            <basePath>/Annotations/</basePath>
+            <readOnly>false</readOnly>
+            <layers/>
+          </iconSpec>
+        </layers>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="e0efb1db-dc70-476c-ad76-d4ab388feff6">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/Global_V1.00/OOCentralHost</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralServer</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7404dc5d-98c1-4c18-921e-753faa8cf919">
+          <annotation></annotation>
+          <fromContextKey>ooUsername</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="fc0bfbf6-57eb-4e65-b700-41dedaa9c451">
+          <annotation></annotation>
+          <fromContextKey>ooPassword</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f6b752d7-0fdd-42dc-8b2e-0bf530566a2c">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/Global_V1.00/OOCentralProtocol</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralProtocol</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4f65800e-851d-4f2c-a2b6-1d6eba3dedc4">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/Global_V1.00/OOCentralPort</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f6b66cc2-2ed6-4081-8fc4-0baae9b68603">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/Global_V1.00/OOCentralAuthType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>authType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="be8a282c-26b6-4314-baf2-80200f640718">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>trustAllRoots</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="88dbd0be-64c1-43f5-92f0-e6bee0d8adb0">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7bab546c-95da-46f2-8d20-0245b34e815c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}ZUoMreNLw6qIOyzX7g5YKw==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b840cad8-d209-4ced-b6d4-823ea56d57e2">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>trustKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3bf40794-efd5-4353-a65b-1faf921b0842">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>trustPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}ZUoMreNLw6qIOyzX7g5YKw==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7531d6ec-1387-4b57-b7ef-152d2ddcbb2b">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralFlowPath</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4e8e78a4-3108-4257-8fad-c82047f87d31">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>centralFlowLaunchWaitForFlow</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="150c0aa3-8f33-4fa9-96c0-c0f75a191cf6">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>runName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d3a6db74-c790-4efc-9560-b435cf13fb11">
+          <annotation></annotation>
+          <fromContextKey>flowInputName</fromContextKey>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>inputs</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="26316bea-c851-46d9-81ec-c9a847716267">
+          <annotation></annotation>
+          <fromContextKey>listItem</fromContextKey>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>values</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bafbe339-1fb0-4cd6-b415-0787c5053dd8">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>delimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1c940ff8-2f43-44f0-a731-77b0c7447a42">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>socketTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>0</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="871c2606-740a-4ca4-a06f-64b32e0db8f8">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/Global_V1.00/OOFlowsLogLevel</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>logLevel</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="613cdf25-98bd-4044-ac63-dda408b0272b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>waitingTime</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>5</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="16cd42fa-ddad-4fe5-bc2b-e957d26530b0">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>cc7d77c0-c73c-44ee-a0ec-652b36a1fe79</refId>
+          </destination>
+          <source>
+            <refId>4918b865-11fb-4e25-9b2c-4f374c74ddc3</refId>
+          </source>
+          <positions>
+            <point>
+              <x>213.0</x>
+              <y>267.0</y>
+            </point>
+            <point>
+              <x>484.0</x>
+              <y>252.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="ae1e9080-8716-438e-9a5a-012fde771d5b">
+          <annotation>59918ad1-c76c-430f-a7c9-47f498e53e8d.ae1e9080-8716-438e-9a5a-012fde771d5b.transition.description</annotation>
+          <name>failed to Trigger new instance Securitisation</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a8d3d4d7-d8a9-4b24-8053-9d31457d13e8</refId>
+          </destination>
+          <source>
+            <refId>4918b865-11fb-4e25-9b2c-4f374c74ddc3</refId>
+          </source>
+          <positions>
+            <point>
+              <x>337.0</x>
+              <y>279.41263940520446</y>
+            </point>
+            <point>
+              <x>330.0</x>
+              <y>437.0</y>
+            </point>
+            <point>
+              <x>330.0</x>
+              <y>437.0</y>
+            </point>
+            <point>
+              <x>330.0</x>
+              <y>437.0</y>
+            </point>
+            <point>
+              <x>592.0</x>
+              <y>450.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>211.4554608165483</x>
+            <y>-2.6751131201111447</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>17eddb97-6bc1-4c77-b747-c73f954fdd61</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="a2ac59ff-cfb2-4d4f-879d-016d8a5241c0">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="3245c842-e827-4bb0-9cb9-7e5dd4019ad2">
+            <annotation></annotation>
+            <name>Result Field: FailureMessage</name>
+            <fieldName>FailureMessage</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="05e5f4e3-7725-47e1-b5da-b4df841adf6c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>runId</contextKey>
+          <expression id="720fb6ae-0894-427d-8a9b-e243ac1ecc3a">
+            <annotation></annotation>
+            <name>Result Field: runId</name>
+            <fieldName>runId</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="cc7d77c0-c73c-44ee-a0ec-652b36a1fe79">
+      <annotation></annotation>
+      <name>Resolved : Triggered new instance of Securitisation</name>
+      <bounds>
+        <x>542.0</x>
+        <y>223.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="ea1c597a-6e2b-4a30-bc7b-d869eec219e8">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Triggered new instance of Securitisation</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>cc7d77c0-c73c-44ee-a0ec-652b36a1fe79</refId>
+          </destination>
+          <source>
+            <refId>cc7d77c0-c73c-44ee-a0ec-652b36a1fe79</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>d1e378ce-f931-4ea4-ab42-74d06a7264ce</startSteps>
+</flow>

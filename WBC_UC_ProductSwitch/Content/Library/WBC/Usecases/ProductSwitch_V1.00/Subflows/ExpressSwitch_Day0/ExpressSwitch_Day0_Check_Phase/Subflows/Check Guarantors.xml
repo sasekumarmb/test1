@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="8849b9fa-0095-40d9-a681-1b5ec467a705">
+  <descriptionCdata><![CDATA[8849b9fa-0095-40d9-a681-1b5ec467a705.6173a7ac-c1c6-452e-846c-bd15adf85740.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+8849b9fa-0095-40d9-a681-1b5ec467a705.7ca78fda-46d7-4f66-9ab3-8cf7356b6f6e.transition.description=not equal to N
+8849b9fa-0095-40d9-a681-1b5ec467a705.c2d9776d-b023-47c4-86d0-b36501769f7e.transition.description=equal to N
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Check Guarantors</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="95c978be-f4f3-433c-be67-19281585f793">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssGuarantors</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="c7c31ebb-9be9-49da-bc1e-333b85c4d0de">
+      <annotation></annotation>
+      <name>no guarantor</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="e3ec9cca-3fc7-47fb-8d9c-ed1b7d87a97d">
+      <annotation></annotation>
+      <name>guarantor found</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="a717ffe7-a810-4af3-b2cd-bcb0f969d948">
+      <annotation></annotation>
+      <name>noGuarantorFlag</name>
+      <fieldName>noGuarantorFlag</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="7893750a-3b3e-406e-9d2b-c5de9eeda28b">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="aee94e93-31dd-460f-b345-b542b240fce0">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="6173a7ac-c1c6-452e-846c-bd15adf85740">
+      <annotation>8849b9fa-0095-40d9-a681-1b5ec467a705.6173a7ac-c1c6-452e-846c-bd15adf85740.description</annotation>
+      <name>Check mssGuarantors == N?</name>
+      <bounds>
+        <x>60.0</x>
+        <y>30.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="cd135085-eab2-460d-b8df-968a099b8a93">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="ecbd9062-568f-4f96-9013-a079a2b2b923">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Exact Match</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="acdae7ea-cc12-49c6-b50b-10ec29e527d3">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>N</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="735c98cd-ff3b-4576-9a12-a4e432bb12ef">
+          <annotation></annotation>
+          <fromContextKey>mssGuarantors</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ec2d9482-39f8-4aba-85c5-3a0a6a4542d4">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="c2d9776d-b023-47c4-86d0-b36501769f7e">
+          <annotation>8849b9fa-0095-40d9-a681-1b5ec467a705.c2d9776d-b023-47c4-86d0-b36501769f7e.transition.description</annotation>
+          <name>equal to N</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>67fefd8a-2eb8-4da2-8cf3-877831c5a468</refId>
+          </destination>
+          <source>
+            <refId>6173a7ac-c1c6-452e-846c-bd15adf85740</refId>
+          </source>
+          <positions>
+            <point>
+              <x>110.0</x>
+              <y>64.0</y>
+            </point>
+            <point>
+              <x>380.0</x>
+              <y>244.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="7ca78fda-46d7-4f66-9ab3-8cf7356b6f6e">
+          <annotation>8849b9fa-0095-40d9-a681-1b5ec467a705.7ca78fda-46d7-4f66-9ab3-8cf7356b6f6e.transition.description</annotation>
+          <name>not equal to N</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3dd2239a-e137-427b-9f25-9517bb9a5cfb</refId>
+          </destination>
+          <source>
+            <refId>6173a7ac-c1c6-452e-846c-bd15adf85740</refId>
+          </source>
+          <positions>
+            <point>
+              <x>110.0</x>
+              <y>64.0</y>
+            </point>
+            <point>
+              <x>380.0</x>
+              <y>64.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="67fefd8a-2eb8-4da2-8cf3-877831c5a468">
+      <annotation></annotation>
+      <name>Error : no guarantor</name>
+      <bounds>
+        <x>330.0</x>
+        <y>210.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="13506854-6601-4a83-a41c-7e805762d63a">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>noGuarantorFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="c0887aa6-d20b-41f2-ba7a-09a1069adf84">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>no guarantor</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>67fefd8a-2eb8-4da2-8cf3-877831c5a468</refId>
+          </destination>
+          <source>
+            <refId>67fefd8a-2eb8-4da2-8cf3-877831c5a468</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="aa77f2d5-74e3-48bb-9d66-5e4673a5964f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>noGuarantorFlag</contextKey>
+          <expression id="31ee5bb9-3930-4f5d-af2d-d443dbab378f">
+            <annotation></annotation>
+            <name>Input: noGuarantorFlag</name>
+            <fieldName>noGuarantorFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="3dd2239a-e137-427b-9f25-9517bb9a5cfb">
+      <annotation></annotation>
+      <name>Resolved : guarantor found</name>
+      <bounds>
+        <x>330.0</x>
+        <y>30.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="776a79c8-9722-45d0-8321-2b768236f043">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>noGuarantorFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>False</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b99e5dc6-c054-4136-bdd6-2c2ee60b16ec">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>guarantor found</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3dd2239a-e137-427b-9f25-9517bb9a5cfb</refId>
+          </destination>
+          <source>
+            <refId>3dd2239a-e137-427b-9f25-9517bb9a5cfb</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="61f310a7-78c0-42c5-aa52-6ef6f4962147">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>noGuarantorFlag</contextKey>
+          <expression id="238a4ab2-0e58-4e3e-970b-8442594ce476">
+            <annotation></annotation>
+            <name>Input: noGuarantorFlag</name>
+            <fieldName>noGuarantorFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+  </steps>
+  <startSteps>6173a7ac-c1c6-452e-846c-bd15adf85740</startSteps>
+</flow>

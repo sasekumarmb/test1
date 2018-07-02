@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="40acf448-7a68-4b3b-9bf8-cdad872d4963">
+  <descriptionCdata><![CDATA[40acf448-7a68-4b3b-9bf8-cdad872d4963.408b5962-d8c1-48a9-b404-5357c9485325.transition.description=sam security details
+40acf448-7a68-4b3b-9bf8-cdad872d4963.5eee2647-82f5-4d81-a5b2-777c015de512.transition.description=Get Security details success
+40acf448-7a68-4b3b-9bf8-cdad872d4963.7464958c-a638-4772-901e-4f783986a43e.transition.description=No security details found
+40acf448-7a68-4b3b-9bf8-cdad872d4963.b281db33-6ae8-4ff7-9d23-aa5e1d951e71.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
+40acf448-7a68-4b3b-9bf8-cdad872d4963.b29efdec-8c26-4c9f-885f-1fe8440063a9.transition.description=Get Security details failure
+40acf448-7a68-4b3b-9bf8-cdad872d4963.bcf7c766-0927-4c79-b01d-e76291de5973.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Get Security Details from SAM Database</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="c8c286ba-ac28-4ea3-a0ed-93bd3c704ab0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a69def7a-4a02-4e03-8ce6-7872d9acb828">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>simplifiedAccountNumber</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="298f08ff-0429-48e5-ab1f-ab7971e8d2d7">
+      <annotation></annotation>
+      <name>No Security Details</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="4f27ab37-bdfa-45b0-a4eb-ddd7d0813a2f">
+      <annotation></annotation>
+      <name>Security Details :success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="0195305b-79f0-4a3b-8d3b-e4240ecd828d">
+      <annotation></annotation>
+      <name>Failed to get Security Details</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="e1b9b6c4-c3af-4ba7-bbfe-276d7116ecbf">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="c0cee608-fedd-457d-8224-8c6aecdab092">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="b281db33-6ae8-4ff7-9d23-aa5e1d951e71">
+      <annotation>40acf448-7a68-4b3b-9bf8-cdad872d4963.b281db33-6ae8-4ff7-9d23-aa5e1d951e71.description</annotation>
+      <name>set samSchema</name>
+      <bounds>
+        <x>44.0</x>
+        <y>46.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="5e5c8413-38ad-4b71-9f60-06a0890c5c17">
+        <baseIcon>display_report.png</baseIcon>
+        <basePath>Utilities/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="197529dd-c655-4684-a0ed-97f2dce989d0">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/MSS_V1.00/samSchema</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>samSchema</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="7d920a34-9f75-4550-ba24-20b49c096f06">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>b0a7fd4d-5ebe-4029-8f94-8bfc63ec681b</refId>
+          </destination>
+          <source>
+            <refId>b281db33-6ae8-4ff7-9d23-aa5e1d951e71</refId>
+          </source>
+          <positions>
+            <point>
+              <x>394.0</x>
+              <y>160.0</y>
+            </point>
+            <point>
+              <x>512.0</x>
+              <y>166.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="b0e97a91-7280-4aa8-8197-197b42c41e12">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>samSchema</contextKey>
+          <expression id="9a8e35b2-3e16-4fe4-8315-dcc9eb367b33">
+            <annotation></annotation>
+            <name>Input: samSchema</name>
+            <fieldName>samSchema</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="3edb381a-7e0e-40b6-b63d-eae92b40c929">
+      <annotation></annotation>
+      <name>No Action Taken : No Security Details</name>
+      <bounds>
+        <x>585.0</x>
+        <y>204.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="19bddaaf-da00-4c36-9f7f-66a2559b39df">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>No Security Details</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3edb381a-7e0e-40b6-b63d-eae92b40c929</refId>
+          </destination>
+          <source>
+            <refId>3edb381a-7e0e-40b6-b63d-eae92b40c929</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>NO_ACTION_TAKEN</returnStepType>
+      <assignments/>
+    </returnStep>
+    <step id="b0a7fd4d-5ebe-4029-8f94-8bfc63ec681b">
+      <annotation></annotation>
+      <name>Get Security details from SAM database</name>
+      <bounds>
+        <x>174.0</x>
+        <y>46.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="35478d83-1901-4c9f-8bb4-70f449f55776">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="9ff654d9-ab1a-4506-831a-66190dd1ad6f">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>query</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>SELECT 
+SECURITY_ID as samSecurityID,
+VOLUME as samSecurityVolume	,
+FOLIO as samSecurityFolio,
+FOLIO_ID as samSecurityNSWFolio,
+REFERENCE as samSecurityTitleReference,
+SECURITY_TYPE as samSecurityType,
+SECURITY_NATURE as samSecurityNature,
+SECURITY_PROPERTY_TYPE as samSecurityProperty,
+UNIT as samSecurityUnitNumber,
+STREET_NUM as samSecurityStreetNumber,
+STREET_ADDR1 as samSecurityStreetName,
+STREET_TYPE as samSecurityStreetType,
+STREET_ADDR2 as samSecurityLine2,
+SUBURB_TOWN as samSecuritySuburb,
+STATE_CD as samSecurityState,
+POST_CODE as samSecurityPostcode,
+COUNTRY_CD as samSecurityCountry,
+CHARGE_POSITION as samSecurityChargePosition,
+TITLE_NAME_1 as samNamesonTitle1,
+TITLE_NAME_2 as samNamesonTitle2,
+TITLE_NAME_3 as samNamesonTitle3,
+TITLE_NAME_4 as samNamesonTitle4,
+DEALING_NUM as samSecurityMortgageNumber,
+VALUATION_DATE as samLastUpdateDate,
+DRUID as samSecurityDruid,
+VALUATION_AMT as samSecurityLastValuation,
+LINKED_LOAN as tbkLinked,
+VALUATION_TYPE as valuationType
+FROM ${samSchema}.v_sam_automation  WHERE SECURITY_ID=&apos;${samSecurityID}&apos; AND ACCOUNT_NUM = &apos;037${simplifiedAccountNumber}&apos;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6416604b-1267-4bce-b1d8-673016f6586f">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>columnDelimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>,</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="56fe7008-fb7b-40c5-b83a-c81fbb479987">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>rowDelimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>|</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b29efdec-8c26-4c9f-885f-1fe8440063a9">
+          <annotation>40acf448-7a68-4b3b-9bf8-cdad872d4963.b29efdec-8c26-4c9f-885f-1fe8440063a9.transition.description</annotation>
+          <name>Get Security details failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>7d13a3b5-2690-48ef-8434-269aba6e3b6d</refId>
+          </destination>
+          <source>
+            <refId>b0a7fd4d-5ebe-4029-8f94-8bfc63ec681b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>745.12</x>
+              <y>269.0</y>
+            </point>
+            <point>
+              <x>221.0</x>
+              <y>367.0</y>
+            </point>
+            <point>
+              <x>221.0</x>
+              <y>367.0</y>
+            </point>
+            <point>
+              <x>221.0</x>
+              <y>367.0</y>
+            </point>
+            <point>
+              <x>961.0</x>
+              <y>488.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>200.65625138457023</x>
+            <y>5.445763789726204</y>
+          </labelPosition>
+        </transition>
+        <transition id="5eee2647-82f5-4d81-a5b2-777c015de512">
+          <annotation>40acf448-7a68-4b3b-9bf8-cdad872d4963.5eee2647-82f5-4d81-a5b2-777c015de512.transition.description</annotation>
+          <name>Get Security details success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>bcf7c766-0927-4c79-b01d-e76291de5973</refId>
+          </destination>
+          <source>
+            <refId>b0a7fd4d-5ebe-4029-8f94-8bfc63ec681b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>212.0</x>
+              <y>86.0</y>
+            </point>
+            <point>
+              <x>453.0</x>
+              <y>97.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>431.1259442333918</x>
+            <y>0.65872432798958</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>57ceeec6-1223-4f87-a69a-3bdd791f0016</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="ecacdc47-19d5-43f6-8a31-b0e8c021a3c1">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>columnName</contextKey>
+          <expression id="e0cd35a8-1745-422a-9ff6-d32174f70acd">
+            <annotation></annotation>
+            <name>Result: columnNames</name>
+            <fieldName>columnNames</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="07231e93-5d92-4d0f-b68c-8f16b4f88eef">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>count</contextKey>
+          <expression id="6244be07-45d8-49b8-8289-87790c3c48a3">
+            <annotation></annotation>
+            <name>Result: rowCount</name>
+            <fieldName>rowCount</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a0c6c656-f486-421a-8274-ac89423a7f58">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>securityDetails</contextKey>
+          <expression id="f5a728e3-367a-4657-9dac-792252859237">
+            <annotation></annotation>
+            <name>Result: queryResult</name>
+            <fieldName>queryResult</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="cad69dd0-8da4-49b0-9a17-d57efd60bbf9">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="5e3c9164-e2cf-4e74-a179-e3f9e14fa5f1">
+            <annotation></annotation>
+            <name>Result: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="bcf7c766-0927-4c79-b01d-e76291de5973">
+      <annotation>40acf448-7a68-4b3b-9bf8-cdad872d4963.bcf7c766-0927-4c79-b01d-e76291de5973.description</annotation>
+      <name>Details not found</name>
+      <bounds>
+        <x>403.0</x>
+        <y>46.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="60490ee9-ce93-4c27-af68-63f7bd030b79">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="ee7e9022-e99e-4aec-a438-d850569ea4fa">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Exact Match</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="84fe7914-bbc7-47bf-a1e8-5cd1b3101345">
+          <annotation></annotation>
+          <fromContextKey>count</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a5c685ea-626a-456b-bc81-c984ec93dbbd">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>0</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4c1e48b1-13f5-465c-be92-a17875e84ccd">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="7464958c-a638-4772-901e-4f783986a43e">
+          <annotation>40acf448-7a68-4b3b-9bf8-cdad872d4963.7464958c-a638-4772-901e-4f783986a43e.transition.description</annotation>
+          <name>No security details found</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3edb381a-7e0e-40b6-b63d-eae92b40c929</refId>
+          </destination>
+          <source>
+            <refId>bcf7c766-0927-4c79-b01d-e76291de5973</refId>
+          </source>
+          <positions>
+            <point>
+              <x>505.5</x>
+              <y>103.94663278271919</y>
+            </point>
+            <point>
+              <x>450.0</x>
+              <y>240.0</y>
+            </point>
+            <point>
+              <x>450.0</x>
+              <y>240.0</y>
+            </point>
+            <point>
+              <x>450.0</x>
+              <y>240.0</y>
+            </point>
+            <point>
+              <x>1238.0</x>
+              <y>254.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>245.3737190649623</x>
+            <y>3.3267780883357627</y>
+          </labelPosition>
+        </transition>
+        <transition id="408b5962-d8c1-48a9-b404-5357c9485325">
+          <annotation>40acf448-7a68-4b3b-9bf8-cdad872d4963.408b5962-d8c1-48a9-b404-5357c9485325.transition.description</annotation>
+          <name>sam security details</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>e4007b65-f6a2-45d6-b929-683547eec5b5</refId>
+          </destination>
+          <source>
+            <refId>bcf7c766-0927-4c79-b01d-e76291de5973</refId>
+          </source>
+          <positions>
+            <point>
+              <x>453.0</x>
+              <y>97.0</y>
+            </point>
+            <point>
+              <x>958.0</x>
+              <y>104.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>631.0454023320746</x>
+            <y>-0.7100652624120255</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="e4007b65-f6a2-45d6-b929-683547eec5b5">
+      <annotation></annotation>
+      <name>Resolved : Security Details :success</name>
+      <bounds>
+        <x>585.0</x>
+        <y>46.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="d19cf0f3-6862-4c46-9a1b-cc1b4f7ca087">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>securityDetails</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1f46bac6-4dd1-48c6-8577-37760bd3d7db">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>columnName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>samSecurityID,samSecurityVolume,samSecurityFolio,samSecurityNSWFolio,samSecurityTitleReference,samSecurityType,samSecurityNature,samSecurityProperty,samSecurityUnitNumber,samSecurityStreetNumber,samSecurityStreetName,samSecurityStreetType,samSecurityLine2,samSecuritySuburb,samSecurityState,samSecurityPostcode,samSecurityCountry,samSecurityChargePosition,samNamesonTitle1,samNamesonTitle2,samNamesonTitle3,samNamesonTitle4,samSecurityDealingNumber,samLastUpdateDate,samSecurityDruid,samSecurityLastValuation,tbkLinked,valuationType</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="0fa78f27-5df8-44b5-bf53-8fac2c65e61e">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Security Details :success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>e4007b65-f6a2-45d6-b929-683547eec5b5</refId>
+          </destination>
+          <source>
+            <refId>e4007b65-f6a2-45d6-b929-683547eec5b5</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="c8e36a94-85d9-4d04-9750-7f74fbfb4e1a">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>securityDetails</contextKey>
+          <expression id="e2df522a-3b02-4f94-ab25-9490d2e233a7">
+            <annotation></annotation>
+            <name>Input: securityDetails</name>
+            <fieldName>securityDetails</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="8196b84a-210e-4611-be03-6c10843d0e5c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>columnName</contextKey>
+          <expression id="e1d19147-08e0-4272-b885-3452b0f8ae92">
+            <annotation></annotation>
+            <name>Input: columnName</name>
+            <fieldName>columnName</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="7d13a3b5-2690-48ef-8434-269aba6e3b6d">
+      <annotation></annotation>
+      <name>Error : Failed to get Security Details</name>
+      <bounds>
+        <x>585.0</x>
+        <y>334.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="11f0018f-52a2-4277-9346-dabf6281316c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>failueFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="80f4848d-2418-43b1-9bd0-06253279c301">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flowName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Get Security Details from SAM Database</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c9b3b6dc-ac50-4cf0-9e4d-f6349108a98e">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="87a6f471-fc9b-4935-bb2e-81723007e6ee">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Failed to get Security Details</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>7d13a3b5-2690-48ef-8434-269aba6e3b6d</refId>
+          </destination>
+          <source>
+            <refId>7d13a3b5-2690-48ef-8434-269aba6e3b6d</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="d50aad4c-fbfc-42ec-8fd3-170b506c7b1b">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flowName</contextKey>
+          <expression id="fb5ed4ea-56f5-4125-84b2-ce0527c0732a">
+            <annotation></annotation>
+            <name>Input: flowName</name>
+            <fieldName>flowName</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="afc8ab9b-4a7b-4540-a2b5-9dbfda614bc9">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>failureFlag</contextKey>
+          <expression id="38f586f3-5d00-4714-9317-a22f708614ee">
+            <annotation></annotation>
+            <name>Input: failueFlag</name>
+            <fieldName>failueFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="00fe7560-4af1-4979-8238-d0c40130a1e8">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="4b8b8fad-4096-4128-8d3f-e6bbde2f95f8">
+            <annotation></annotation>
+            <name>Input: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+  </steps>
+  <startSteps>b281db33-6ae8-4ff7-9d23-aa5e1d951e71</startSteps>
+</flow>

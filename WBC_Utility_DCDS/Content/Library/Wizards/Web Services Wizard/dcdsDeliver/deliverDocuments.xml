@@ -1,0 +1,1934 @@
+<flow id="28205138-d805-4509-9f15-a73d3c913bd9">
+  <descriptionCdata><![CDATA[28205138-d805-4509-9f15-a73d3c913bd9.4cf8eb5a-5a7f-4396-a776-3c94a2c6ffbd.description=<pre>\nThe operation invokes web service methods.  This operation should not be used directly\!  Please use the wizard to build flows that use this operation.\n\nInputs\:\n    xmlTemplate - The template of the soap request to make.\n    inputMap - A map used to map between template names and user-friendly names. The template names are pipe-delimited xpaths of the xmltemplate location, with a numerical element for lists.\nValue format\: A list of elements separated by the new line delimiter. Eache element hes the format\: <name>\=<new name>.\nExample\: A line in the "inputMap" could be\: "Request|Details|0|Input|x\=input0.x"\n    url - The url to Post to. \n    header_SOAPAction - The SOAPAction http header field, defined by many web services for indicating the intent of the request\n    wswAuthenticationType - The authentication type to use for the "username" and "password" input.\nDefault value\: http\nValid values\: http, ntlm, ws-security digest, ws-security text\n    WSSecuritySignRequest - Should the SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityEncryptRequest - Should the entire SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityTimestampRequest - Should the Timestamp attribute be added to the WS-Security header\nDefault value\: false\nValid values true, false\n    WSSecurityKeystore - Keystore to use for encrypting and signing requests.\n    WSSecurityKeystoreType - The type of "WSSecurityKeystore".\n    WSSecurityKeystorePassword - The password for "WSSecurityKeystore".\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    contentType - Value to be used in the Content-Type HTTP header. If Content-Type header is also passed in "headers" input, the "contentType" input will override the value provided in "headers".\nDefault value\: text/xml\n    characterSet - The character set for HTTP Get request and response.\nDefault value\: UTF-8\n    username - The username to use for authenticating with the web service.\nValue format\: For NTLM authentication, the required format is domain\\user.\n    password - The password to use for authenticating with the web service.\n    trustAllRoots - Enables weak security over SSL. A SSH certificate is trusted even if no trusted CA issued it.\nDefault value\: false\nValid values\: true, false\n    useCookies - Enables cookie tracking. Cookies will be stored between consecutive calls.\nDefault value\: false\nValid values\: true, false\n    usesJSON - Use JSON arrays for the SOAP Request for all Array types.\nDefault value\: false\nValid values\: true, false\n    timeout - a timeout after which the connection should be terminated or 0 for no timeout.\n    socketTimeout - The time to wait for data to be retrieved, in milliseconds. This input needs a value greater than or equal to zero. A "socketTimeout" value of '0' represents an infinite timeout.\nDefault value\: 0\n    proxy - A proxy to use when accessing the web service.\n    proxyPort - A port on the proxy to connect to.\n    proxyUsername - A username to use when connecting to the proxy.\n    proxyPassword - A password to use when connecting to the proxy.\n    keystore - The path to the keystore to use for SSL Client Certificates when using http authentication.\n    keystorePassword - The password for the keystore when using http authentication.\n    ICONCLUDE_WSW_VERSION - This value is used internally by the operation.\n    returnXMLRequest - If this input is set to true, a new output named "rawXMLRequest" is returned from the operation which contains the text of the SOAP request that will be sent. This can be very valuable in troubleshooting.\nDefault value\: false\nValid values\: true, false\n\nResults\:\n    returnCode - This is the primary output. It contains the value 0 if the operation successfully completes and the value -1 otherwise.\n    document - Raw XML response.\n    documentStripped - Raw XML response stripped of namespaces for ease in parsing with XML XPath operations.\n    jsonStripped - Raw XML response stripped of namespaces for ease in parsing with JSON operations, input usesJSON must be set to true for this to be populated.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n              Transfer-Encoding\: chunked\n\nResponses\:\n    success - SOAP request completed successfully.\n    failure - Something went wrong.\n\nNotes\:\n1.If wswAuthenticationType\=ws-security text then this operation transmits passwords in clear-text.\n2.Any additional inputs that follow these are added by the Web Service Wizard, and they are specific to the particular web service method being called.\n3.If you add new step-level inputs with the name header_<headername>, where <headername> is the name of an html header, then that html header will be set to the given value in the HTTP request.\n4.This operation will not allow connection through secure transport layers below TLS 1.0.\n</pre>
+28205138-d805-4509-9f15-a73d3c913bd9.description=<pre>\nThis subflow was created by the Web Services Wizard to invoke the deliverDocuments operation on http\://10.33.2.150\:7010/dcdsWS/services/dcdsDeliver?wsdl. Note that the inputs to this flow which correspond to web service inputs are optional inputs.  This is due to the fact that web services definitions usually incorrectly indicate that too many inputs are required, and mirroring those settings in the flow would force you to enter unused values when running the flow.  The xmlTemplate input on the Invoke Method 2 step of this flow contains a template of the xml message to be sent, and the fields preceded by the comment "<\!--Optional\:-->" or "<\!--zero or more repetitions-->" are those which the web service indicates are optional; all others are indicated to be required.\n\nInputs\:\n    webserviceHost - The host that is running the web service\n    webservicePort - The port on the host running the web service\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    deliverRequestMsg.additionalDocuments.document0.dcdsAssembled - The input named deliverRequestMsg|additionalDocuments|0|document|dcdsAssembled of the complex type\: deliverRequestMsg|additionalDocuments|0|document\n    deliverRequestMsg.additionalDocuments.document0.documentName - The input named deliverRequestMsg|additionalDocuments|0|document|documentName of the complex type\: deliverRequestMsg|additionalDocuments|0|document\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.entityType - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|entityKey|entityType of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|entityKey\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.key - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|entityKey|0|keyPart|key of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|entityKey|0|keyPart\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.value - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|entityKey|0|keyPart|value of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|entityKey|0|keyPart\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.nonDcdsAssembledDocSource - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|nonDcdsAssembledDocSource of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliverToDetail of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo|copyType of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo|deliveryMode of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientDetail of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|entityType of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart|key of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart\n    deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value - The input named deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart|value of the complex type\: deliverRequestMsg|additionalDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart\n    deliverRequestMsg.clientId - The input named deliverRequestMsg|clientId of the complex type\: deliverRequestMsg\n    deliverRequestMsg.documentSetName - The input named deliverRequestMsg|documentSetName of the complex type\: deliverRequestMsg\n    deliverRequestMsg.dpgAttributes.mapItem0.key - The input named deliverRequestMsg|dpgAttributes|0|mapItem|key of the complex type\: deliverRequestMsg|dpgAttributes|0|mapItem\n    deliverRequestMsg.dpgAttributes.mapItem0.value - The input named deliverRequestMsg|dpgAttributes|0|mapItem|value of the complex type\: deliverRequestMsg|dpgAttributes|0|mapItem\n    deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.entityType - The input named deliverRequestMsg|getEntityIdsResponseData|entityKeys|0|entityKey|entityType of the complex type\: deliverRequestMsg|getEntityIdsResponseData|entityKeys|0|entityKey\n    deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.key - The input named deliverRequestMsg|getEntityIdsResponseData|entityKeys|0|entityKey|0|keyPart|key of the complex type\: deliverRequestMsg|getEntityIdsResponseData|entityKeys|0|entityKey|0|keyPart\n    deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.value - The input named deliverRequestMsg|getEntityIdsResponseData|entityKeys|0|entityKey|0|keyPart|value of the complex type\: deliverRequestMsg|getEntityIdsResponseData|entityKeys|0|entityKey|0|keyPart\n    deliverRequestMsg.getEntityIdsResponseData.transactionKey.entityType - The input named deliverRequestMsg|getEntityIdsResponseData|transactionKey|entityType of the complex type\: deliverRequestMsg|getEntityIdsResponseData|transactionKey\n    deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.key - The input named deliverRequestMsg|getEntityIdsResponseData|transactionKey|0|keyPart|key of the complex type\: deliverRequestMsg|getEntityIdsResponseData|transactionKey|0|keyPart\n    deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.value - The input named deliverRequestMsg|getEntityIdsResponseData|transactionKey|0|keyPart|value of the complex type\: deliverRequestMsg|getEntityIdsResponseData|transactionKey|0|keyPart\n    deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.copyType - The input named deliverRequestMsg|notificationDeliveryInfo|deliveryInfo|copyType of the complex type\: deliverRequestMsg|notificationDeliveryInfo|deliveryInfo\n    deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.deliveryMode - The input named deliverRequestMsg|notificationDeliveryInfo|deliveryInfo|deliveryMode of the complex type\: deliverRequestMsg|notificationDeliveryInfo|deliveryInfo\n    deliverRequestMsg.selectedDocuments.document0.dcdsAssembled - The input named deliverRequestMsg|selectedDocuments|0|document|dcdsAssembled of the complex type\: deliverRequestMsg|selectedDocuments|0|document\n    deliverRequestMsg.selectedDocuments.document0.documentName - The input named deliverRequestMsg|selectedDocuments|0|document|documentName of the complex type\: deliverRequestMsg|selectedDocuments|0|document\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.entityType - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|entityKey|entityType of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|entityKey\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.key - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|entityKey|0|keyPart|key of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|entityKey|0|keyPart\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.value - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|entityKey|0|keyPart|value of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|entityKey|0|keyPart\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.nonDcdsAssembledDocSource - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|nonDcdsAssembledDocSource of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliverToDetail of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo|copyType of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo|deliveryMode of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|deliverToList|0|documentDeliverTo|deliveryInfo\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientDetail of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|entityType of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart|key of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart\n    deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value - The input named deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart|value of the complex type\: deliverRequestMsg|selectedDocuments|0|document|instances|0|instance|recipients|0|recipient|recipientKey|0|keyPart\n    deliverRequestMsg.tenant - The input named deliverRequestMsg|tenant of the complex type\: deliverRequestMsg\n    deliverRequestMsg.transactionType - The input named deliverRequestMsg|transactionType of the complex type\: deliverRequestMsg\n    deliverRequestMsg.userId - The input named deliverRequestMsg|userId of the complex type\: deliverRequestMsg\n\nResults\:\n    document - The raw XML response of the web service\n    documentStripped - The XML response of the web service stripped of namespaces\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n               Transfer-Encoding\: chunkedWebServiceWizard.repo.successDesc\=The SOAP command was accepted by the web service\n    dpgId - The output given by the XPath\: /Envelope/Body/deliverResponseMsg/dpgId/text()\n    errorDetails - The output given by the XPath\: /Envelope/Body/deliverResponseMsg/errorDetails\n    responseStatus - The output given by the XPath\: /Envelope/Body/deliverResponseMsg/responseStatus/text()\n\nResponses\:\n    success - The SOAP command was accepted by the web service\n    failure - Something went wrong while making the SOAP request\n</pre>
+]]></descriptionCdata>
+  <annotation>28205138-d805-4509-9f15-a73d3c913bd9.description</annotation>
+  <name>deliverDocuments</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="ba4f7d2a-7932-42c2-bc8f-feaa5df95a35">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webserviceHost</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Wbc_utility_dcds_WebService_Host}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="afa0d4f4-c6d9-4f4a-859d-8cb2ae995d22">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webservicePort</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Wbc_utility_dcds_WebService_Port}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b15f1727-cf9d-416a-8894-68e603d7064a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>headers</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c829a2ad-78c6-457b-b93a-956273e1747a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.dcdsAssembled</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="64f2e3c7-2e3b-4e9d-8cef-355eb99a8039">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.documentName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2a907699-8c53-4aa4-96d6-e38f8722cfa2">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.entityType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="592318ca-e7da-43c7-b5a9-28c8c7f9aef5">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="536195e3-d1c5-45c0-afe8-06700a491f29">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="3f60f913-0e96-46f6-9e0a-cfbc5cd8558e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.nonDcdsAssembledDocSource</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e3d8f902-1168-46ba-8dab-dd995c905cf0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9503f7a8-2005-4527-9df0-38169950e7eb">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="eb4f0a25-32d5-4649-a9d4-ce9538b49caf">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a1a72a48-6d6f-4efb-b0b7-6f99205312c6">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="53762462-d3b8-4a4b-930c-2fdef1df115c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b060d57c-ac06-49a6-8099-304b4da7fc4f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="96ee9405-e565-4c3a-9790-87b061e38655">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="755208f1-f82d-4d04-a756-71ab584489e8">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.clientId</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="09e174ea-0920-454d-aa8a-55e022283ae0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.documentSetName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a35fbf02-e341-4ed1-9cea-2ab902c3710e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.dpgAttributes.mapItem0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="81d33e20-ea22-4103-b3ef-222e445183df">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.dpgAttributes.mapItem0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ac1c2cc7-5c28-4b65-aea9-d4d0b0769b1a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.entityType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="19aa088a-a7c9-454c-8366-16e06341f065">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5c741b8c-8bc2-4d96-aa7d-16917f6d5890">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="63c6e3c8-d468-4e36-bb8c-147dbecc945f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.transactionKey.entityType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c2ced0fb-032a-4665-99ff-60a909d19d3f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="1ee058fa-a327-4843-9c90-ae65ed43d775">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="1282fc60-acd7-4d31-b6b0-18e9b3d0ef44">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.copyType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7166c16e-7233-40a1-b486-e6ebb060c938">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.deliveryMode</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2eabda51-d566-4fd5-aa59-aeea05145649">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.dcdsAssembled</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8614bbda-ced6-4c8f-8ebc-a3bcc332736a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.documentName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="27fe6a5d-759a-4348-b7ee-1e89212292dd">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.entityType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="64424648-1fcf-4678-801f-d409428f534a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="57ff91d7-6f0f-4642-a11c-03fe4b15bc5a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7b7d9e45-d924-4f66-8267-d75793f2524b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.nonDcdsAssembledDocSource</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="991195af-bdca-496c-aa1b-45e4809e143e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="11638d2b-8aff-450e-ad3c-3198c8df8f35">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="fe7b9b2f-3f21-4e91-9538-b7729aff7365">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="dae68e2e-dd20-4d1a-92cf-6743714bc018">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9060fc5d-a847-4b24-90ab-481515a19700">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ac1ab286-03cf-482f-9e6b-b42acce20fa5">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ae379bdd-8033-4849-b1c6-433d81a46911">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7f349b74-3b86-4ebe-92cd-d5f4fbe3ce4d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.tenant</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="861d5264-fc86-4a1f-82fd-1ecbdd768eb7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.transactionType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f3ddfa6b-6c7a-4967-b76b-b0853e422fa3">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>deliverRequestMsg.userId</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="23db60fc-b100-4a09-8327-c4064b74cd70">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+    </opResponse>
+    <opResponse id="846580c3-3ba3-429f-aae4-21eefb2bad1e">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="f399eab1-3b3a-4a02-9127-85b190bfb104">
+    <annotation></annotation>
+    <name>document</name>
+    <fieldName>document</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="266d578b-4fcb-4f20-aec9-a99379623886">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>false</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>false</historyCheckPointFlow>
+  <steps>
+    <step id="4cf8eb5a-5a7f-4396-a776-3c94a2c6ffbd">
+      <annotation>28205138-d805-4509-9f15-a73d3c913bd9.4cf8eb5a-5a7f-4396-a776-3c94a2c6ffbd.description</annotation>
+      <name>Invoke Method 2</name>
+      <bounds>
+        <x>0.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>Invoke Method 2</resultContextKey>
+      <bindings>
+        <staticBinding id="a1d0ad5d-9d3c-4d63-9610-c9107cc91998">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>url</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http://${webserviceHost}:${webservicePort}/dcdsWS/services/dcdsDeliver</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a8b16bd8-ed52-4edf-9c37-5b749fbdf543">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>xmlTemplate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:urn=&quot;urn:eds.com:services:dcds:deliver:messages:2009-05&quot; xmlns:urn1=&quot;urn:eds.com:services:dcds:deliver:data:2009-05&quot;&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;urn:deliverRequestMsg&gt;
+         &lt;urn:clientId&gt;?&lt;/urn:clientId&gt;
+         &lt;urn:tenant&gt;?&lt;/urn:tenant&gt;
+         &lt;urn:userId&gt;?&lt;/urn:userId&gt;
+         &lt;urn:transactionType&gt;?&lt;/urn:transactionType&gt;
+         &lt;urn:documentSetName&gt;?&lt;/urn:documentSetName&gt;
+         &lt;urn:selectedDocuments&gt;
+            &lt;!--1 or more repetitions:--&gt;
+            &lt;urn1:document&gt;
+               &lt;urn1:documentName&gt;?&lt;/urn1:documentName&gt;
+               &lt;urn1:dcdsAssembled&gt;?&lt;/urn1:dcdsAssembled&gt;
+               &lt;urn1:instances&gt;
+                  &lt;!--1 or more repetitions:--&gt;
+                  &lt;urn1:instance&gt;
+                     &lt;urn1:entityKey&gt;
+                        &lt;urn1:entityType&gt;?&lt;/urn1:entityType&gt;
+                        &lt;!--1 or more repetitions:--&gt;
+                        &lt;urn1:keyPart&gt;
+                           &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+                           &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+                        &lt;/urn1:keyPart&gt;
+                     &lt;/urn1:entityKey&gt;
+                     &lt;urn1:nonDcdsAssembledDocSource&gt;?&lt;/urn1:nonDcdsAssembledDocSource&gt;
+                     &lt;urn1:recipients&gt;
+                        &lt;!--1 or more repetitions:--&gt;
+                        &lt;urn1:recipient&gt;
+                           &lt;urn1:recipientDetail&gt;?&lt;/urn1:recipientDetail&gt;
+                           &lt;urn1:recipientKey&gt;
+                              &lt;urn1:entityType&gt;?&lt;/urn1:entityType&gt;
+                              &lt;!--1 or more repetitions:--&gt;
+                              &lt;urn1:keyPart&gt;
+                                 &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+                                 &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+                              &lt;/urn1:keyPart&gt;
+                           &lt;/urn1:recipientKey&gt;
+                           &lt;urn1:deliverToList&gt;
+                              &lt;!--1 or more repetitions:--&gt;
+                              &lt;urn1:documentDeliverTo&gt;
+                                 &lt;urn1:deliverToDetail&gt;?&lt;/urn1:deliverToDetail&gt;
+                                 &lt;urn1:deliveryInfo&gt;
+                                    &lt;urn1:deliveryMode&gt;?&lt;/urn1:deliveryMode&gt;
+                                    &lt;urn1:copyType&gt;S&lt;/urn1:copyType&gt;
+                                 &lt;/urn1:deliveryInfo&gt;
+                              &lt;/urn1:documentDeliverTo&gt;
+                           &lt;/urn1:deliverToList&gt;
+                        &lt;/urn1:recipient&gt;
+                     &lt;/urn1:recipients&gt;
+                  &lt;/urn1:instance&gt;
+               &lt;/urn1:instances&gt;
+            &lt;/urn1:document&gt;
+         &lt;/urn:selectedDocuments&gt;
+         &lt;!--Optional:--&gt;
+         &lt;urn:additionalDocuments&gt;
+            &lt;!--1 or more repetitions:--&gt;
+            &lt;urn1:document&gt;
+               &lt;urn1:documentName&gt;?&lt;/urn1:documentName&gt;
+               &lt;urn1:dcdsAssembled&gt;?&lt;/urn1:dcdsAssembled&gt;
+               &lt;urn1:instances&gt;
+                  &lt;!--1 or more repetitions:--&gt;
+                  &lt;urn1:instance&gt;
+                     &lt;urn1:entityKey&gt;
+                        &lt;urn1:entityType&gt;?&lt;/urn1:entityType&gt;
+                        &lt;!--1 or more repetitions:--&gt;
+                        &lt;urn1:keyPart&gt;
+                           &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+                           &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+                        &lt;/urn1:keyPart&gt;
+                     &lt;/urn1:entityKey&gt;
+                     &lt;urn1:nonDcdsAssembledDocSource&gt;?&lt;/urn1:nonDcdsAssembledDocSource&gt;
+                     &lt;urn1:recipients&gt;
+                        &lt;!--1 or more repetitions:--&gt;
+                        &lt;urn1:recipient&gt;
+                           &lt;urn1:recipientDetail&gt;?&lt;/urn1:recipientDetail&gt;
+                           &lt;urn1:recipientKey&gt;
+                              &lt;urn1:entityType&gt;?&lt;/urn1:entityType&gt;
+                              &lt;!--1 or more repetitions:--&gt;
+                              &lt;urn1:keyPart&gt;
+                                 &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+                                 &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+                              &lt;/urn1:keyPart&gt;
+                           &lt;/urn1:recipientKey&gt;
+                           &lt;urn1:deliverToList&gt;
+                              &lt;!--1 or more repetitions:--&gt;
+                              &lt;urn1:documentDeliverTo&gt;
+                                 &lt;urn1:deliverToDetail&gt;?&lt;/urn1:deliverToDetail&gt;
+                                 &lt;urn1:deliveryInfo&gt;
+                                    &lt;urn1:deliveryMode&gt;?&lt;/urn1:deliveryMode&gt;
+                                    &lt;urn1:copyType&gt;S&lt;/urn1:copyType&gt;
+                                 &lt;/urn1:deliveryInfo&gt;
+                              &lt;/urn1:documentDeliverTo&gt;
+                           &lt;/urn1:deliverToList&gt;
+                        &lt;/urn1:recipient&gt;
+                     &lt;/urn1:recipients&gt;
+                  &lt;/urn1:instance&gt;
+               &lt;/urn1:instances&gt;
+            &lt;/urn1:document&gt;
+         &lt;/urn:additionalDocuments&gt;
+         &lt;!--Optional:--&gt;
+         &lt;urn:dpgAttributes&gt;
+            &lt;!--1 or more repetitions:--&gt;
+            &lt;urn1:mapItem&gt;
+               &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+               &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+            &lt;/urn1:mapItem&gt;
+         &lt;/urn:dpgAttributes&gt;
+         &lt;!--Optional:--&gt;
+         &lt;urn:notificationDeliveryInfo&gt;
+            &lt;urn1:deliveryInfo&gt;
+               &lt;urn1:deliveryMode&gt;?&lt;/urn1:deliveryMode&gt;
+               &lt;urn1:copyType&gt;S&lt;/urn1:copyType&gt;
+            &lt;/urn1:deliveryInfo&gt;
+         &lt;/urn:notificationDeliveryInfo&gt;
+         &lt;urn:getEntityIdsResponseData&gt;
+            &lt;urn1:transactionKey&gt;
+               &lt;urn1:entityType&gt;?&lt;/urn1:entityType&gt;
+               &lt;!--1 or more repetitions:--&gt;
+               &lt;urn1:keyPart&gt;
+                  &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+                  &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+               &lt;/urn1:keyPart&gt;
+            &lt;/urn1:transactionKey&gt;
+            &lt;urn1:entityKeys&gt;
+               &lt;!--1 or more repetitions:--&gt;
+               &lt;urn1:entityKey&gt;
+                  &lt;urn1:entityType&gt;?&lt;/urn1:entityType&gt;
+                  &lt;!--1 or more repetitions:--&gt;
+                  &lt;urn1:keyPart&gt;
+                     &lt;urn1:key&gt;?&lt;/urn1:key&gt;
+                     &lt;urn1:value&gt;?&lt;/urn1:value&gt;
+                  &lt;/urn1:keyPart&gt;
+               &lt;/urn1:entityKey&gt;
+            &lt;/urn1:entityKeys&gt;
+         &lt;/urn:getEntityIdsResponseData&gt;
+      &lt;/urn:deliverRequestMsg&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4cef7650-0cec-49a4-9c2c-307b7ae9e13b">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>header_SOAPAction</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>urn:eds.com:services:dcds:deliver:service:2009-05</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0d5b101d-1177-49a3-a11f-889853b846ce">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>inputMap</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>deliverRequestMsg|additionalDocuments|*|document|dcdsAssembled=^deliverRequestMsg.additionalDocuments.document*.dcdsAssembled$
+deliverRequestMsg|additionalDocuments|*|document|documentName=^deliverRequestMsg.additionalDocuments.document*.documentName$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|entityKey|entityType=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.entityKey.entityType$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|entityKey|*|keyPart|key=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.entityKey.keyPart*.key$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|entityKey|*|keyPart|value=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.entityKey.keyPart*.value$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|nonDcdsAssembledDocSource=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.nonDcdsAssembledDocSource$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|deliverToList|*|documentDeliverTo|deliverToDetail=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.deliverToList.documentDeliverTo*.deliverToDetail$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|deliverToList|*|documentDeliverTo|deliveryInfo|copyType=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.deliverToList.documentDeliverTo*.deliveryInfo.copyType$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|deliverToList|*|documentDeliverTo|deliveryInfo|deliveryMode=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.deliverToList.documentDeliverTo*.deliveryInfo.deliveryMode$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientDetail=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.recipientDetail$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientKey|entityType=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.recipientKey.entityType$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientKey|*|keyPart|key=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.recipientKey.keyPart*.key$
+deliverRequestMsg|additionalDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientKey|*|keyPart|value=^deliverRequestMsg.additionalDocuments.document*.instances.instance*.recipients.recipient*.recipientKey.keyPart*.value$
+deliverRequestMsg|clientId=deliverRequestMsg.clientId
+deliverRequestMsg|documentSetName=deliverRequestMsg.documentSetName
+deliverRequestMsg|dpgAttributes|*|mapItem|key=^deliverRequestMsg.dpgAttributes.mapItem*.key$
+deliverRequestMsg|dpgAttributes|*|mapItem|value=^deliverRequestMsg.dpgAttributes.mapItem*.value$
+deliverRequestMsg|getEntityIdsResponseData|entityKeys|*|entityKey|entityType=^deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey*.entityType$
+deliverRequestMsg|getEntityIdsResponseData|entityKeys|*|entityKey|*|keyPart|key=^deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey*.keyPart*.key$
+deliverRequestMsg|getEntityIdsResponseData|entityKeys|*|entityKey|*|keyPart|value=^deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey*.keyPart*.value$
+deliverRequestMsg|getEntityIdsResponseData|transactionKey|entityType=deliverRequestMsg.getEntityIdsResponseData.transactionKey.entityType
+deliverRequestMsg|getEntityIdsResponseData|transactionKey|*|keyPart|key=^deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart*.key$
+deliverRequestMsg|getEntityIdsResponseData|transactionKey|*|keyPart|value=^deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart*.value$
+deliverRequestMsg|notificationDeliveryInfo|deliveryInfo|copyType=deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.copyType
+deliverRequestMsg|notificationDeliveryInfo|deliveryInfo|deliveryMode=deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.deliveryMode
+deliverRequestMsg|selectedDocuments|*|document|dcdsAssembled=^deliverRequestMsg.selectedDocuments.document*.dcdsAssembled$
+deliverRequestMsg|selectedDocuments|*|document|documentName=^deliverRequestMsg.selectedDocuments.document*.documentName$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|entityKey|entityType=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.entityKey.entityType$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|entityKey|*|keyPart|key=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.entityKey.keyPart*.key$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|entityKey|*|keyPart|value=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.entityKey.keyPart*.value$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|nonDcdsAssembledDocSource=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.nonDcdsAssembledDocSource$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|deliverToList|*|documentDeliverTo|deliverToDetail=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.deliverToList.documentDeliverTo*.deliverToDetail$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|deliverToList|*|documentDeliverTo|deliveryInfo|copyType=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.deliverToList.documentDeliverTo*.deliveryInfo.copyType$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|deliverToList|*|documentDeliverTo|deliveryInfo|deliveryMode=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.deliverToList.documentDeliverTo*.deliveryInfo.deliveryMode$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientDetail=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.recipientDetail$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientKey|entityType=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.recipientKey.entityType$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientKey|*|keyPart|key=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.recipientKey.keyPart*.key$
+deliverRequestMsg|selectedDocuments|*|document|instances|*|instance|recipients|*|recipient|recipientKey|*|keyPart|value=^deliverRequestMsg.selectedDocuments.document*.instances.instance*.recipients.recipient*.recipientKey.keyPart*.value$
+deliverRequestMsg|tenant=deliverRequestMsg.tenant
+deliverRequestMsg|transactionType=deliverRequestMsg.transactionType
+deliverRequestMsg|userId=deliverRequestMsg.userId</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6a814a30-fd5b-400d-82a0-784f5cd06395">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>usesJSON</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="18dc9fd9-1eb4-4ecb-b972-780abdf69b4f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>wswAuthenticationType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3636f70f-59e3-42e6-afbd-8c2e11171d95">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecuritySignRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6fe4d4a6-eb85-479a-a94f-b293a81bd41c">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityEncryptRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="139f5dd2-f1d0-4868-a739-161f25ccf3e3">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityTimestampRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4f9b4604-d05a-4805-bb37-ac36fd37ff96">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="27d04970-3bfa-4c8d-966f-175871d0aa04">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystoreType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2e471393-5a8f-44d1-9a8b-c0973f9bd918">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e498c97b-dc16-47d8-8c4c-6fe29fdd0c04">
+          <fromContextKey>headers</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>headers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bcb8ed87-65e3-41e8-b403-8613a045b80f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>contentType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>text/xml</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="72248a20-2050-4097-9cc3-f7e1cf4ad0a7">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>UTF-8</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6560ee24-468d-41a3-8b45-780af21c8877">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="35924c55-a8a5-420d-b328-5144dbdfa5a0">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b901f049-3f57-4a38-b244-329a77e91c0e">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>trustAllRoots</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="511f30a8-9a35-41fe-beb2-434441a92bfd">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>useCookies</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d5978e1f-3876-4d59-ad59-481279d5bb5c">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f1dee798-1011-4e0b-8987-3ddb93d4bb36">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>socketTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b6ef6ec6-f964-4797-8b8a-a10c1312433b">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="943ba358-0c62-45e1-9e8f-87bdc062c35e">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0daa6cf4-29f9-47ec-a695-f2406101a328">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="86fe1437-5716-4401-852f-51ffdbc77648">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2b062ca4-e1a9-431e-a2d1-cdf70c5085d9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0eb72a58-19f1-437d-b298-70a3903543b0">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b1a3f15b-5de2-4055-8912-de7c73b8ab62">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>ICONCLUDE_WSW_VERSION</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>2</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="29c5a7cc-874c-432e-a65f-3768405bd231">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>returnXMLRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="778affe1-7f54-444b-a672-02a216850513">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.dcdsAssembled</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.dcdsAssembled</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7d314f04-ea69-4385-9a22-3ce2ae4145c4">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.documentName</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.documentName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="fef73e8f-c9a9-460a-afeb-9bdc26dac9c2">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.entityType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.entityType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="43c654a1-1fcd-4b71-b8bf-df2b35931ce9">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7d8a8d60-daf9-4e52-82a6-ff9da9390014">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.entityKey.keyPart0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="481e6585-1423-4220-bf7a-c6795bcbb00f">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.nonDcdsAssembledDocSource</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.nonDcdsAssembledDocSource</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f4c1ab47-a0ff-40ee-a78a-7360ef809370">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="73ce2361-9fcc-4472-b791-0a4b807b63b3">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3fac6c57-1eba-4845-b2f5-ed1afaeffd25">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9084ee35-88ca-431b-a4c7-448c3eb95acc">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4fe37eae-ad85-4869-a884-68aac6b02b0c">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="25497c09-e06b-4b0f-8874-408b34c19ee4">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="48c794fb-6738-431e-b170-7be9c461f3d5">
+          <fromContextKey>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.additionalDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1a84ae24-452d-4a59-8903-02fc4c338db2">
+          <fromContextKey>deliverRequestMsg.clientId</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.clientId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c4c834e2-9ab3-47aa-b389-f6fb43caf0f6">
+          <fromContextKey>deliverRequestMsg.documentSetName</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.documentSetName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9a64fa71-b535-494d-b043-a21fc4791687">
+          <fromContextKey>deliverRequestMsg.dpgAttributes.mapItem0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.dpgAttributes.mapItem0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="36379d65-ab18-4f9c-a18a-3db01c1f9d00">
+          <fromContextKey>deliverRequestMsg.dpgAttributes.mapItem0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.dpgAttributes.mapItem0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5736a759-a732-443e-862d-5e91cc76f635">
+          <fromContextKey>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.entityType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.entityType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="65968086-a362-4a32-a4dc-03717705c9df">
+          <fromContextKey>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="455be61e-a473-4c81-b568-bca907017851">
+          <fromContextKey>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.entityKeys.entityKey0.keyPart0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="dc0634bf-ee72-478a-bfe3-220c29ecfa02">
+          <fromContextKey>deliverRequestMsg.getEntityIdsResponseData.transactionKey.entityType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.transactionKey.entityType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="63d2989f-f60d-4eed-8db1-60d96be0a3b7">
+          <fromContextKey>deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ce1d82a4-832e-4ac3-8393-8486321ec19e">
+          <fromContextKey>deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.getEntityIdsResponseData.transactionKey.keyPart0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9c5bd205-ec9b-4dae-b42d-5f1c842c413e">
+          <fromContextKey>deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.copyType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.copyType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a12f109a-b575-4ec3-973f-292b97a9659a">
+          <fromContextKey>deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.deliveryMode</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.notificationDeliveryInfo.deliveryInfo.deliveryMode</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="64907420-d509-4db7-b888-b09754fe7a09">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.dcdsAssembled</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.dcdsAssembled</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="427e9938-66ba-45b5-a18a-81b01fa3a0cd">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.documentName</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.documentName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="cb446768-2015-4538-85c6-f706735f4d8e">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.entityType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.entityType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a5ec32b3-25a6-4f07-90b4-2a8dc3990fe6">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8fd21acf-5818-4965-a0c7-1a4c0bfb04b1">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.entityKey.keyPart0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5f6b412b-8880-4455-ac28-81ccba89a670">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.nonDcdsAssembledDocSource</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.nonDcdsAssembledDocSource</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d38fb786-0648-471b-94a1-6a0c6d5dc731">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliverToDetail</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ae2dab96-ac1e-49cf-9531-87b11760e99c">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.copyType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d007b42e-b42e-4349-8c13-dd995a2e508a">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.deliverToList.documentDeliverTo0.deliveryInfo.deliveryMode</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8d6e9cab-28ec-432a-93b7-083c91cbc79b">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientDetail</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8304a0f3-84d8-4c04-8343-4ed4835b8ff4">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.entityType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="13248057-4ce7-4e0c-9c7b-5e2b699500ae">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="93332cf0-5099-4569-acda-ca992f5ed0c5">
+          <fromContextKey>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.selectedDocuments.document0.instances.instance0.recipients.recipient0.recipientKey.keyPart0.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1946df25-12d8-45be-9b80-7cac344ab5d9">
+          <fromContextKey>deliverRequestMsg.tenant</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.tenant</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ac51dcd4-fc1e-4ee2-9726-5ada399bc0f0">
+          <fromContextKey>deliverRequestMsg.transactionType</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.transactionType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="60db0a9d-648b-4c50-876a-cd091fd2f470">
+          <fromContextKey>deliverRequestMsg.userId</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>deliverRequestMsg.userId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="6e5902d8-7c53-47b3-a1e4-3321f112ec5c">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3a4a9db9-2d59-44fc-bee8-07b9d630a464</refId>
+          </destination>
+          <source>
+            <refId>4cf8eb5a-5a7f-4396-a776-3c94a2c6ffbd</refId>
+          </source>
+          <positions/>
+        </transition>
+        <transition id="137462b4-d78a-4126-8c84-7aac3ea2face">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>76db0cf5-90cf-4851-8a72-6a5ad3b10f78</refId>
+          </destination>
+          <source>
+            <refId>4cf8eb5a-5a7f-4396-a776-3c94a2c6ffbd</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>962ffbf8-4105-46bb-8c71-84f037c4de61</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="12da7b46-cb6e-4d3a-8f50-5e35e3bb8ecf">
+          <annotation></annotation>
+          <name>document</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>document</contextKey>
+          <expression id="3e43309f-fdf2-44c5-a745-8df2c7c51b88">
+            <annotation></annotation>
+            <name>document</name>
+            <fieldName>document</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="ee8a2f7c-0ffd-49d3-98f5-7fa50ac50ce0">
+          <annotation></annotation>
+          <name>documentStripped</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>documentStripped</contextKey>
+          <expression id="a657eff9-9cfb-4aaa-b996-0c7c41d29c19">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fb62c405-27bc-4129-9503-23bb71249dc9">
+          <annotation></annotation>
+          <name>responseHeaders</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>responseHeaders</contextKey>
+          <expression id="9e08bcb4-495f-499d-b02e-4310b78e88ce">
+            <annotation></annotation>
+            <name>responseHeaders</name>
+            <fieldName>responseHeaders</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="21a9ee13-1988-4fe5-a2ff-59b8676f09b6">
+          <annotation></annotation>
+          <name>dpgId</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>dpgId</contextKey>
+          <expression id="167b34c1-72be-4ca8-b4c0-9d5b131f5e90">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="02a3f1e7-bc46-47da-ab15-10c763717031">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/deliverResponseMsg/dpgId/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fca9e412-9505-4da3-9108-e8f56ec19c78">
+          <annotation></annotation>
+          <name>errorDetails</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorDetails</contextKey>
+          <expression id="0395b6d7-1775-41c9-9f5b-282fb1ff4d72">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="bd91b0ba-598e-4760-84e5-36305fed985c">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/deliverResponseMsg/errorDetails</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="30b1e757-b404-4f27-b959-a6b68fac5f55">
+          <annotation></annotation>
+          <name>responseStatus</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>responseStatus</contextKey>
+          <expression id="d8e88dc9-a2f1-4a5f-836d-9ba8459a1481">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="68f357af-e5bd-4df5-888e-36812c834ddf">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/deliverResponseMsg/responseStatus/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="3a4a9db9-2d59-44fc-bee8-07b9d630a464">
+      <annotation></annotation>
+      <name>RESOLVED : success</name>
+      <bounds>
+        <x>0.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>RESOLVED : success</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="b050a775-1a2e-4807-bf95-3c79f9d780c3">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3a4a9db9-2d59-44fc-bee8-07b9d630a464</refId>
+          </destination>
+          <source>
+            <refId>3a4a9db9-2d59-44fc-bee8-07b9d630a464</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="76db0cf5-90cf-4851-8a72-6a5ad3b10f78">
+      <annotation></annotation>
+      <name>ERROR : failure</name>
+      <bounds>
+        <x>150.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>ERROR : failure</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="425fb9fb-1b3a-44ed-9937-08b5aa938d73">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>76db0cf5-90cf-4851-8a72-6a5ad3b10f78</refId>
+          </destination>
+          <source>
+            <refId>76db0cf5-90cf-4851-8a72-6a5ad3b10f78</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>4cf8eb5a-5a7f-4396-a776-3c94a2c6ffbd</startSteps>
+</flow>

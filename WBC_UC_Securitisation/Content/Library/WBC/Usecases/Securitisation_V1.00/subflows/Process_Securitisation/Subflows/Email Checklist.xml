@@ -1,0 +1,3238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="dfaca003-ca05-4b52-8647-b73b0c3b9485">
+  <descriptionCdata><![CDATA[dfaca003-ca05-4b52-8647-b73b0c3b9485.1eecd8f5-4d79-481f-99d0-fcc999eee660.description=<pre>\nThis operation adds a flow variable to the local context. The variable is available in the current flow and its child flows.\n\nInputs\:\n    keyName - The name of the flow variable to add.\n    myValue - The value to assign to the flow variable.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of "myValue" input field.\n\nResponses\:\n    success - The operation completed as stated in the description.\n\nNote\:\n   If a flow variable with the same name already exists, its value will be overwritten.\n</pre>
+dfaca003-ca05-4b52-8647-b73b0c3b9485.5bd0ed9e-e164-4121-b97c-594f54aece9f.description=<pre>This operation is used to send a smtp email.\n \nInputs\:\n    hostname - The hostname or ip address of the smtp server.\n    port - The port smtp service is listening.\n    from - From email address.\n    to - A delimiter separated list of email address(es) or recipients.\n    cc - A delimiter separated list of email address(es) or recipients, to be placed in the CC.\n    bcc - A delimiter separated list of email address(es) or recipients, to be placed in the BCC.\n    subject - The email subject. If a subject spans on multiple lines, it is formatted to a single one.\n    body - The body of the email.\n    htmlEmail - The value should be true if the email is in rich text/html format. The value should be false if the email is in plain text format.\nValid values\: true, false. \nDefault value\: true. \n    readReceipt - The value should be true if read receipt is required, else false. \nValid values\: true, false. \nDefault value\: false. \n    attachments - A delimiter separated list of files to attach (must be full path).\n    headers - This input contains extra headers you want to be added in the mail. The input has a 'Map' format. Header names are separated from header values through a column delimiter and headers will be separated between them by a row delimiter.\nExample\:\n    Sensitivity\:Company-Confidential\n    message-type\:Multiple Part\n    Sensitivity\:Personal\nIn the above example, the columnDelimiter is "\:" and the rowDelimiter is the new line. You can define multiple values for the same header like in the example above. The delimiters can have multiple characters, but be careful that the rowDelimiter is not a substring of the columnDelimiter.\n    rowDelimiter - The delimiter that separates headers in the 'headers' input.\nDefault value\: "\:"\nExamples\: '|', '\='\n    columnDelimiter - The delimiter that separates the header name from header value on the same row.\nDefault value\: "\\n"\t\nExamples\: ';', '\#'\n    username - If SMTP authentication is needed, the username to send.\n    password - If SMTP authentication is needed, the password to use.\n    characterSet - The character set encoding for the entire email which includes subject, body, attached file name and the attached file. \nValid values\: UTF-8, UTF-16, UTF-32, EUC-JP, ISO-2022-JP, Shift_JIS, Windows-31J.\nDefault value\: UTF-8.\n    contentTransferEncoding - The content transfer encoding scheme (such as 7bit, 8bit, base64, quoted-printable etc) for the entire email which includes subject, body, attached file name and the attached file. \nValid values\: quoted-printable, base64, 7bit, 8bit, binary, x-token.\nDefault value\: quoted-printable (or Q Encoding).\n    delimiter - A delimiter to separate the email recipients and the attachments.\nDefault value\: ','\n    encryptionKeystore - The path to the pks12 formatted keystore used to encrypt the mail.\n    encryptionKeyAlias - The alias of a RSA key pair from the encryptionKeystore. The public key from the pair will be used to encrypt the mail. The key pair must not have password. The recommended key size is 2048 bit or higher.\n    encryptionKeystorePassword - The password for the encryptionKeystore.\n    encryptionAlgorithm - The encryption algorithm applied on the key from the keystore in order to encypt email parts. \nDefault value\: AES256_CBC.\nValid values\: DES_EDE3_CBC, RC2_CBC, IDEA_CBC, CAST5_CBC, AES128_CBC, AES192_CBC, AES256_CBC, CAMELLIA128_CBC, CAMELLIA192_CBC, CAMELLIA256_CBC, SEED_CBC, DES_EDE3_WRAP, AES128_WRAP, AES256_WRAP, CAMELLIA128_WRAP, CAMELLIA192_WRAP, CAMELLIA256_WRAP, SEED_WRAP.\n    enableTLS - Enables starttls. If the server supports TLS or SSL, the communications will be secured by TLS or SSL. If it doesn't support TLS or SSL the communication will be unsecure.\nValid values\: true, false. \nDefault value\: false.\n    timeout - The timeout in seconds for sending the mail message.\n\nResponses\:\n    success - Successfully sent the email.\n    failure - Failed to send the email.\n\nNote\:\n1. For special characters (East Asian, right-to-left languages, etc.) you must install the support files on your local machine.\n2. For doing this on Windows go to Control Panel -> Regional and Language Options -> Language and check the options at Supplemental language support.\n3. You can use KeyStore Explorer to obtain RSA Keystore with keyPairs for encryption/decryption.\n    3.1 If you get "llegal key size exception" you don't have JCE Unlimited Strength installed.\n</pre>
+dfaca003-ca05-4b52-8647-b73b0c3b9485.5c77fa88-0da2-4fa0-95f2-0357e998497b.transition.description=send email success
+dfaca003-ca05-4b52-8647-b73b0c3b9485.68e0b06c-cd24-4131-adcc-b39f98734767.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
+dfaca003-ca05-4b52-8647-b73b0c3b9485.6e0eef55-923c-4d1b-aa7b-264abb6c7d9f.transition.description=automation failure update success
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Email Checklist</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="71791110-ddc5-4772-a9aa-fc2ebc6512c3">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>auditCodes1</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>  </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="1c71d70b-7f78-4938-b4ff-3326a1d83ba7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsAmalgamationDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4d81374d-4c61-4cc1-8c71-42884371cb49">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsConsentDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7833a62d-3966-4cf7-9e5a-94d9189a8914">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsGuarantorDocID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9d1b4c68-1fda-4a40-acc5-5c5306e32c1f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsLetterOfNotificationDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c29b3a24-1b9d-487b-9ec5-004b01fe34c6">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsLimitRebalanceDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="90d198bc-8f37-454c-a324-d41ef5344af0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsLoanOfferDocID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="05338ad4-ab8c-45cb-9211-c6c8aafe83c6">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsParentalLeaveDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="608019bb-2828-425d-a1bd-55f297fe3350">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsPartialDischargeDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="964c6037-b0f3-4065-8efb-0609a744a0a9">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsPartialFixDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="76731376-7b00-45fd-bbda-729ea0495f11">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsPortabilityDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="752abc77-0c55-47f1-8ab0-a31509228cc4">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsTopUpDocIDs</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="dce88f26-cfdc-4556-9099-a0f462259d7f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsValuationDocID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="40c15330-cb8c-4027-8ec0-e6509f7bd181">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>auditCodes2</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ea3bd5de-6d9c-4c02-8bd1-152239854e18">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>auditCodes3</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="bbd28ed4-b39a-4c47-9c29-ea63547adc90">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>auditCodes4</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f6d7aa8c-c2e3-4eab-ba1b-0a380203f89f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>auditCodes5</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0516be23-4384-4a27-aa9e-33f1793c2dcf">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>auditType</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="33ab7468-01d9-4e4c-ba65-0e21f4ff63ec">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mortgageInsured</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="86bfdf9c-fec8-4f43-95f4-6b52aaed2e63">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssCurrentLoanBalance</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9c4ef772-a0dd-4624-abf2-e20ead121f7a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurities</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5655d07c-fd5e-4cb8-a19c-41bfca17f009">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsSecCertOfTitle[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7b2fe3ef-7bff-46e0-aaa8-c1c5f35602f4">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsSecCertOfTitle[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c36eed2e-6358-4fbf-a8a5-6828419cc786">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsSecCertOfTitle[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="887bdb5e-0e34-4736-bfec-fcbfe76df555">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>dcmsSecCertOfTitle[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="43723405-1d58-4b2c-ae34-6a9c0775ae1d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName1</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="935c510b-50c8-4dc1-aff5-eee8ae135243">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName2</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c3b3dee4-af93-4688-97ae-974d26a152ed">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName3</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="6e1b13b7-2e47-45dd-a704-6d30acf60587">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName4</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e54298b5-0ab5-4525-a445-73a346bac03d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName5</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cfaae497-5668-4f4d-bffa-c4e2ba19f358">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName6</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="804311ef-50af-47e0-a83b-8ad88f3f9c42">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName7</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="33d2a5d2-7fd7-4ba4-86b1-862fb482b9dc">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName8</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="80eb203f-16e4-41b5-b1f4-d4edcedd45d4">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>fullName9</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="65a65fe4-7636-4cfc-84e9-59f95f717d0d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>investorNumber</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7e0af197-684e-4f4a-95b4-2e6c98d1a341">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssAuditFlag1</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e24f6776-936d-4584-851d-b8b620197ebb">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssAuditFlag2</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="729de8d3-7614-4627-b413-bf814d850e85">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssAuditFlag3</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0dc6741e-02a6-4212-ad02-f4f210982136">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssAuditFlag4</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b9eb1e09-5dfa-43c4-80e3-108027ffbc00">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssAuditFlag5</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f882af58-464a-4d79-9318-dde77bb35ce8">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssAccountLimit</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="aa617563-9886-4875-8ab6-78198e0d2056">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssExcessFunds</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="93be8e97-c56d-4d77-8763-85e7ab123484">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssGuarantor</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cc28201d-df28-4ee2-bb1b-5c53794a39d9">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samNamesonTitle[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="d8e4a9f0-8fd1-4ad3-a288-a872bfe478aa">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samNamesonTitle[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="12ed0f75-269b-423f-ba3b-24d0a6b941d0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samNamesonTitle[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0e175f84-a0ed-41ed-a65c-d26c905d11d2">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samNamesonTitle[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="61b7d78c-48fc-47a5-b542-16c7ccc087e7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssPaidBy</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="54963fec-8435-430d-82a6-af9f1b80d49e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityChargePosition[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4f93888e-341c-4e3b-977b-f7107ff9add9">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityChargePosition[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2efcfd9e-c8be-4204-9d2c-00bfc9931937">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityChargePosition[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e5923c58-96f8-4a82-864c-c4e56bfbcfd1">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityChargePosition[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="99382ea0-d71f-4267-beaa-71e4107ff896">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityTitleReference[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cad88932-1a2a-4e34-aeba-09beb0a678ce">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityTitleReference[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0f054ccd-2541-487e-a635-6800104fe26f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityTitleReference[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5c262e46-1f82-4c92-a68b-ac161188e70e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityTitleReference[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="407829bb-f4f1-48bc-84f3-c23c06bb507b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samLastUpdateDate[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e508c4c4-10df-4594-90c5-2d3ce401e833">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samLastUpdateDate[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7b8e66d3-265f-4918-89fa-c3b173b6098b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samLastUpdateDate[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="384b0b5e-8f62-490f-aeee-58a0686f5c70">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samLastUpdateDate[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="bbc684a8-f537-4c25-8c85-328a00d3829c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityLastValuation[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="d360b0d0-94d2-4418-8f50-a1746cfcdf6c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityLastValuation[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="dca4f2ad-7cde-40c1-a68e-59435f25bee6">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityLastValuation[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="3e32c67f-2587-4afd-9896-c28998cbd3aa">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>samSecurityLastValuation[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4b4e2a9b-ade2-4073-973e-092e11cb312c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityAddress[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8918d079-e131-4cce-a506-d1b0c1c1e10d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityAddress[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4591fca4-6501-46de-9849-7f459a0ee8df">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityAddress[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="197e814e-ea92-4a79-9a3e-f3a14740d539">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityAddress[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="62b6f610-07e7-4d7e-a90f-0a14c94b562a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityType[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f69d8e85-cfbf-499c-8fb9-66c2385b4ab9">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityType[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e24e931a-cd3b-4a1b-894a-7fc23ecf3b79">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityType[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="17e64222-a34f-42f5-85be-d2462156cf62">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>securityType[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4310b3f2-3896-4377-bdbf-2af18d7bb259">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>simplifiedAccountNumber</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5b7986b1-f60b-4bed-87f4-c1bfa2c96da0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>valuationType[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="3660cb31-7416-4e08-adfe-9a20e3a59a1f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>valuationType[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="54863739-8846-4794-964a-d7ffa954e8f5">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>valuationType[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="12f4e528-efca-4fa8-8db2-c6af10fc1f38">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>valuationType[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b2fde977-54ab-4589-a25a-8f9ea24b25cc">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssCertNumber</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="324ab340-9ff6-4297-9b55-0fb19bb27369">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>tbkLinked[1]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8adb96b4-b10c-430a-a323-6c294afb2739">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>tbkLinked[2]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ce1bf334-1068-49f6-9b38-7ac55415c852">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>tbkLinked[3]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="9891d6b6-cce9-4dff-8746-3db898535bb5">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>tbkLinked[4]</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2075a285-8efc-4491-8785-141626313108">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>loanTerm</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value> </value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="5dcab4b3-c288-4209-ac36-21c776d3652a">
+      <annotation></annotation>
+      <name>send email:success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="b7b498ad-c36d-439d-8bfd-3c7326f0be62">
+      <annotation></annotation>
+      <name>send email:failed</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="5ca74fce-ef38-485c-b321-2334f329e451">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="3959f5e5-fa40-4d4f-a17c-ae2385b04b82">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="68e0b06c-cd24-4131-adcc-b39f98734767">
+      <annotation>dfaca003-ca05-4b52-8647-b73b0c3b9485.68e0b06c-cd24-4131-adcc-b39f98734767.description</annotation>
+      <name>check list variable mapping</name>
+      <bounds>
+        <x>195.0</x>
+        <y>58.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="53e7c539-aea9-4abc-89cb-532dadf8eabc">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>auditCodes1</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>  </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f8cea068-66ee-4789-8d72-1a69f8730661">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>auditCodes2</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="604b390c-6472-4e6e-8462-abab8713da4d">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>auditCodes3</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4c6a64e3-6c6c-4e8b-8654-5d2d3dc4089d">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>auditCodes4</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="afb8c79e-a0fe-4826-894b-bb0a6644ace1">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>auditCodes5</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0113e51a-3c9c-47fd-bdf9-950baa893f8a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>auditType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a0283a4d-e7f9-444d-9f03-5eaec2c4ad12">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mortgageInsured</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2a4fc421-fe0b-459d-83ce-75d60388daec">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssCurrentLoanBalance</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5260d548-58ad-44fe-a9c6-9de53a188389">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>samSecurities</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c1183576-deed-486f-a5a0-c6c2355effa6">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName1</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f678b7bc-c8af-41e9-94df-25ea3baf6fb1">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName2</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d3f132eb-85e4-48b0-af89-286d45675a94">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName3</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f13830e1-5c97-44a8-861a-fc9a320d3a66">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName4</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="df4d6f2b-ddbe-499f-a524-ae0e338454ca">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName5</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ee9215b1-1df7-4287-b6d5-20aa4c3d8c64">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName6</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="205c65da-161c-4d04-a72e-3f294641139a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName7</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a0b1509a-24a0-4b6e-93c2-b720e27ac4da">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName8</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ea6b53a8-114f-4012-bf13-986190052bf5">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fullName9</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="83c16542-2af6-493a-9c1e-69e94c0eb9bf">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>investorNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="be05e723-1c42-4921-83d6-c24b1110cd3f">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssAuditFlag1</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ece125ec-a280-48fa-851a-0ab59504091a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssAuditFlag2</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="51b6013d-26c4-4bb6-b057-d127d445dd69">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssAuditFlag3</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="be961132-4bd3-4e65-87dd-d34808e1c6d7">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssAuditFlag4</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b30d959d-d1dd-4fa7-878b-c70a18d27f3b">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssAuditFlag5</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6c7ede5c-ab85-4662-be96-408f6e89bbda">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssAccountLimit</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4e4c5095-9a4d-46f9-9a56-2b599c058648">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssExcessFunds</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9d6960da-8e30-43f6-b589-99196d71075f">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssGuarantor</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b8c7787c-c3cc-434d-80b5-e0c7063ab10e">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssPaidBy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2a327cf5-22f1-4267-bf0a-1e46cf0dfc8e">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>simplifiedAccountNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="831e4ecc-786c-40e9-9256-984a4ae87827">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssCertNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="92d1ca8a-9940-465b-bddf-0a7503dff903">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>loanTerm</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e531aa2d-e720-40dd-82ff-34c3631552d8">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>tbkLinked[1]</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b480cad7-2f7d-44c9-a3f1-71f24991548a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>tbkLinked[2]</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e29ea129-4825-4481-9520-56d686413e56">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>tbkLinked[3]</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3f3c7473-500a-4a1d-9f80-fb0235035ee8">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>tbkLinked[4]</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value> </value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="a9a4c6d5-374e-4845-9adf-dea4c7e0605b">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>5bd0ed9e-e164-4121-b97c-594f54aece9f</refId>
+          </destination>
+          <source>
+            <refId>68e0b06c-cd24-4131-adcc-b39f98734767</refId>
+          </source>
+          <positions>
+            <point>
+              <x>245.0</x>
+              <y>92.0</y>
+            </point>
+            <point>
+              <x>431.0</x>
+              <y>105.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="c4130df3-8001-4e6b-8e60-535d32733bc3">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>tbkLinked[4]</contextKey>
+          <expression id="4bf24602-226c-41fd-9be4-0e2a4219b6b7">
+            <annotation></annotation>
+            <name>Input: tbkLinked[4]</name>
+            <fieldName>tbkLinked[4]</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0f7e510a-a8af-4e8e-a387-c1ab9bda9dc1">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>tbkLinked[3]</contextKey>
+          <expression id="d254ddbf-2def-435c-ba2d-8275abc9a186">
+            <annotation></annotation>
+            <name>Input: tbkLinked[3]</name>
+            <fieldName>tbkLinked[3]</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d79bb1bb-4842-4c9f-a131-0c3eac5a785b">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>tbkLinked[2]</contextKey>
+          <expression id="901adb52-eef3-4af6-9093-d4e921887cf2">
+            <annotation></annotation>
+            <name>Input: tbkLinked[2]</name>
+            <fieldName>tbkLinked[2]</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="1b298bc8-e839-497b-8276-7f8bc4944d4f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>tbkLinked[1]</contextKey>
+          <expression id="6e865457-833d-4afb-920e-532617d7cd83">
+            <annotation></annotation>
+            <name>Input: tbkLinked[1]</name>
+            <fieldName>tbkLinked[1]</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="333bffd7-3693-4e0d-9b9e-94ea10da6edb">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>loanTerm</contextKey>
+          <expression id="ebafe972-0a8d-404f-acf6-f40e96b75cb4">
+            <annotation></annotation>
+            <name>Input: loanTerm</name>
+            <fieldName>loanTerm</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="36f89004-1120-489b-8b7d-ee56d50ceec8">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssCertNumber</contextKey>
+          <expression id="d04c91a8-7142-4dfd-b88e-86b1904b8c44">
+            <annotation></annotation>
+            <name>Input: mssCertNumber</name>
+            <fieldName>mssCertNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0322a55c-db94-42ca-9d94-5592f2029e3a">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>simplifiedAccountNumber</contextKey>
+          <expression id="c50f82d1-2014-4d78-a092-bfaf7ebc2e86">
+            <annotation></annotation>
+            <name>Input: simplifiedAccountNumber</name>
+            <fieldName>simplifiedAccountNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="2b823c3b-dc73-4116-abef-bf3b6edee4a4">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssPaidBy</contextKey>
+          <expression id="cd10bbc0-3875-4fa6-9e07-20912b3968d2">
+            <annotation></annotation>
+            <name>Input: mssPaidBy</name>
+            <fieldName>mssPaidBy</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6dc807a0-151f-4817-b099-57d70b1fb8bd">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssGuarantor</contextKey>
+          <expression id="251c5b9b-fb70-4020-8104-af1a65052427">
+            <annotation></annotation>
+            <name>Input: mssGuarantor</name>
+            <fieldName>mssGuarantor</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a88e434c-e194-4dbe-b4ad-8fe9631c8426">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssExcessFunds</contextKey>
+          <expression id="72087da1-b343-4df5-b24d-e4a8fc61bf83">
+            <annotation></annotation>
+            <name>Input: mssExcessFunds</name>
+            <fieldName>mssExcessFunds</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="8ede8e4c-0a27-4487-b6f0-7be59f8f9915">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssAccountLimit</contextKey>
+          <expression id="6a211141-4a8d-467f-8a2b-ac0505c1a0de">
+            <annotation></annotation>
+            <name>Input: mssAccountLimit</name>
+            <fieldName>mssAccountLimit</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="65722aa7-7c8e-4728-9ead-32c4ddf11708">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssAuditFlag5</contextKey>
+          <expression id="8d345654-712b-4056-8451-ad0b68b56a02">
+            <annotation></annotation>
+            <name>Input: mssAuditFlag5</name>
+            <fieldName>mssAuditFlag5</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="85b64b5e-3b39-4f26-bb11-084fc2ea31b9">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssAuditFlag4</contextKey>
+          <expression id="603eba37-629d-48a0-823c-06cdfee740f8">
+            <annotation></annotation>
+            <name>Input: mssAuditFlag4</name>
+            <fieldName>mssAuditFlag4</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9a3909c4-0684-479a-8734-ba0e227f122a">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssAuditFlag3</contextKey>
+          <expression id="bbdfb788-da51-4eb7-ac8a-eacb04c21c10">
+            <annotation></annotation>
+            <name>Input: mssAuditFlag3</name>
+            <fieldName>mssAuditFlag3</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="66ef71da-bbb5-42f7-9014-7163ae8baa58">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssAuditFlag2</contextKey>
+          <expression id="c1042f44-a3dc-4523-9312-a6a3188f2b07">
+            <annotation></annotation>
+            <name>Input: mssAuditFlag2</name>
+            <fieldName>mssAuditFlag2</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="486533dd-414f-458f-b009-86202b15a27d">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssAuditFlag1</contextKey>
+          <expression id="c5ccab2f-9bdd-4665-9320-1cd03503a352">
+            <annotation></annotation>
+            <name>Input: mssAuditFlag1</name>
+            <fieldName>mssAuditFlag1</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9a7c9702-5958-41aa-a971-2a24939927d8">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>investorNumber</contextKey>
+          <expression id="2613bcdb-b520-4afb-ad5f-76526646e844">
+            <annotation></annotation>
+            <name>Input: investorNumber</name>
+            <fieldName>investorNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="531a44b3-6180-42a6-9ab2-9301852ce0e8">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName9</contextKey>
+          <expression id="c5270694-f3dc-481a-b8d2-2b6873e61e19">
+            <annotation></annotation>
+            <name>Input: fullName9</name>
+            <fieldName>fullName9</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a5c17dbe-1234-41c5-900f-687a2e85d46e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName8</contextKey>
+          <expression id="214ca49c-3845-42b7-bb92-b62756f4b150">
+            <annotation></annotation>
+            <name>Input: fullName8</name>
+            <fieldName>fullName8</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="cbac60eb-70ab-4f5d-a518-84e8c4d6acdc">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName7</contextKey>
+          <expression id="122074b0-cbe5-40d2-bae9-01b0088798ad">
+            <annotation></annotation>
+            <name>Input: fullName7</name>
+            <fieldName>fullName7</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="991da9c5-525d-42ae-a387-53ccc563e985">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName6</contextKey>
+          <expression id="f90bbc64-8648-4826-96af-6b22e48df87e">
+            <annotation></annotation>
+            <name>Input: fullName6</name>
+            <fieldName>fullName6</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="43e70c82-820f-4c11-9170-098a508a67ef">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName5</contextKey>
+          <expression id="f4e76fa6-71dd-4118-a0c4-f4ec157ea899">
+            <annotation></annotation>
+            <name>Input: fullName5</name>
+            <fieldName>fullName5</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4d2fd270-b74b-4916-ae47-b04e6f382608">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName4</contextKey>
+          <expression id="d6f199cb-e07e-433b-bb76-ee669c9a5d15">
+            <annotation></annotation>
+            <name>Input: fullName4</name>
+            <fieldName>fullName4</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="7b47ec11-9016-4bb9-8491-6bd509590ba8">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName3</contextKey>
+          <expression id="649aed76-3e6f-4bb7-a085-30452280ff82">
+            <annotation></annotation>
+            <name>Input: fullName3</name>
+            <fieldName>fullName3</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="71355257-b415-45ce-8870-9575d9281897">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName2</contextKey>
+          <expression id="b664429d-38db-4a80-add7-c16b3389978e">
+            <annotation></annotation>
+            <name>Input: fullName2</name>
+            <fieldName>fullName2</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="ba005aa2-d12f-4ffb-92e4-53de1b72b04c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>fullName1</contextKey>
+          <expression id="62905d0c-4d34-41b2-8794-1990156572b7">
+            <annotation></annotation>
+            <name>Input: fullName1</name>
+            <fieldName>fullName1</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="71744710-6e7a-4577-a785-3cb6909643f6">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>samSecurities</contextKey>
+          <expression id="fbcebb8f-8e5b-4746-8165-7399eaee4df4">
+            <annotation></annotation>
+            <name>Input: samSecurities</name>
+            <fieldName>samSecurities</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b090e5a5-7532-4a7d-a35f-82d071afec0e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssCurrentLoanBalance</contextKey>
+          <expression id="bce3f001-2446-4052-be8f-aa49366366db">
+            <annotation></annotation>
+            <name>Input: mssCurrentLoanBalance</name>
+            <fieldName>mssCurrentLoanBalance</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b569fd05-66c1-4992-8cd6-3db89cc67a0e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mortgageInsured</contextKey>
+          <expression id="92cdea03-c9de-4c7d-abc9-e934506322ec">
+            <annotation></annotation>
+            <name>Input: mortgageInsured</name>
+            <fieldName>mortgageInsured</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="cd45dccc-a9f2-4c8a-b822-01b20f6ce6fe">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>auditType</contextKey>
+          <expression id="786e7dcf-b33b-4d40-bcff-e181a09a4a5d">
+            <annotation></annotation>
+            <name>Input: auditType</name>
+            <fieldName>auditType</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="38e699e4-951f-4d16-a421-a20fea0a70e9">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>auditCodes5</contextKey>
+          <expression id="b89e78fa-9b3e-47e7-b83e-3f8cfd9c5311">
+            <annotation></annotation>
+            <name>Input: auditCodes5</name>
+            <fieldName>auditCodes5</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="90730dd3-437f-4e64-ae51-c1c85a74a4c5">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>auditCodes4</contextKey>
+          <expression id="5021f229-e258-4807-a6f2-4936d4b15cdc">
+            <annotation></annotation>
+            <name>Input: auditCodes4</name>
+            <fieldName>auditCodes4</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a74ecc75-ba96-498d-915b-5a47ce39270f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>auditCodes3</contextKey>
+          <expression id="510ab7da-702f-4d7f-824f-96321454910d">
+            <annotation></annotation>
+            <name>Input: auditCodes3</name>
+            <fieldName>auditCodes3</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d739313d-656b-4430-981b-0574ec338888">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>auditCodes2</contextKey>
+          <expression id="c632bfc6-61b6-4946-9be0-5487eaa2456c">
+            <annotation></annotation>
+            <name>Input: auditCodes2</name>
+            <fieldName>auditCodes2</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="aba489d6-e442-4847-bab7-aa04e012fce3">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>auditCodes1</contextKey>
+          <expression id="ec3dceea-1a09-45df-b1b5-28eccae2465f">
+            <annotation></annotation>
+            <name>Input: auditCodes1</name>
+            <fieldName>auditCodes1</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="5bd0ed9e-e164-4121-b97c-594f54aece9f">
+      <annotation>dfaca003-ca05-4b52-8647-b73b0c3b9485.5bd0ed9e-e164-4121-b97c-594f54aece9f.description</annotation>
+      <name>Send  Email Checklist</name>
+      <bounds>
+        <x>381.0</x>
+        <y>71.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="ef9b6fda-f7a8-423b-86c1-0aa543cec9ae">
+        <baseIcon>mail.png</baseIcon>
+        <basePath>E-mail/</basePath>
+        <readOnly>false</readOnly>
+        <layers>
+          <iconSpec id="f46fc396-b501-4179-a463-94c9cd1243bf">
+            <baseIcon>edit.png</baseIcon>
+            <basePath>Annotations/</basePath>
+            <readOnly>false</readOnly>
+            <layers/>
+          </iconSpec>
+        </layers>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="33a5ae3e-5a4b-4e65-963e-26564375ac14">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Email_V1.00/smtpServer</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>hostname</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ffc6c34d-0c7c-480b-88b2-6c57be9767ae">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Email_V1.00/smtpPort</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>port</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c25b05d2-a3f4-4b6d-8279-63b742f3c4f0">
+          <annotation></annotation>
+          <fromContextKey>exchangeUsername</fromContextKey>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="563841d6-a8d1-4cd2-b166-f2614c5c2950">
+          <annotation></annotation>
+          <fromContextKey>exchangePassword</fromContextKey>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <recordKey></recordKey>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0d6a9d76-3e30-4433-89c7-b2a41becf61d">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Securitisation_V1.00/checklistFromAddress</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>from</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2c2f2884-081d-4e03-9816-898269b9abc1">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Securitisation_V1.00/checklistToAddress</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>to</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="96c622a7-7a56-4083-89d9-ea17d6e86902">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>cc</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="adc24ba2-8d8d-4fb9-884c-f6307ff5074e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>bcc</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6ca90fce-a83b-4a50-8a57-3c640c7a20f5">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>subject</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Securitisation Checklist &#8211; 037${simplifiedAccountNumber}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d75d7616-1a7b-4f0f-bf74-0a177e3b1d4c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>body</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Loan Number:&lt;/b&gt; &lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;037${simplifiedAccountNumber}&lt;/font&gt;&lt;/br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Loan Term: &lt;/b&gt; &lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;${loanTerm}&lt;/font&gt;&lt;/br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Account No(s):&lt;/b&gt; &lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurities}&lt;/font&gt;&lt;/br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Investor No:&lt;/b&gt; &lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;${investorNumber}&lt;/font&gt;&lt;/br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Mortgage Number: &lt;/b&gt; &lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;${mssCertNumber}&lt;/font&gt;&lt;/br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Guarantor:&lt;/b&gt;&lt;/font&gt; &lt;font face=&quot;Calibri&quot;&gt;${mssGuarantor}&lt;/font&gt;&lt;/br&gt;&lt;br&gt;
+&lt;table class=&quot;fixed&quot;&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    
+    &lt;tr height=&quot;20&quot;&gt;
+        &lt;td&gt; &lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;1&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;2&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;3&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;4&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;5&lt;/font&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr height=&quot;70&quot;&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Existing Audit Codes&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${mssAuditFlag1}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${mssAuditFlag2}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${mssAuditFlag3}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${mssAuditFlag4}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${mssAuditFlag5}&lt;/font&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;TABLE BORDER=1 CELLSPACING=0&gt; 
+&lt;TR&gt; 
+&lt;TD ROWSPAN=9 height=&quot;150&quot; width=&quot;250&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;All Borrower(s) Name(s)&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName1}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt; 
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName2}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt; 
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName3}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName4}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName5}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName6}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName7}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName8}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${fullName9}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+
+&lt;/TABLE&gt;
+&lt;br&gt;
+&lt;b&gt;&lt;font face=&quot;Calibri&quot;&gt;New Arrangement Balance: &lt;/b&gt; &lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;&amp;#36;${mssCurrentLoanBalance}&lt;/font&gt;&lt;/br&gt;
+&lt;b&gt;&lt;font face=&quot;Calibri&quot;&gt;Available Funds:&lt;/font&gt; &lt;/b&gt;&lt;font face=&quot;Calibri&quot;&gt;&amp;#36;${mssExcessFunds}&lt;/font&gt;&lt;/br&gt;
+&lt;b&gt;&lt;font face=&quot;Calibri&quot;&gt;Total: &lt;/b&gt;&lt;/font&gt;&lt;font face=&quot;Calibri&quot;&gt;&amp;#36;${mssAccountLimit}&lt;/font&gt;&lt;/br&gt;
+&lt;br&gt;
+&lt;b&gt;&lt;font face=&quot;Calibri&quot;&gt;Reason for Re-Audit:&lt;/font&gt; &lt;/b&gt;&lt;font face=&quot;Calibri&quot;&gt;${auditType}&lt;/font&gt;&lt;/br&gt;
+&lt;br&gt;
+
+&lt;table class=&quot;fixed&quot;&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;300px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    
+    &lt;tr height=&quot;40&quot;&gt;
+       
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Address&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Title Ref No&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Names on the Certificate of Title&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security Type&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Valuation&lt;/font&gt;&lt;/td&gt;
+        
+    &lt;/tr&gt;
+        &lt;tr height=&quot;70&quot;&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityAddress[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityTitleReference[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samNamesonTitle[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityType[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;
+		
+        &lt;table&gt;
+        &lt;col width=&quot;100px&quot; /&gt;
+        &lt;tr&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td width=&quot;90px&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Is correct valuation present?&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${valuationType[1]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Type&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityLastValuation[1]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Amount&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samLastUpdateDate[1]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Date&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+        &lt;/td&gt;
+        
+
+        &lt;tr height=&quot;70&quot;&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityAddress[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityTitleReference[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samNamesonTitle[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityType[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;
+        &lt;table&gt;
+        &lt;col width=&quot;50px&quot; /&gt;
+        &lt;tr&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Is correct valuation present?&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${valuationType[2]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Type&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityLastValuation[2]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Amount&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samLastUpdateDate[2]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Date&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+        &lt;/td&gt;
+
+  		&lt;tr height=&quot;70&quot;&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityAddress[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityTitleReference[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samNamesonTitle[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityType[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;
+        &lt;table&gt;
+        &lt;col width=&quot;50px&quot; /&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;-&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Is correct valuation present?&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${valuationType[3]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Type&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityLastValuation[3]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Amount&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samLastUpdateDate[3]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Date&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+        &lt;/td&gt;   
+		&lt;tr height=&quot;70&quot;&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityAddress[4]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityTitleReference[4]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samNamesonTitle[4]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${securityType[4]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;
+        &lt;table&gt;
+        &lt;col width=&quot;50px&quot; /&gt;
+        &lt;tr&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Is correct valuation present?&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${valuationType[4]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Type&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityLastValuation[4]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Amount&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr height=&quot;20&quot;&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${samLastUpdateDate[4]}&lt;/font&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Date&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+        &lt;/td&gt;      
+    &lt;/tr&gt;  
+&lt;/table&gt;
+&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Valuation Documents: ${dcmsValuationDocID}&lt;/b&gt;&lt;/font&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Section A &amp;emsp; KEY DATA FIELDS&lt;/b&gt;&lt;/font&gt;
+&lt;table class=&quot;fixed&quot;&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    
+    &lt;tr height=&quot;20&quot;&gt;
+        &lt;td&gt; &lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 1&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 2&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 3&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 4&lt;/font&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr height=&quot;50&quot;&gt;
+        &lt;td width=&quot;200px&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Is security linked with TBK?&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${tbkLinked[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${tbkLinked[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${tbkLinked[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;font face=&quot;Calibri&quot;&gt;${tbkLinked[4]}&lt;/font&gt;&lt;/td&gt;
+        
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Section B  &amp;emsp; LOAN OFFER (LO) / LETTER OF VARIATION (LOV) / LETTERS OF NOTIFICATION (LON)&lt;/b&gt;&lt;/font&gt;
+&lt;TABLE BORDER=1 CELLSPACING=0&gt; 
+&lt;TR&gt;
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt; &lt;/TD&gt;
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Document&lt;/b&gt;&lt;/font&gt;&lt;/TD&gt;
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;DCMS DRUID&lt;/b&gt;&lt;/font&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD  height=&quot;20&quot; width=&quot;120&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Loan Offer&lt;/b&gt;&lt;/font&gt;&lt;/TD&gt;
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt; &lt;/TD&gt;
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsLoanOfferDocID}&lt;/font&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD ROWSPAN=9 height=&quot;150&quot; width=&quot;250&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Servicing Events&lt;/b&gt;&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Portability&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsPortabilityDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt; 
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Consent&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsConsentDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt; 
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Top Up&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsTopUpDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Partial Discharge&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsPartialDischargeDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Amalgamation&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsAmalgamationDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Letter of Notification&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsLetterOfNotificationDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Limit Rebalance&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsLimitRebalanceDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Partial Fix&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsPartialFixDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;TR&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Parental Leave/ Reduced Payments&lt;/font&gt;&lt;/TD&gt; 
+&lt;TD height=&quot;20&quot; width=&quot;260&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsParentalLeaveDocIDs}&lt;/font&gt;&lt;/TD&gt; 
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;SECTION C &amp;emsp; CERTIFICATE OF TITLE (C/T) [note, if multiple securities check all]&lt;/b&gt;&lt;/font&gt;
+&lt;table class=&quot;fixed&quot;&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;  
+    &lt;tr height=&quot;20&quot;&gt;
+        &lt;td width=&quot;150&quot;&gt; &lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 1&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 2&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 3&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Security 4&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;      
+    &lt;/tr&gt;
+        &lt;tr height=&quot;50&quot;&gt;
+        &lt;td width=&quot;650&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Has it been confirmed from the CT/RCS/Title Search that Westpac is the first ranking mortgage?&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityChargePosition[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityChargePosition[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityChargePosition[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${samSecurityChargePosition[4]}&lt;/font&gt;&lt;/td&gt;       
+    &lt;/tr&gt;
+        &lt;tr height=&quot;50&quot;&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Certification of Title Document&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsSecCertOfTitle[1]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsSecCertOfTitle[2]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsSecCertOfTitle[3]}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${dcmsSecCertOfTitle[4]}&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;       
+&lt;/table&gt;
+&lt;/br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;SECTION D &amp;emsp; MORTGAGES(S) [note, if multiple securities, check all]&lt;/b&gt;&lt;/font&gt;
+&lt;table class=&quot;fixed&quot;&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;    
+&lt;/table&gt;
+&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;SECTION E &amp;emsp; MORTGAGE INSURANCE&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;Is Mortgage Insurance loaded in EREP screen in MSS? ${mortgageInsured}&lt;/font&gt;&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;Paid By? ${mssPaidBy}&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;GUARANTOR ACKNOWLEDGMENT&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font face=&quot;Calibri&quot;&gt;Guarantor Document: ${dcmsGuarantorDocID}&lt;/font&gt;
+&lt;table class=&quot;fixed&quot;&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;
+    &lt;col width=&quot;100px&quot; /&gt;  
+    &lt;tr height=&quot;20&quot;&gt;      
+        &lt;td width=&quot;150&quot;&gt;&lt;b&gt; &lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;1&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;2&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;4&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+		&lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;5&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr height=&quot;30&quot; &gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;Updated Audit Codes&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${auditCodes1}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${auditCodes2}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${auditCodes3}&lt;/font&gt;&lt;/td&gt;
+        &lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${auditCodes4}&lt;/font&gt;&lt;/td&gt; 
+		&lt;td width=&quot;150&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;${auditCodes5}&lt;/font&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="80928195-f582-40ab-ab16-409faac7cdf4">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>htmlEmail</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="90236867-e170-415b-b03f-9380a81fad14">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>readReceipt</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3e7306f9-0dfa-4441-bcbf-b16f614e5813">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>attachments</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="011d3fe1-d554-49ed-9520-9afe3bd6d775">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>headers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="dc52ee37-0207-4616-a096-a94485327e0e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>rowDelimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="67111bd2-5585-43dc-ba76-653994535dc3">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>columnDelimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="39c4e3b8-65ac-4d3d-8d56-bd3fd4cb647b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="181bab10-5ed7-4279-9aa0-d9d65fe7f96e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>contentTransferEncoding</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f51e8054-03b1-4c94-9fbf-81b88af58aba">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>delimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1de65117-803b-45e1-8a24-81849431cb22">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>encryptionKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bc27653a-ccbd-486d-ae0a-074ab322df3d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>encryptionKeyAlias</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b89f2bd5-d4c1-4596-92a4-4104dec48a95">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>encryptionKeystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5677cbe7-001b-4dfc-b804-642a9162d7b6">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>encryptionAlgorithm</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>AES256_CBC</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5c29c78f-4c6d-4e8a-aaef-f7619d3371c5">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>enableTLS</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4eec253f-81b7-4bcb-910a-a0c19b52b109">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="5c77fa88-0da2-4fa0-95f2-0357e998497b">
+          <annotation>dfaca003-ca05-4b52-8647-b73b0c3b9485.5c77fa88-0da2-4fa0-95f2-0357e998497b.transition.description</annotation>
+          <name>send email success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>4faadb28-2a52-41d9-a479-ab594fb0f815</refId>
+          </destination>
+          <source>
+            <refId>5bd0ed9e-e164-4121-b97c-594f54aece9f</refId>
+          </source>
+          <positions>
+            <point>
+              <x>212.0</x>
+              <y>320.0</y>
+            </point>
+            <point>
+              <x>399.0</x>
+              <y>304.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="374f386d-e222-45d6-9169-d7bc8931b85d">
+          <annotation></annotation>
+          <name>send email failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>1eecd8f5-4d79-481f-99d0-fcc999eee660</refId>
+          </destination>
+          <source>
+            <refId>5bd0ed9e-e164-4121-b97c-594f54aece9f</refId>
+          </source>
+          <positions>
+            <point>
+              <x>212.0</x>
+              <y>320.0</y>
+            </point>
+            <point>
+              <x>252.0</x>
+              <y>555.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>14d6eacc-c41c-4e89-a139-63124c1376f4</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="87f7121b-f850-4ae0-8ed9-42c76c1d4656">
+      <annotation></annotation>
+      <name>Error : send email:failed</name>
+      <bounds>
+        <x>675.0</x>
+        <y>306.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="c77620c6-f1f0-4420-af77-c48c8cc339f8">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="dbcee1e3-cc8f-49a5-9c1d-d9e8ea2f6663">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flowName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Email Checklist</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4d93914e-81ac-4af1-87f0-7662482ab7ea">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>failureFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="8da6a986-4788-4d27-b019-df6ee5230c33">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>send email:failed</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>87f7121b-f850-4ae0-8ed9-42c76c1d4656</refId>
+          </destination>
+          <source>
+            <refId>87f7121b-f850-4ae0-8ed9-42c76c1d4656</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="6380a54b-8b77-45a7-bdc4-a2849e7c8f11">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flowName</contextKey>
+          <expression id="7d2eca64-c16c-48b1-b72e-e4ac31a15020">
+            <annotation></annotation>
+            <name>Input: flowName</name>
+            <fieldName>flowName</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="39746152-594a-4d30-9a2c-a1861fea0ff6">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>failureFlag</contextKey>
+          <expression id="08dfe59e-0540-40a5-8125-74e675dc7ef6">
+            <annotation></annotation>
+            <name>Input: failureFlag</name>
+            <fieldName>failureFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="447d9a8c-2667-40a9-b682-a1f0c9462986">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="5c716d44-3708-4555-81bc-18f64c76a967">
+            <annotation></annotation>
+            <name>Input: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="4faadb28-2a52-41d9-a479-ab594fb0f815">
+      <annotation></annotation>
+      <name>Resolved : send email:success</name>
+      <bounds>
+        <x>668.0</x>
+        <y>71.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="0cbf4a17-0c98-435c-b8b8-8ba8d05828d3">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>send email:success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>4faadb28-2a52-41d9-a479-ab594fb0f815</refId>
+          </destination>
+          <source>
+            <refId>4faadb28-2a52-41d9-a479-ab594fb0f815</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <step id="1eecd8f5-4d79-481f-99d0-fcc999eee660">
+      <annotation>dfaca003-ca05-4b52-8647-b73b0c3b9485.1eecd8f5-4d79-481f-99d0-fcc999eee660.description</annotation>
+      <name>Set Automation Failure</name>
+      <bounds>
+        <x>381.0</x>
+        <y>306.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="ca6686e1-e8dc-4f4f-a1ae-d993da79e982">
+        <baseIcon>jar.png</baseIcon>
+        <basePath>Others/</basePath>
+        <readOnly>false</readOnly>
+        <layers>
+          <iconSpec id="94e18948-7380-495a-ac42-cb6c5790b7d1">
+            <baseIcon>edit.png</baseIcon>
+            <basePath>Annotations/</basePath>
+            <readOnly>false</readOnly>
+            <layers/>
+          </iconSpec>
+        </layers>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="0a92fda1-8902-45c7-a513-b7bb54c05f33">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keyName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>automationFailureFlag</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9b8fc581-bba4-450e-a6b2-51713209e45c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>myValue</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="10929c02-b9de-4556-b5fa-a328878ded27">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessages</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Failed to send Notifictiaon</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="6e0eef55-923c-4d1b-aa7b-264abb6c7d9f">
+          <annotation>dfaca003-ca05-4b52-8647-b73b0c3b9485.6e0eef55-923c-4d1b-aa7b-264abb6c7d9f.transition.description</annotation>
+          <name>automation failure update success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>87f7121b-f850-4ae0-8ed9-42c76c1d4656</refId>
+          </destination>
+          <source>
+            <refId>1eecd8f5-4d79-481f-99d0-fcc999eee660</refId>
+          </source>
+          <positions>
+            <point>
+              <x>131.0</x>
+              <y>340.0</y>
+            </point>
+            <point>
+              <x>410.0</x>
+              <y>318.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>561.0334272359158</x>
+            <y>-1.9209534251236404</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f3112e9d-ed88-47bf-be86-2f99e8541a33</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="bb3acde0-a22e-4c38-ab90-1c40873b55b3">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>automationFailureFlag</contextKey>
+          <expression id="217c0c0b-9658-4743-8af1-0ce0e5d13648">
+            <annotation></annotation>
+            <name>Result Field: returnResult</name>
+            <fieldName>returnResult</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="18cf43c3-449f-46c1-ab06-4f8a045d9c25">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessages</contextKey>
+          <expression id="df9631fd-bb0b-41ef-b2ef-dea33ba2ad57">
+            <annotation></annotation>
+            <name>Input: errorMessages</name>
+            <fieldName>errorMessages</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+  </steps>
+  <startSteps>68e0b06c-cd24-4131-adcc-b39f98734767</startSteps>
+</flow>

@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="222f3f1b-ad6e-46db-a134-8a14bd4377df">
+  <descriptionCdata><![CDATA[222f3f1b-ad6e-46db-a134-8a14bd4377df.89755e11-9b15-4310-943d-dbb7cda354a4.description=<pre>This Flow fetches the Email details from the mailbox based  on the email ID.\n\nInputs\:\n\n    ewsEndPoint - ews end point url to connect to exchange server fusing API call.\nExample\: https\://casarray01.edscs-npe.local/EWS/Exchange.asmx\n    \n    version - Exchange version\nExample\: Exchange2010_SP2\n\n    username\t- Exchange username \n    password\t- Exchange user password\n    emailID\t- email ID\n\n\nResults\:\n    attachmentIds     - Email Attachments IDs\n    body\t           - Body of the email\n    dateTimeSent      - date when mail was recieved\n    hasAttachments  - true if email has attachments\n    isRead\t          - true if reading mail was successful\n    senderAddress   - email sender address\n    subject\t          - subject line of the email\n\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Retrieve Email</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="b67e1707-f5ac-43e5-adf6-4ffd0fee7eff">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>emailId</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="cf7b1aef-62c8-4fe8-bbcc-34b32973d71a">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="01dc1b1b-d35a-4cde-85fa-56020f55b260">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="e29e1f95-89cb-4b9c-890e-229cde1f4d93">
+      <annotation></annotation>
+      <name>emailAttachmentIds</name>
+      <fieldName>emailAttachmentIds</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="45375a11-de64-4c12-ad39-70dc86335720">
+      <annotation></annotation>
+      <name>emailBody</name>
+      <fieldName>emailBody</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="0b628f5f-56f3-4009-b6b8-7acfdab760ac">
+      <annotation></annotation>
+      <name>emailBodyFilteredHtml</name>
+      <fieldName>emailBody</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <scriptletFilter id="aebec24a-dd76-488b-aa96-2760bba05bb6">
+          <annotation></annotation>
+          <name>Scriptlet</name>
+          <scriptlet id="68ce2bbc-4efc-4709-b15b-1ae3cfc64bab">
+            <annotation></annotation>
+            <name>default</name>
+            <script>if (scriptletInput !== null) {
+	var regex = /(&lt;([^&gt;]+)&gt;)/ig
+  	scriptletResult = scriptletInput.replace(regex, &quot;&quot;);
+}</script>
+            <type>RHINO</type>
+          </scriptlet>
+        </scriptletFilter>
+        <replaceAllFilter id="fb49d675-31ee-4696-afb7-ee2949022924">
+          <annotation></annotation>
+          <name>Replace</name>
+          <ignoreCase>false</ignoreCase>
+          <searchString>&amp;nbsp;</searchString>
+          <replaceType>ALL</replaceType>
+        </replaceAllFilter>
+        <replaceAllFilter id="308a8b61-fb62-4646-b380-565ec8bd941a">
+          <annotation></annotation>
+          <name>Replace</name>
+          <ignoreCase>false</ignoreCase>
+          <searchString>&amp;amp;</searchString>
+          <replaceString>&amp;</replaceString>
+          <replaceType>ALL</replaceType>
+        </replaceAllFilter>
+      </filters>
+    </expression>
+    <expression id="533f1c19-a8b0-473f-afea-b349a9c6a70e">
+      <annotation></annotation>
+      <name>emailSender</name>
+      <fieldName>emailSender</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="eee765f1-dd43-43fa-adad-8481d3b98aff">
+      <annotation></annotation>
+      <name>emailSubject</name>
+      <fieldName>emailSubject</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="d88ea440-1fb6-4ff0-8f5b-2eb54b4561b5">
+      <annotation></annotation>
+      <name>errorMessage</name>
+      <fieldName>errorMessage</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="2a59441b-659d-494f-af4c-ef1ccc3cbcd3">
+      <annotation></annotation>
+      <name>hasAttachments</name>
+      <fieldName>hasAttachments</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="c193407e-f961-47f7-b269-3b8145140f18">
+      <annotation></annotation>
+      <name>retrEmailFlag</name>
+      <fieldName>retrEmailFlag</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="9052c720-1313-45fd-938a-e17d49c23b4f">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="9ef4dea4-c79a-41af-8456-b2593cfc57f0">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="89755e11-9b15-4310-943d-dbb7cda354a4">
+      <annotation>222f3f1b-ad6e-46db-a134-8a14bd4377df.89755e11-9b15-4310-943d-dbb7cda354a4.description</annotation>
+      <name>Get Email</name>
+      <bounds>
+        <x>18.0</x>
+        <y>3.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="09750387-4161-4b29-bd7a-6d21e11dfc26">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="e4429107-0209-454f-9875-bb8b9ec855a5">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Email_V1.00/ewsEndPoint</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ewsEndPoint</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1351fb5f-61b8-465e-916a-901e2c1bad73">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Email_V1.00/exchangeVersion</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>version</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <identityBinding id="97f5488e-645f-4942-a099-41a2ca316991">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <link>
+            <refId>5279c120-d1ea-4fd1-a95d-ea56e934dad3</refId>
+            <refName>exchangeUser</refName>
+          </link>
+          <identityAttribute>USERNAME</identityAttribute>
+        </identityBinding>
+        <identityBinding id="4dad5c59-c274-45d3-ada4-bddc72c77035">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <link>
+            <refId>5279c120-d1ea-4fd1-a95d-ea56e934dad3</refId>
+            <refName>exchangeUser</refName>
+          </link>
+          <identityAttribute>PASSWORD</identityAttribute>
+        </identityBinding>
+        <userInputBinding id="842c9bd3-4e83-4dad-92b6-cf85a11038f6">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>emailId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+      </bindings>
+      <transitions>
+        <transition id="4c8aa951-7883-4763-a048-302278c6e7cb">
+          <annotation></annotation>
+          <name>go to success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>62c7d303-db55-4112-99be-d02257c083a5</refId>
+          </destination>
+          <source>
+            <refId>89755e11-9b15-4310-943d-dbb7cda354a4</refId>
+          </source>
+          <positions>
+            <point>
+              <x>68.0</x>
+              <y>37.0</y>
+            </point>
+            <point>
+              <x>312.0</x>
+              <y>34.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>402.218273803474</x>
+            <y>-1.5653188056006697</y>
+          </labelPosition>
+        </transition>
+        <transition id="b1a8e76d-da5a-4955-84fb-1d1956585b4e">
+          <annotation></annotation>
+          <name>failed to fetch email</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>c765bc58-6b51-4b69-8e81-fe5d430de516</refId>
+          </destination>
+          <source>
+            <refId>89755e11-9b15-4310-943d-dbb7cda354a4</refId>
+          </source>
+          <positions>
+            <point>
+              <x>80.0</x>
+              <y>63.0</y>
+            </point>
+            <point>
+              <x>66.0</x>
+              <y>227.0</y>
+            </point>
+            <point>
+              <x>66.0</x>
+              <y>227.0</y>
+            </point>
+            <point>
+              <x>312.0</x>
+              <y>243.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>217.29357918114255</x>
+            <y>-9.412976224520902</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>c04a22a4-e747-48c9-901c-fe8323bd0dcc</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="aa2feb93-c07d-45c4-b291-e90319918edd">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>emailAttachmentIds</contextKey>
+          <expression id="996ba66e-bf4d-4651-8921-bc0ce7d30210">
+            <annotation></annotation>
+            <name>Result: attachmentIds</name>
+            <fieldName>attachmentIds</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="add11203-481b-4f55-ae21-f7b033248b54">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>emailBody</contextKey>
+          <expression id="fd7a9b64-9a48-4809-a444-d55ddd99a30f">
+            <annotation></annotation>
+            <name>Result: body</name>
+            <fieldName>body</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6712640c-fdfa-41ac-b87d-2fd920a1cf32">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>emailSender</contextKey>
+          <expression id="ac3e91c3-c943-40ed-ad13-abe6a7f0ae8a">
+            <annotation></annotation>
+            <name>Result: senderAddress</name>
+            <fieldName>senderAddress</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="3354afe8-adc3-4602-a78e-9c055e6334d1">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>emailSubject</contextKey>
+          <expression id="b4851298-1000-4694-bd03-ad0769dc9700">
+            <annotation></annotation>
+            <name>Result: subject</name>
+            <fieldName>subject</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="75c59234-6b6c-462b-821c-207948927001">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="b95d4ee2-edfa-44a7-bb84-aaa8ffa1ab53">
+            <annotation></annotation>
+            <name>Result: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c7262e5e-fa02-4f3c-901c-957261e6ad43">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>hasAttachments</contextKey>
+          <expression id="1bed6ecf-bd3d-48d7-a0c9-de314e08b3f0">
+            <annotation></annotation>
+            <name>Result: hasAttachments</name>
+            <fieldName>hasAttachments</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="62c7d303-db55-4112-99be-d02257c083a5">
+      <annotation></annotation>
+      <name>Resolved : success</name>
+      <bounds>
+        <x>262.0</x>
+        <y>3.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="dbee0fc3-c179-4505-a3eb-1272cc912822">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>62c7d303-db55-4112-99be-d02257c083a5</refId>
+          </destination>
+          <source>
+            <refId>62c7d303-db55-4112-99be-d02257c083a5</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="c765bc58-6b51-4b69-8e81-fe5d430de516">
+      <annotation></annotation>
+      <name>Error : failure</name>
+      <bounds>
+        <x>262.0</x>
+        <y>190.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="4a28e25f-485c-48fb-a976-6c921088648b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>retrEmailFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Failure</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="aafec8e8-1505-4093-8244-7e6421ce43a6">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>c765bc58-6b51-4b69-8e81-fe5d430de516</refId>
+          </destination>
+          <source>
+            <refId>c765bc58-6b51-4b69-8e81-fe5d430de516</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="89f36bbe-5a88-49da-8056-877c34566176">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>retrEmailFlag</contextKey>
+          <expression id="7ce44afe-bb34-46a6-a599-965ea7d0bdeb">
+            <annotation></annotation>
+            <name>Input: retrEmailFlag</name>
+            <fieldName>retrEmailFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+  </steps>
+  <startSteps>89755e11-9b15-4310-943d-dbb7cda354a4</startSteps>
+</flow>

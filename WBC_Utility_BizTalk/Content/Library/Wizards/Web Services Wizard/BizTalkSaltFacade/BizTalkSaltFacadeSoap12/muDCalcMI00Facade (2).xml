@@ -1,0 +1,1635 @@
+<flow id="a6c009df-088f-40be-94da-b10cc35998b5">
+  <descriptionCdata><![CDATA[a6c009df-088f-40be-94da-b10cc35998b5.a9635f5f-fb90-4d98-9528-ed4e4275be57.description=<pre>\nThe operation invokes web service methods.  This operation should not be used directly\!  Please use the wizard to build flows that use this operation.\n\nInputs\:\n    xmlTemplate - The template of the soap request to make.\n    inputMap - A map used to map between template names and user-friendly names. The template names are pipe-delimited xpaths of the xmltemplate location, with a numerical element for lists.\nValue format\: A list of elements separated by the new line delimiter. Eache element hes the format\: <name>\=<new name>.\nExample\: A line in the "inputMap" could be\: "Request|Details|0|Input|x\=input0.x"\n    url - The url to Post to. \n    header_SOAPAction - The SOAPAction http header field, defined by many web services for indicating the intent of the request\n    wswAuthenticationType - The authentication type to use for the "username" and "password" input.\nDefault value\: http\nValid values\: http, ntlm, ws-security digest, ws-security text\n    WSSecuritySignRequest - Should the SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityEncryptRequest - Should the entire SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityTimestampRequest - Should the Timestamp attribute be added to the WS-Security header\nDefault value\: false\nValid values true, false\n    WSSecurityKeystore - Keystore to use for encrypting and signing requests.\n    WSSecurityKeystoreType - The type of "WSSecurityKeystore".\n    WSSecurityKeystorePassword - The password for "WSSecurityKeystore".\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    contentType - Value to be used in the Content-Type HTTP header. If Content-Type header is also passed in "headers" input, the "contentType" input will override the value provided in "headers".\nDefault value\: text/xml\n    characterSet - The character set for HTTP Get request and response.\nDefault value\: UTF-8\n    username - The username to use for authenticating with the web service.\nValue format\: For NTLM authentication, the required format is domain\\user.\n    password - The password to use for authenticating with the web service.\n    trustAllRoots - Enables weak security over SSL. A SSH certificate is trusted even if no trusted CA issued it.\nDefault value\: false\nValid values\: true, false\n    useCookies - Enables cookie tracking. Cookies will be stored between consecutive calls.\nDefault value\: false\nValid values\: true, false\n    usesJSON - Use JSON arrays for the SOAP Request for all Array types.\nDefault value\: false\nValid values\: true, false\n    timeout - a timeout after which the connection should be terminated or 0 for no timeout.\n    socketTimeout - The time to wait for data to be retrieved, in milliseconds. This input needs a value greater than or equal to zero. A "socketTimeout" value of '0' represents an infinite timeout.\nDefault value\: 0\n    proxy - A proxy to use when accessing the web service.\n    proxyPort - A port on the proxy to connect to.\n    proxyUsername - A username to use when connecting to the proxy.\n    proxyPassword - A password to use when connecting to the proxy.\n    keystore - The path to the keystore to use for SSL Client Certificates when using http authentication.\n    keystorePassword - The password for the keystore when using http authentication.\n    ICONCLUDE_WSW_VERSION - This value is used internally by the operation.\n    returnXMLRequest - If this input is set to true, a new output named "rawXMLRequest" is returned from the operation which contains the text of the SOAP request that will be sent. This can be very valuable in troubleshooting.\nDefault value\: false\nValid values\: true, false\n\nResults\:\n    returnCode - This is the primary output. It contains the value 0 if the operation successfully completes and the value -1 otherwise.\n    document - Raw XML response.\n    documentStripped - Raw XML response stripped of namespaces for ease in parsing with XML XPath operations.\n    jsonStripped - Raw XML response stripped of namespaces for ease in parsing with JSON operations, input usesJSON must be set to true for this to be populated.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n              Transfer-Encoding\: chunked\n\nResponses\:\n    success - SOAP request completed successfully.\n    failure - Something went wrong.\n\nNotes\:\n1.If wswAuthenticationType\=ws-security text then this operation transmits passwords in clear-text.\n2.Any additional inputs that follow these are added by the Web Service Wizard, and they are specific to the particular web service method being called.\n3.If you add new step-level inputs with the name header_<headername>, where <headername> is the name of an html header, then that html header will be set to the given value in the HTTP request.\n4.This operation will not allow connection through secure transport layers below TLS 1.0.\n</pre>
+a6c009df-088f-40be-94da-b10cc35998b5.description=<pre>\nThis subflow was created by the Web Services Wizard to invoke the muDCalcMI00Facade operation on http\://aulknpesva118/HP.WestPac.OVM.BiztalkSaltFacade/BizTalkSaltFacade.asmx?WSDL. Note that the inputs to this flow which correspond to web service inputs are optional inputs.  This is due to the fact that web services definitions usually incorrectly indicate that too many inputs are required, and mirroring those settings in the flow would force you to enter unused values when running the flow.  The xmlTemplate input on the Invoke Method 2 step of this flow contains a template of the xml message to be sent, and the fields preceded by the comment "<\!--Optional\:-->" or "<\!--zero or more repetitions-->" are those which the web service indicates are optional; all others are indicated to be required.\n\nInputs\:\n    webserviceHost - The host that is running the web service\n    webservicePort - The port on the host running the web service\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    muDCalcMI00Facade.muDCalcMI00.inbuf.ABS_LEND_PURPOSE0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|ABS_LEND_PURPOSE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.ALT_CH_PROMO_CODE - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|ALT_CH_PROMO_CODE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.BASE_PRODUCT_NAME - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|BASE_PRODUCT_NAME of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.CALC_GST - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|CALC_GST of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_LEGAL_LIEN - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|COLL_LEGAL_LIEN of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_NATURE - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|COLL_NATURE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_PROVINCE0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|COLL_PROVINCE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_VALUE0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|COLL_VALUE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.CREDIT_APPL_ID - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|CREDIT_APPL_ID of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.FIX_RATE_DURATION0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|FIX_RATE_DURATION of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.FLAGS - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|FLAGS of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.GENERIC_DIST - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|GENERIC_DIST of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.INST_ID - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|INST_ID of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.LANGUAGE_CD - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|LANGUAGE_CD of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.LSR - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|LSR of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.MI_LOAN_AMOUNT - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|MI_LOAN_AMOUNT of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.MI_PREMIUM_NET - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|MI_PREMIUM_NET of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.NOT_CLEARING_AMOUNT - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|NOT_CLEARING_AMOUNT of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.OPERATOR_CODE - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|OPERATOR_CODE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.ORIGINAL_LOAN_TERM0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|ORIGINAL_LOAN_TERM of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.PMT_TYPE0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|PMT_TYPE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.PROGRESSIVE_DRAW0 - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|0|PROGRESSIVE_DRAW of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf|0\n    muDCalcMI00Facade.muDCalcMI00.inbuf.REFINANCE_COUNT - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|REFINANCE_COUNT of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.RESTART_ROW - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|RESTART_ROW of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.THIRD_PARTY - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|THIRD_PARTY of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.TOTAL_COLL_VALUE - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|TOTAL_COLL_VALUE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n    muDCalcMI00Facade.muDCalcMI00.inbuf.TRACE - The input named muDCalcMI00Facade|muDCalcMI00|inbuf|TRACE of the complex type\: muDCalcMI00Facade|muDCalcMI00|inbuf\n\nResults\:\n    document - The raw XML response of the web service\n    documentStripped - The XML response of the web service stripped of namespaces\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n               Transfer-Encoding\: chunkedWebServiceWizard.repo.successDesc\=The SOAP command was accepted by the web service\n    ERROR_GRP - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/ERROR_GRP/text()\n    ERROR_MSG - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/ERROR_MSG/text()\n    ERROR_NO - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/ERROR_NO/text()\n    EXTERNAL_INSURER - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/EXTERNAL_INSURER/text()\n    MI_PREMIUM - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/MI_PREMIUM/text()\n    MI_PREMIUM_GST - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/MI_PREMIUM_GST/text()\n    MI_PREMIUM_NET - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/MI_PREMIUM_NET/text()\n    REC_COUNT - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/REC_COUNT/text()\n    RESTART_ROW - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/RESTART_ROW/text()\n    RITC_ON_GST - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/RITC_ON_GST/text()\n    STAMP_DUTY - The output given by the XPath\: /Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/STAMP_DUTY/text()\n\nResponses\:\n    success - The SOAP command was accepted by the web service\n    failure - Something went wrong while making the SOAP request\n</pre>
+]]></descriptionCdata>
+  <annotation>a6c009df-088f-40be-94da-b10cc35998b5.description</annotation>
+  <name>muDCalcMI00Facade (2)</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="154891c2-3ecb-4a3b-a93b-1f295d944263">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webserviceHost</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Biztalk_utilities_dev_WebService_Host}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ff7625c7-505c-47b7-951c-885982295c78">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webservicePort</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Biztalk_utilities_dev_WebService_Port}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="eb36ba28-0e1c-47dc-8f94-37e83a6fb77b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>headers</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="dd211297-1b1e-4a5c-81d6-d4c96513326f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.ABS_LEND_PURPOSE0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="d5ca8440-fcf8-43e2-b99b-ad751d0f1298">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.ALT_CH_PROMO_CODE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="62e5d23a-9eb3-4b05-b101-08500e50fa34">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.BASE_PRODUCT_NAME</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="aa54bc99-23bf-4576-9d01-13a880f25aac">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.CALC_GST</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="53b00f07-ca75-442f-b573-e26cfe8d5067">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_LEGAL_LIEN</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="41a23dc9-87bc-4683-9312-01855763effc">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_NATURE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="640cea12-120b-4f27-a571-f9594167e7a7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_PROVINCE0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b41f3fb6-2238-48b8-ac86-380dd42f9d46">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_VALUE0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b354f802-2643-43b8-bab8-a156b375a4ea">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.CREDIT_APPL_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="85198197-947c-48a0-b91f-7c68b484b8a1">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.FIX_RATE_DURATION0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="6eed7799-4f1c-435c-848e-0c2538e44b12">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.FLAGS</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f4f201f1-5bc5-4158-b67e-bc11756ea604">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.GENERIC_DIST</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="af1fea20-cd63-4016-bb97-2897dc27975c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.INST_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ab5e75f4-e5eb-4a08-91fe-05ab3b05588a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.LANGUAGE_CD</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b5120366-df0f-4d5e-9527-2fe3d71d7269">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.LSR</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="277a858e-5c7f-4747-9b6e-cb43609bc8dc">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.MI_LOAN_AMOUNT</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="da74ab54-c7a4-429c-b57f-1b74c8efa4b7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.MI_PREMIUM_NET</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2ca1e5fb-1c28-4744-9546-8867619b4d0a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.NOT_CLEARING_AMOUNT</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a8b399d6-8081-4334-b24a-d3e01f2751d8">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.OPERATOR_CODE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="5e8097b2-3116-4149-aeb6-2e829f281fbe">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.ORIGINAL_LOAN_TERM0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="97e4427b-9776-4c65-8b3b-96e328848d87">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.PMT_TYPE0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="201d758e-af49-4f78-b715-e5e8879279f9">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.PROGRESSIVE_DRAW0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="394c84fe-5887-4668-8068-6fde8f75a764">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.REFINANCE_COUNT</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="fcd71b70-6151-4351-ad21-fcf8bdddcd4d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.RESTART_ROW</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="fc7af9c0-f99c-49a2-aad4-62bcc2944acf">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.THIRD_PARTY</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="1c3ac1f4-b812-4726-b8f5-de8dd5565921">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.TOTAL_COLL_VALUE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="1548dd79-808c-42d7-87cd-fd9b0d1fb018">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.TRACE</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="fc37c576-8965-4f5e-a01e-cc97c3c664df">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+    </opResponse>
+    <opResponse id="8094dad3-1505-4d15-befa-9b47a1a2f722">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="b9c96482-a2a9-422c-8100-7c009d9c50ab">
+    <annotation></annotation>
+    <name>document</name>
+    <fieldName>document</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="53b6c5f7-49f4-4257-a816-0555ba724600">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>false</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>false</historyCheckPointFlow>
+  <steps>
+    <step id="a9635f5f-fb90-4d98-9528-ed4e4275be57">
+      <annotation>a6c009df-088f-40be-94da-b10cc35998b5.a9635f5f-fb90-4d98-9528-ed4e4275be57.description</annotation>
+      <name>Invoke Method 2</name>
+      <bounds>
+        <x>0.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>Invoke Method 2</resultContextKey>
+      <bindings>
+        <staticBinding id="847c095f-c927-4bdf-9c43-dbbae0b2618e">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>url</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http://${webserviceHost}:${webservicePort}/HP.WestPac.OVM.BiztalkSaltFacade/BizTalkSaltFacade.asmx</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8c781751-ace1-4b0b-b8ea-f8e453ba6951">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>xmlTemplate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot; xmlns:urn=&quot;urn:hp.westpac.ovm&quot; xmlns:urn1=&quot;urn:pack.gsmSVClist_typedef.salt11&quot;&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;urn:muDCalcMI00Facade&gt;
+         &lt;!--Optional:--&gt;
+         &lt;urn1:muDCalcMI00&gt;
+            &lt;!--Optional:--&gt;
+            &lt;urn1:inbuf&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:GENERIC_DIST&gt;?&lt;/urn1:GENERIC_DIST&gt;
+               &lt;urn1:TRACE&gt;?&lt;/urn1:TRACE&gt;
+               &lt;urn1:FLAGS&gt;?&lt;/urn1:FLAGS&gt;
+               &lt;urn1:RESTART_ROW&gt;?&lt;/urn1:RESTART_ROW&gt;
+               &lt;urn1:MI_LOAN_AMOUNT&gt;?&lt;/urn1:MI_LOAN_AMOUNT&gt;
+               &lt;urn1:INST_ID&gt;?&lt;/urn1:INST_ID&gt;
+               &lt;urn1:REFINANCE_COUNT&gt;?&lt;/urn1:REFINANCE_COUNT&gt;
+               &lt;urn1:TOTAL_COLL_VALUE&gt;?&lt;/urn1:TOTAL_COLL_VALUE&gt;
+               &lt;urn1:LSR&gt;?&lt;/urn1:LSR&gt;
+               &lt;urn1:NOT_CLEARING_AMOUNT&gt;?&lt;/urn1:NOT_CLEARING_AMOUNT&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:LANGUAGE_CD&gt;?&lt;/urn1:LANGUAGE_CD&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:COLL_NATURE&gt;?&lt;/urn1:COLL_NATURE&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:COLL_LEGAL_LIEN&gt;?&lt;/urn1:COLL_LEGAL_LIEN&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:CALC_GST&gt;?&lt;/urn1:CALC_GST&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:THIRD_PARTY&gt;?&lt;/urn1:THIRD_PARTY&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:ABS_LEND_PURPOSE&gt;?&lt;/urn1:ABS_LEND_PURPOSE&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:COLL_PROVINCE&gt;?&lt;/urn1:COLL_PROVINCE&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:COLL_VALUE&gt;?&lt;/urn1:COLL_VALUE&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:PMT_TYPE&gt;?&lt;/urn1:PMT_TYPE&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:FIX_RATE_DURATION&gt;?&lt;/urn1:FIX_RATE_DURATION&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:ORIGINAL_LOAN_TERM&gt;?&lt;/urn1:ORIGINAL_LOAN_TERM&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;urn1:PROGRESSIVE_DRAW&gt;?&lt;/urn1:PROGRESSIVE_DRAW&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:BASE_PRODUCT_NAME&gt;?&lt;/urn1:BASE_PRODUCT_NAME&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:CREDIT_APPL_ID&gt;?&lt;/urn1:CREDIT_APPL_ID&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:ALT_CH_PROMO_CODE&gt;?&lt;/urn1:ALT_CH_PROMO_CODE&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:OPERATOR_CODE&gt;?&lt;/urn1:OPERATOR_CODE&gt;
+               &lt;!--Optional:--&gt;
+               &lt;urn1:MI_PREMIUM_NET&gt;?&lt;/urn1:MI_PREMIUM_NET&gt;
+            &lt;/urn1:inbuf&gt;
+         &lt;/urn1:muDCalcMI00&gt;
+      &lt;/urn:muDCalcMI00Facade&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f8a521f7-c43a-4307-911e-374dcc2a024e">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>header_SOAPAction</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>urn:hp.westpac.ovm/BizTalkSaltFacade/muDCalcMI00Facade</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="661464df-9881-442e-adac-ce710b75ccec">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>inputMap</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>muDCalcMI00Facade|muDCalcMI00|inbuf|*|ABS_LEND_PURPOSE=^muDCalcMI00Facade.muDCalcMI00.inbuf.ABS_LEND_PURPOSE*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|ALT_CH_PROMO_CODE=muDCalcMI00Facade.muDCalcMI00.inbuf.ALT_CH_PROMO_CODE
+muDCalcMI00Facade|muDCalcMI00|inbuf|BASE_PRODUCT_NAME=muDCalcMI00Facade.muDCalcMI00.inbuf.BASE_PRODUCT_NAME
+muDCalcMI00Facade|muDCalcMI00|inbuf|CALC_GST=muDCalcMI00Facade.muDCalcMI00.inbuf.CALC_GST
+muDCalcMI00Facade|muDCalcMI00|inbuf|COLL_LEGAL_LIEN=muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_LEGAL_LIEN
+muDCalcMI00Facade|muDCalcMI00|inbuf|COLL_NATURE=muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_NATURE
+muDCalcMI00Facade|muDCalcMI00|inbuf|*|COLL_PROVINCE=^muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_PROVINCE*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|*|COLL_VALUE=^muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_VALUE*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|CREDIT_APPL_ID=muDCalcMI00Facade.muDCalcMI00.inbuf.CREDIT_APPL_ID
+muDCalcMI00Facade|muDCalcMI00|inbuf|*|FIX_RATE_DURATION=^muDCalcMI00Facade.muDCalcMI00.inbuf.FIX_RATE_DURATION*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|FLAGS=muDCalcMI00Facade.muDCalcMI00.inbuf.FLAGS
+muDCalcMI00Facade|muDCalcMI00|inbuf|GENERIC_DIST=muDCalcMI00Facade.muDCalcMI00.inbuf.GENERIC_DIST
+muDCalcMI00Facade|muDCalcMI00|inbuf|INST_ID=muDCalcMI00Facade.muDCalcMI00.inbuf.INST_ID
+muDCalcMI00Facade|muDCalcMI00|inbuf|LANGUAGE_CD=muDCalcMI00Facade.muDCalcMI00.inbuf.LANGUAGE_CD
+muDCalcMI00Facade|muDCalcMI00|inbuf|LSR=muDCalcMI00Facade.muDCalcMI00.inbuf.LSR
+muDCalcMI00Facade|muDCalcMI00|inbuf|MI_LOAN_AMOUNT=muDCalcMI00Facade.muDCalcMI00.inbuf.MI_LOAN_AMOUNT
+muDCalcMI00Facade|muDCalcMI00|inbuf|MI_PREMIUM_NET=muDCalcMI00Facade.muDCalcMI00.inbuf.MI_PREMIUM_NET
+muDCalcMI00Facade|muDCalcMI00|inbuf|NOT_CLEARING_AMOUNT=muDCalcMI00Facade.muDCalcMI00.inbuf.NOT_CLEARING_AMOUNT
+muDCalcMI00Facade|muDCalcMI00|inbuf|OPERATOR_CODE=muDCalcMI00Facade.muDCalcMI00.inbuf.OPERATOR_CODE
+muDCalcMI00Facade|muDCalcMI00|inbuf|*|ORIGINAL_LOAN_TERM=^muDCalcMI00Facade.muDCalcMI00.inbuf.ORIGINAL_LOAN_TERM*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|*|PMT_TYPE=^muDCalcMI00Facade.muDCalcMI00.inbuf.PMT_TYPE*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|*|PROGRESSIVE_DRAW=^muDCalcMI00Facade.muDCalcMI00.inbuf.PROGRESSIVE_DRAW*$
+muDCalcMI00Facade|muDCalcMI00|inbuf|REFINANCE_COUNT=muDCalcMI00Facade.muDCalcMI00.inbuf.REFINANCE_COUNT
+muDCalcMI00Facade|muDCalcMI00|inbuf|RESTART_ROW=muDCalcMI00Facade.muDCalcMI00.inbuf.RESTART_ROW
+muDCalcMI00Facade|muDCalcMI00|inbuf|THIRD_PARTY=muDCalcMI00Facade.muDCalcMI00.inbuf.THIRD_PARTY
+muDCalcMI00Facade|muDCalcMI00|inbuf|TOTAL_COLL_VALUE=muDCalcMI00Facade.muDCalcMI00.inbuf.TOTAL_COLL_VALUE
+muDCalcMI00Facade|muDCalcMI00|inbuf|TRACE=muDCalcMI00Facade.muDCalcMI00.inbuf.TRACE</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="155940ec-aba3-4e56-bf4c-8f7fa7bf5b39">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>usesJSON</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="76601241-a9fb-426a-96bd-2aa13b5da646">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>wswAuthenticationType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a4ac1227-105c-4ff4-bd14-b5aa39890aae">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecuritySignRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f2b06e5e-10b4-4f5f-8e48-a7cf607cccc9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityEncryptRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a69257ce-e8d5-4133-a169-4597219d16df">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityTimestampRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a8eff2a8-2880-4496-8f59-ff2047729cda">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c625fa56-d602-44f7-93ec-3079b433f67a">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystoreType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="869aebbc-15e3-4149-832f-29e79d621494">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3829056b-a05c-4696-aa58-300683ec44e1">
+          <fromContextKey>headers</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>headers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e4d13edc-ad31-444c-8ca6-c23a320fb797">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>contentType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>text/xml</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1dcb831e-9bd3-4c20-81e5-c888133c96e7">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>UTF-8</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a6d4bd7a-a8c7-416e-8b33-732f7bece5e3">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e742e3e1-8c79-4fa2-967b-8be8392086c4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f5b8ec85-04cb-49d7-8c55-f44c856034d1">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>trustAllRoots</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5072c6cb-1778-4379-8dfe-7b72577f0372">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>useCookies</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c8dee28c-e3fd-4783-8f13-814fc88ef575">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d8e23ce0-7530-4565-829a-db1920454cc4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>socketTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c3a18446-c8a4-418d-80d3-9f4032c767f8">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a7714b11-64ac-4f33-8f1b-d872433fe8b9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="828ee03f-0be4-4f51-8f90-169fa081fa38">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4d370aeb-0390-4e51-b245-9ce4bb3b425a">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="02571b5d-6c31-4ce7-8d3f-39f18edb73dc">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ed09babb-0d30-4b1a-a964-31de85ff3781">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ef2225ff-0436-4621-9a58-7718ba3326d9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>ICONCLUDE_WSW_VERSION</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>2</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="43366b93-4912-41c8-8b5d-7473b29868ca">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>returnXMLRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f5a07588-359f-45c1-926d-a10391263a2c">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.ABS_LEND_PURPOSE0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.ABS_LEND_PURPOSE0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e967e001-4281-477b-ac59-e19d2cf19780">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.ALT_CH_PROMO_CODE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.ALT_CH_PROMO_CODE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0c46d66d-1470-4e79-9b7a-c127041a0823">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.BASE_PRODUCT_NAME</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.BASE_PRODUCT_NAME</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f357da44-19af-420d-be5b-56ea99a7d8a6">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.CALC_GST</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.CALC_GST</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="58e64b6a-26f1-4762-8ecd-62cceb6548f6">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_LEGAL_LIEN</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_LEGAL_LIEN</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="cecec89d-a433-483a-a776-de753d0bb582">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_NATURE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_NATURE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f174ad7b-34a3-416d-8d1e-3a58fa993838">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_PROVINCE0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_PROVINCE0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6c1756d1-b62c-4ff3-944c-02cbcaf6424d">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_VALUE0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.COLL_VALUE0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="415f25ed-8bf0-440b-b959-c52d57521066">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.CREDIT_APPL_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.CREDIT_APPL_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="85a5fff3-771b-490f-95cf-2127d3ee047a">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.FIX_RATE_DURATION0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.FIX_RATE_DURATION0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="444257a3-b6a2-493a-bfcc-435c36ff3b62">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.FLAGS</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.FLAGS</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f2eceac8-a18d-465d-93f9-acca7a52c559">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.GENERIC_DIST</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.GENERIC_DIST</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8aced597-4511-4809-894c-72c269ec88bc">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.INST_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.INST_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c6d5a375-8557-4e7b-9325-8c256f343e68">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.LANGUAGE_CD</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.LANGUAGE_CD</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="aa8f51f3-72b2-4492-a660-1f6841dbe45f">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.LSR</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.LSR</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="09975e14-7240-44e7-bd43-b937ec854b9e">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.MI_LOAN_AMOUNT</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.MI_LOAN_AMOUNT</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="69d9160f-5a70-42df-b420-3a0339b54fc9">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.MI_PREMIUM_NET</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.MI_PREMIUM_NET</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="cdd0733f-34af-4a68-b677-56ddf0fce4b2">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.NOT_CLEARING_AMOUNT</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.NOT_CLEARING_AMOUNT</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c50451cb-6fcf-4408-bd55-4752c5fb1783">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.OPERATOR_CODE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.OPERATOR_CODE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4e7c731c-2189-4011-829d-e3d188c1ba30">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.ORIGINAL_LOAN_TERM0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.ORIGINAL_LOAN_TERM0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="fdd3ba15-3ad9-4dfc-b03b-bfaca68e900d">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.PMT_TYPE0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.PMT_TYPE0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6746a294-b7ec-4567-8f2f-4cba85344d38">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.PROGRESSIVE_DRAW0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.PROGRESSIVE_DRAW0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="43b77f31-63d7-47fa-86a4-3519f8c56205">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.REFINANCE_COUNT</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.REFINANCE_COUNT</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="95b71ec7-ca9d-45e7-89c7-ed834eb9dd9f">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.RESTART_ROW</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.RESTART_ROW</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="394319a5-fc8a-4153-9422-b9bd9c66370f">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.THIRD_PARTY</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.THIRD_PARTY</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="751c38df-9b2e-4f9a-a8d1-6b9b05edb6b1">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.TOTAL_COLL_VALUE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.TOTAL_COLL_VALUE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="70ff6e20-1277-418d-bc22-9200af1b3ea7">
+          <fromContextKey>muDCalcMI00Facade.muDCalcMI00.inbuf.TRACE</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>muDCalcMI00Facade.muDCalcMI00.inbuf.TRACE</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="a139f008-ed92-4822-abd9-f56e62afb52d">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>45608faa-2a23-4bb7-aca8-77289c299d0b</refId>
+          </destination>
+          <source>
+            <refId>a9635f5f-fb90-4d98-9528-ed4e4275be57</refId>
+          </source>
+          <positions/>
+        </transition>
+        <transition id="d23231c4-6e13-4481-b227-86346d2b02d1">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>ea6bda49-b8b5-4ec7-bf7a-5fe632dce2fe</refId>
+          </destination>
+          <source>
+            <refId>a9635f5f-fb90-4d98-9528-ed4e4275be57</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>962ffbf8-4105-46bb-8c71-84f037c4de61</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="a17598e2-a981-49ea-8cb7-fdd1947d5d3b">
+          <annotation></annotation>
+          <name>document</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>document</contextKey>
+          <expression id="38d5a372-afbe-4324-b82b-6c9208814176">
+            <annotation></annotation>
+            <name>document</name>
+            <fieldName>document</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b1a0aff3-308c-4f24-aec1-b44f936b1076">
+          <annotation></annotation>
+          <name>documentStripped</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>documentStripped</contextKey>
+          <expression id="f7584fa5-7798-4591-99f9-13264b0bca15">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f092e44a-2b52-4385-a94e-74a2d2621a55">
+          <annotation></annotation>
+          <name>responseHeaders</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>responseHeaders</contextKey>
+          <expression id="34e4de83-efd9-408f-a9d6-fdd9068f9d29">
+            <annotation></annotation>
+            <name>responseHeaders</name>
+            <fieldName>responseHeaders</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="8dbbab6a-c6b6-4f44-9c7c-cd751882990e">
+          <annotation></annotation>
+          <name>ERROR_GRP</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_GRP</contextKey>
+          <expression id="71dfee19-3163-4c90-a6b3-2b33ef5927ec">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="f8202aea-ec98-47d9-845e-7096b01555c2">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/ERROR_GRP/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="e1a10769-dcb4-4d97-96fd-30b939d2543d">
+          <annotation></annotation>
+          <name>ERROR_MSG</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_MSG</contextKey>
+          <expression id="d9af6366-2674-4c1f-b899-47756099b648">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="2525b4dc-1f0e-462d-a7b4-47a78f0efe29">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/ERROR_MSG/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="e6f05688-1dce-4d91-948a-e0c7f82607b0">
+          <annotation></annotation>
+          <name>ERROR_NO</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>ERROR_NO</contextKey>
+          <expression id="987fd9b8-7567-42e5-9078-bebeb6146fdc">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="20782cfe-51d7-46ca-ac60-b939d6f08ceb">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/ERROR_NO/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="ba57c972-f2b3-466f-af78-81f4fdbff4ae">
+          <annotation></annotation>
+          <name>EXTERNAL_INSURER</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>EXTERNAL_INSURER</contextKey>
+          <expression id="af1f5ac4-3650-4b5d-aba0-4b6dc19c866c">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="8fa62194-acda-4f13-9b3c-511c5a7611a1">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/EXTERNAL_INSURER/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="5cd96e7e-cc25-4be6-8a4b-4eafda9e7650">
+          <annotation></annotation>
+          <name>MI_PREMIUM</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>MI_PREMIUM</contextKey>
+          <expression id="1176da7e-519f-47eb-8ca2-abfa8fe34522">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="89e992c4-eada-408c-b83d-a74a07c6a980">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/MI_PREMIUM/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="906c76d8-cf5d-4a7d-a106-8a82146e5669">
+          <annotation></annotation>
+          <name>MI_PREMIUM_GST</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>MI_PREMIUM_GST</contextKey>
+          <expression id="8338da5e-b2b0-4dbc-be2d-754d64f34abe">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="a707bccd-2cdd-4028-9509-a1c9502662f0">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/MI_PREMIUM_GST/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="c96ce831-4201-4b88-8f1b-13de19ac9a32">
+          <annotation></annotation>
+          <name>MI_PREMIUM_NET</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>MI_PREMIUM_NET</contextKey>
+          <expression id="2acdf673-7c56-4ab1-a46c-6f84a0e57d5c">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="8877831a-7b0f-4b69-8cfc-40c1878fce9e">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/MI_PREMIUM_NET/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6ffa6df3-7301-4fff-aab5-5e551fe0aaba">
+          <annotation></annotation>
+          <name>REC_COUNT</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>REC_COUNT</contextKey>
+          <expression id="24b258b9-665d-4d72-b910-93d6ee194911">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="2e45cbba-320b-4ac6-898f-9c9529641d9b">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/REC_COUNT/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fd39020c-1618-4f75-9d9f-01552f6ebb2a">
+          <annotation></annotation>
+          <name>RESTART_ROW</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>RESTART_ROW</contextKey>
+          <expression id="d108e75d-cb07-4afa-88e6-8d406c00ac08">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="cfc02802-a850-4767-b4c4-f3927f115ec1">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/RESTART_ROW/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a6ad6521-3e58-4d09-b8dc-7b64da5249c0">
+          <annotation></annotation>
+          <name>RITC_ON_GST</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>RITC_ON_GST</contextKey>
+          <expression id="09cbfa6a-580d-4cb7-8cb9-9c77d53006c7">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="3707b01d-50d8-4648-8179-fbe8afda0999">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/RITC_ON_GST/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a7baaa22-1c06-4bee-88ce-b1c41e06dc9f">
+          <annotation></annotation>
+          <name>STAMP_DUTY</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>STAMP_DUTY</contextKey>
+          <expression id="cfcb3b22-53fb-4262-ae5f-2036631f8d71">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <xpathFilter id="30387fcb-02c3-47ad-819c-5b3318653b75">
+                <annotation></annotation>
+                <name></name>
+                <xpathQuery>/Envelope/Body/muDCalcMI00FacadeResponse/muDCalcMI00Response/outbuf/STAMP_DUTY/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="45608faa-2a23-4bb7-aca8-77289c299d0b">
+      <annotation></annotation>
+      <name>RESOLVED : success</name>
+      <bounds>
+        <x>0.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>RESOLVED : success</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="1defd0cb-4b2e-44d9-a375-4a56f96ef5de">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>45608faa-2a23-4bb7-aca8-77289c299d0b</refId>
+          </destination>
+          <source>
+            <refId>45608faa-2a23-4bb7-aca8-77289c299d0b</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="ea6bda49-b8b5-4ec7-bf7a-5fe632dce2fe">
+      <annotation></annotation>
+      <name>ERROR : failure</name>
+      <bounds>
+        <x>150.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>ERROR : failure</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="5d45217f-c7c8-4497-b668-f0f08daa1fdf">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>ea6bda49-b8b5-4ec7-bf7a-5fe632dce2fe</refId>
+          </destination>
+          <source>
+            <refId>ea6bda49-b8b5-4ec7-bf7a-5fe632dce2fe</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>a9635f5f-fb90-4d98-9528-ed4e4275be57</startSteps>
+</flow>

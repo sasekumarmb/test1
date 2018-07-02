@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="b9a6c3fe-982d-483e-b7cc-481f6190a02d">
+  <descriptionCdata><![CDATA[b9a6c3fe-982d-483e-b7cc-481f6190a02d.1d8252f4-0dec-4cdb-849d-0942d30c64e6.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+b9a6c3fe-982d-483e-b7cc-481f6190a02d.3c651f80-f294-4aee-a199-0b7dfd68877e.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
+b9a6c3fe-982d-483e-b7cc-481f6190a02d.46f715cf-c936-4f64-ba92-a39c25df9124.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
+b9a6c3fe-982d-483e-b7cc-481f6190a02d.6f7b763f-5ab3-46df-915b-defd44146a29.transition.description=Account Number Detals
+b9a6c3fe-982d-483e-b7cc-481f6190a02d.ca297dbb-da5c-47f2-a592-58ef964957c3.transition.description=No Rows
+b9a6c3fe-982d-483e-b7cc-481f6190a02d.d9355f68-d5dd-4131-9362-885b7d05dcd9.transition.description=failed tofetch Account Number Details
+b9a6c3fe-982d-483e-b7cc-481f6190a02d.description=Prepend the Simplified Account Number with '464'. Using this generated account number execute an SQL query to retrieve loan details.
+]]></descriptionCdata>
+  <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.description</annotation>
+  <name>Get Loan Details from GOE Database</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="cec875de-f625-4c16-9be5-598332c988ed">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>simplifiedAccountNumber</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="99fe39a4-6c8e-46cc-a917-f1a810a6c501">
+      <annotation></annotation>
+      <name>Account Exist</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="2236e978-507c-4f77-a2f3-25a3773291fc">
+      <annotation></annotation>
+      <name>failed to fetch Account Details</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="2760017e-f19a-4a9b-9772-3b558a0c11ea">
+      <annotation></annotation>
+      <name>No Loan Found</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="37d90aea-cbb8-4ab3-9334-fa562059a04e">
+      <annotation></annotation>
+      <name>errorMessage</name>
+      <fieldName>errorMessage</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="b1aad0a6-ed84-4109-bbb0-386717a53f1b">
+      <annotation></annotation>
+      <name>failureFlag</name>
+      <fieldName>failureFlag</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="ca9278ff-aafe-4e6a-9c02-cdf83d73df8c">
+      <annotation></annotation>
+      <name>flagValidGOEAccount</name>
+      <fieldName>flagValidGOEAccount</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="c098d080-b653-4e4a-aeb2-33b1e899eee6">
+      <annotation></annotation>
+      <name>goeAccountNumber</name>
+      <fieldName>goeAccountNumber</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="68ff6cbd-9008-4433-99af-2697d1819f8d">
+      <annotation></annotation>
+      <name>goeBbsLoan</name>
+      <fieldName>goeBbsLoan</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="15b5ae61-6c23-43ec-89dd-b4a861caf5c6">
+      <annotation></annotation>
+      <name>goePolicyNumber</name>
+      <fieldName>goePolicyNumber</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="1743f99d-05e7-4a4c-bcb6-b4fad2708f68">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="45f997bf-2ea5-4aa6-9af0-3459f3334075">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="46f715cf-c936-4f64-ba92-a39c25df9124">
+      <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.46f715cf-c936-4f64-ba92-a39c25df9124.description</annotation>
+      <name>Setting simplifiedAccountNumber</name>
+      <bounds>
+        <x>50.0</x>
+        <y>195.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="464cc9c0-5cd3-4671-b0c3-b9a980738aa1">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>simplifiedAccountNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>464${simplifiedAccountNumber}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1e3b4be0-cea1-4d88-a3da-7fb8029c754c">
+          <annotation></annotation>
+          <fromContextKey>WBC/Utility Operations/MSS_V1.00/mssSchema</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssSchema</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="58dceb9f-9881-4a12-987c-57fb8a162f87">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>fad1258e-79b5-4d92-95bf-e955a0b70601</refId>
+          </destination>
+          <source>
+            <refId>46f715cf-c936-4f64-ba92-a39c25df9124</refId>
+          </source>
+          <positions>
+            <point>
+              <x>280.0</x>
+              <y>229.0</y>
+            </point>
+            <point>
+              <x>430.0</x>
+              <y>229.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="28a822e1-0938-46ff-a2b0-6b1dabf04bc9">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>loanAccountNumberC</contextKey>
+          <expression id="8bd39c77-a57c-4aa7-b758-e9714058ff49">
+            <annotation></annotation>
+            <name>Input: simplifiedAccountNumber</name>
+            <fieldName>simplifiedAccountNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="58dcc75d-13e8-49f4-8265-16985e78d863">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssSchema</contextKey>
+          <expression id="594adf06-128e-4a28-bb41-70fc6bd0255b">
+            <annotation></annotation>
+            <name>Input: mssSchema</name>
+            <fieldName>mssSchema</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="0e4435e8-3709-40fd-ab2a-1628e80a123a">
+      <annotation></annotation>
+      <name>Error : failed to fetch Account Details</name>
+      <bounds>
+        <x>1000.0</x>
+        <y>396.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="5ce4710b-cd15-4812-9e2c-16eff4c10545">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="784bd2e5-4ce4-4420-a3d1-ea6f55f610af">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flowName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Get Loan Details from GOE Database</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c8a4fe6a-6a9d-4545-973f-abca3eea3b96">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>failureFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="0ba2f9a9-4e8b-4f70-b174-52abade0c971">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failed to fetch Account Details</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>0e4435e8-3709-40fd-ab2a-1628e80a123a</refId>
+          </destination>
+          <source>
+            <refId>0e4435e8-3709-40fd-ab2a-1628e80a123a</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="9d8bf225-1e2c-4e45-92c1-93e84a4454ff">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flowName</contextKey>
+          <expression id="392ecf8a-12ed-4434-b129-8919ddeeae2c">
+            <annotation></annotation>
+            <name>Input: flowName</name>
+            <fieldName>flowName</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="976c7270-9868-43df-adc3-4e1594598d47">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="c478114d-300d-461b-92d0-11a6dff0680b">
+            <annotation></annotation>
+            <name>Input: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="61604773-5e90-40b4-921c-cb206b281f75">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>failureFlag</contextKey>
+          <expression id="63b4d66e-6156-43d5-9d81-e8263d7cbfd8">
+            <annotation></annotation>
+            <name>Input: failureFlag</name>
+            <fieldName>failureFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="c844f6af-6a01-434e-b4e4-c969fb603a53">
+      <annotation></annotation>
+      <name>No Action Taken : No Loan Found</name>
+      <bounds>
+        <x>997.0</x>
+        <y>32.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="c90d8199-3e76-46f8-bcb5-c275412c8431">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flagValidGOEAccount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>False</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="2cb88d67-ead3-4c8c-9601-f139319f1ac8">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>No Loan Found</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>c844f6af-6a01-434e-b4e4-c969fb603a53</refId>
+          </destination>
+          <source>
+            <refId>c844f6af-6a01-434e-b4e4-c969fb603a53</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>NO_ACTION_TAKEN</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="012d136c-74a1-4220-b7d5-d1f5459b618b">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flagValidGOEAccount</contextKey>
+          <expression id="b2dfaafe-0a1b-49f4-9757-6a662ad168d3">
+            <annotation></annotation>
+            <name>Input: flagValidGOEAccount</name>
+            <fieldName>flagValidGOEAccount</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <step id="1d8252f4-0dec-4cdb-849d-0942d30c64e6">
+      <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.1d8252f4-0dec-4cdb-849d-0942d30c64e6.description</annotation>
+      <name>Account Number Details</name>
+      <bounds>
+        <x>508.0</x>
+        <y>195.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="f331ff5c-533d-4f1a-85f9-b0777dad8588">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Exact Match</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1d1d1055-3007-4b89-8c1a-a6797bb17e85">
+          <annotation></annotation>
+          <fromContextKey>goeCount</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5bc45931-448e-440c-8b5d-a6ff8a93b424">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>0</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="83bdbdd4-41d8-4878-9ac0-829f2569b270">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="ca297dbb-da5c-47f2-a592-58ef964957c3">
+          <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.ca297dbb-da5c-47f2-a592-58ef964957c3.transition.description</annotation>
+          <name>No Rows</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>c844f6af-6a01-434e-b4e4-c969fb603a53</refId>
+          </destination>
+          <source>
+            <refId>1d8252f4-0dec-4cdb-849d-0942d30c64e6</refId>
+          </source>
+          <positions>
+            <point>
+              <x>672.5</x>
+              <y>220.9572301425662</y>
+            </point>
+            <point>
+              <x>557.0</x>
+              <y>66.0</y>
+            </point>
+            <point>
+              <x>557.0</x>
+              <y>66.0</y>
+            </point>
+            <point>
+              <x>557.0</x>
+              <y>66.0</y>
+            </point>
+            <point>
+              <x>1109.0</x>
+              <y>82.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>124.57425925159826</x>
+            <y>-0.6307924213843887</y>
+          </labelPosition>
+        </transition>
+        <transition id="7e90b46e-441a-4247-b688-45c4fed953fa">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3c651f80-f294-4aee-a199-0b7dfd68877e</refId>
+          </destination>
+          <source>
+            <refId>1d8252f4-0dec-4cdb-849d-0942d30c64e6</refId>
+          </source>
+          <positions>
+            <point>
+              <x>650.0</x>
+              <y>229.0</y>
+            </point>
+            <point>
+              <x>1035.0</x>
+              <y>220.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="fad1258e-79b5-4d92-95bf-e955a0b70601">
+      <annotation></annotation>
+      <name>Loan Details from GOE Database</name>
+      <bounds>
+        <x>200.0</x>
+        <y>195.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="50eef724-89d3-449e-8c93-b73533c0633a">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>query</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>SELECT ACCOUNT_NUM,GOE_POLICY_NBR,NBG_COUNT  from  ${mssSchema}.v_svc_goe_automation WHERE CREDIT_APPL_ID = &apos;${loanAccountNumberC}&apos;
+
+</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5b8a4989-eaf4-4fef-b9e5-273b0e286726">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>columnDelimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>,</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="30e8c516-a43b-464b-bf8e-9fe076545143">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>rowDelimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>|</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="d9355f68-d5dd-4131-9362-885b7d05dcd9">
+          <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.d9355f68-d5dd-4131-9362-885b7d05dcd9.transition.description</annotation>
+          <name>failed tofetch Account Number Details</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>0e4435e8-3709-40fd-ab2a-1628e80a123a</refId>
+          </destination>
+          <source>
+            <refId>fad1258e-79b5-4d92-95bf-e955a0b70601</refId>
+          </source>
+          <positions>
+            <point>
+              <x>142.0</x>
+              <y>228.37481031866463</y>
+            </point>
+            <point>
+              <x>248.0</x>
+              <y>431.0</y>
+            </point>
+            <point>
+              <x>248.0</x>
+              <y>431.0</y>
+            </point>
+            <point>
+              <x>248.0</x>
+              <y>431.0</y>
+            </point>
+            <point>
+              <x>787.0</x>
+              <y>383.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>99.46236559139787</x>
+            <y>1.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="6f7b763f-5ab3-46df-915b-defd44146a29">
+          <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.6f7b763f-5ab3-46df-915b-defd44146a29.transition.description</annotation>
+          <name>Account Number Detals</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>1d8252f4-0dec-4cdb-849d-0942d30c64e6</refId>
+          </destination>
+          <source>
+            <refId>fad1258e-79b5-4d92-95bf-e955a0b70601</refId>
+          </source>
+          <positions>
+            <point>
+              <x>250.0</x>
+              <y>229.0</y>
+            </point>
+            <point>
+              <x>650.0</x>
+              <y>229.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>efca4cc5-57e0-4ff0-b449-ad2b90752285</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="9d15c4e3-63d8-4db2-81d5-f56f190da466">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>goeCount</contextKey>
+          <expression id="1a7ac1c5-c987-4dd9-bba8-f1864bb45050">
+            <annotation></annotation>
+            <name>Result Field: rowCount</name>
+            <fieldName>rowCount</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="ec62d6df-3d85-41dc-9e64-f43e38757920">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="e4bf23fc-4ed1-4eab-bb83-afc9bebeacb7">
+            <annotation></annotation>
+            <name>Result Field: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="2a7d86bb-b5df-4de2-8391-221894f85928">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>goeAccountDetails</contextKey>
+          <expression id="94e544a2-fa79-4585-aaad-8a83f24090f4">
+            <annotation></annotation>
+            <name>Result: queryResult</name>
+            <fieldName>queryResult</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="4187f4a9-b634-4b13-a96c-fe39fc540767">
+      <annotation></annotation>
+      <name>Resolved : Account Exist</name>
+      <bounds>
+        <x>1000.0</x>
+        <y>195.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="66bef8dd-0ec7-4a38-9cf9-8d12d9e25fc2">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flagValidGOEAccount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f6cb785d-423b-4808-a39a-bdbaaf4a3295">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>goeBbsLoan</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="728285f7-36dd-42ed-af48-88c45d117ebf">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>goeAccountNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ada4db8d-8d57-474f-89c5-f6693f82963a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>goePolicyNumber</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="671429f4-8819-49aa-acd3-6d4b2def5a0d">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Account Exist</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>4187f4a9-b634-4b13-a96c-fe39fc540767</refId>
+          </destination>
+          <source>
+            <refId>4187f4a9-b634-4b13-a96c-fe39fc540767</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="45d21fb6-1929-4d49-aa33-bfacedbe4997">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>goeBbsLoan</contextKey>
+          <expression id="65593afa-c742-4cbb-afd2-00da392931d6">
+            <annotation></annotation>
+            <name>Input: goeBbsLoan</name>
+            <fieldName>goeBbsLoan</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b45183d0-f8bd-431c-9228-7ab7e37a8b32">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>goeAccountNumber</contextKey>
+          <expression id="ec28f98f-8a80-46fe-9a8c-27664a7f0a41">
+            <annotation></annotation>
+            <name>Input: goeAccountNumber</name>
+            <fieldName>goeAccountNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d020095d-731a-4455-a137-7723fa366743">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>goePolicyNumber</contextKey>
+          <expression id="dc5b9e32-f722-4e27-abee-05a2a787525b">
+            <annotation></annotation>
+            <name>Input: goePolicyNumber</name>
+            <fieldName>goePolicyNumber</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="dee068b2-f225-459e-b7aa-20cd0f1f4253">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flagValidGOEAccount</contextKey>
+          <expression id="1c2e6481-4ef5-4714-bf37-d4829f72c923">
+            <annotation></annotation>
+            <name>Input: flagValidGOEAccount</name>
+            <fieldName>flagValidGOEAccount</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <step id="3c651f80-f294-4aee-a199-0b7dfd68877e">
+      <annotation>b9a6c3fe-982d-483e-b7cc-481f6190a02d.3c651f80-f294-4aee-a199-0b7dfd68877e.description</annotation>
+      <name>get GOE account details</name>
+      <bounds>
+        <x>733.0</x>
+        <y>186.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="5ff35675-68a7-4d38-b5cf-a736c5c85402">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>goeAccountDetails</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="ff930d89-ce8f-411d-a659-e66c54143357">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>4187f4a9-b634-4b13-a96c-fe39fc540767</refId>
+          </destination>
+          <source>
+            <refId>3c651f80-f294-4aee-a199-0b7dfd68877e</refId>
+          </source>
+          <positions>
+            <point>
+              <x>1035.0</x>
+              <y>260.0</y>
+            </point>
+            <point>
+              <x>1142.0</x>
+              <y>229.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="c4d06340-ec0b-4940-9d03-12d23b2f12a0">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>goeBbsLoan</contextKey>
+          <expression id="bcf04bf2-d2ce-4b8f-80f0-3ab4670fd4b3">
+            <annotation></annotation>
+            <name>Input: goeAccountDetails</name>
+            <fieldName>goeAccountDetails</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters>
+              <tableFilter id="660a06d4-15fb-4890-a3a2-33877410220b">
+                <annotation></annotation>
+                <name>Table</name>
+                <ascending>false</ascending>
+                <columnDelimiter>COMMA</columnDelimiter>
+                <firstRowHeader>false</firstRowHeader>
+                <lineDelimintor>PIPE</lineDelimintor>
+                <selectCol>2</selectCol>
+                <selectHeight>1</selectHeight>
+                <selectRow>0</selectRow>
+                <selectWidth>1</selectWidth>
+                <sortColumn>-1</sortColumn>
+                <stripFirstRow>false</stripFirstRow>
+              </tableFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6dc36bd1-7848-412e-ba8d-1017aef94c9d">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>goeAccountNumber</contextKey>
+          <expression id="18f9aad9-0eb7-4156-a3b4-a040b0870bec">
+            <annotation></annotation>
+            <name>Input: goeAccountDetails</name>
+            <fieldName>goeAccountDetails</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters>
+              <tableFilter id="5cdfda26-7420-409f-9a56-22e2329c8983">
+                <annotation></annotation>
+                <name>Table</name>
+                <ascending>false</ascending>
+                <columnDelimiter>COMMA</columnDelimiter>
+                <firstRowHeader>false</firstRowHeader>
+                <lineDelimintor>PIPE</lineDelimintor>
+                <selectCol>0</selectCol>
+                <selectHeight>1</selectHeight>
+                <selectRow>0</selectRow>
+                <selectWidth>1</selectWidth>
+                <sortColumn>-1</sortColumn>
+                <stripFirstRow>false</stripFirstRow>
+              </tableFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="bb7db2a5-078b-48bb-b21c-b834cf4ff826">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>goePolicyNumber</contextKey>
+          <expression id="030d35b5-b2d6-437d-a46f-d1f0d5093d79">
+            <annotation></annotation>
+            <name>Input: goeAccountDetails</name>
+            <fieldName>goeAccountDetails</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters>
+              <tableFilter id="b40246db-6094-434b-b2a0-533a05de366d">
+                <annotation></annotation>
+                <name>Table</name>
+                <ascending>false</ascending>
+                <columnDelimiter>COMMA</columnDelimiter>
+                <firstRowHeader>false</firstRowHeader>
+                <lineDelimintor>PIPE</lineDelimintor>
+                <selectCol>1</selectCol>
+                <selectHeight>1</selectHeight>
+                <selectRow>0</selectRow>
+                <selectWidth>1</selectWidth>
+                <sortColumn>-1</sortColumn>
+                <stripFirstRow>false</stripFirstRow>
+              </tableFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+  </steps>
+  <startSteps>46f715cf-c936-4f64-ba92-a39c25df9124</startSteps>
+</flow>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="4b107d09-d17a-4481-89e8-46ec457fc1ab">
+  <descriptionCdata><![CDATA[4b107d09-d17a-4481-89e8-46ec457fc1ab.213ee5a1-0ebc-4c34-85c6-a678e1534a68.description=Attempts acquisition of a lock with an id given by the value of the lockId input.\n\nInputs\:\n   lockId - the id of the lock, maximum 255 characters.\n\nResponses\:\n   success - if the lock has been successfully acquired.\n   failure - if the lock could not be acquired.\nResult\:\n   Code - 0 if the operation succeeds, 1 otherwise.\n\nNotes\:\n\n1) The operation does not block waiting for a lock to become available.\n\n2) The locks acquired by this operation are not reentrant. This means that \n   once a lock is acquired by a run, all subsequent attempts at acquiring \n   the same lock by the same run (or any other run) will fail.\n\n3) Once a run terminates, all the locks that were acquired during its execution\n   are automatically released.
+4b107d09-d17a-4481-89e8-46ec457fc1ab.description=Attempts to acquire the specified lock, and sleeps until the lock is available.\n\n<pre>\nInputs\:\n   workflowNameToLock \t    - the id of the lock, maximum 255 characters.\n\nResponses\:\n   lock acquired - if the lock has been successfully acquired.\n   failed to acquire lock - if the lock could not be acquired.\n\nResult\:\n   \n\nNotes\:\n1) The locks acquired by this operation are not reentrant. This means that \n   once a lock is acquired by a run, all subsequent attempts at acquiring \n   the same lock by the same run (or any other run) will fail.\n\n2) Once a run terminates, all the locks that were acquired during its execution\n   are automatically released.\n</pre>
+]]></descriptionCdata>
+  <annotation>4b107d09-d17a-4481-89e8-46ec457fc1ab.description</annotation>
+  <name>Lock Automation</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="d461265f-9e3f-4486-88fc-38f90e2ed820">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>workflowNameToLock</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="3cb0e6ae-a8d5-4be8-851e-10777518d6fc">
+      <annotation></annotation>
+      <name>lock acquired</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="3ff0cd41-306a-4eb4-980b-214bb1527f2e">
+      <annotation></annotation>
+      <name>failed to acquire lock</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="f6fa872b-4a61-4eb1-8fb9-88ead79004a5">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="e3057902-7902-4efb-9b69-b9fadd5efdfc">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="213ee5a1-0ebc-4c34-85c6-a678e1534a68">
+      <annotation>4b107d09-d17a-4481-89e8-46ec457fc1ab.213ee5a1-0ebc-4c34-85c6-a678e1534a68.description</annotation>
+      <name>Acquire Lock</name>
+      <bounds>
+        <x>0.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>false</recordRawOutput>
+      <recordPrimaryOutput>false</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="3bb8ab60-fb1a-4301-b498-f1c9e3506f6a">
+          <annotation></annotation>
+          <fromContextKey>workflowNameToLock</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>true</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>lockId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bc3c740e-50c6-43cf-90b8-80efee75845e">
+          <annotation></annotation>
+          <toContextKey></toContextKey>
+          <fromContextKey></fromContextKey>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <recordKey></recordKey>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>Lock_Id</inputSymbol>
+          <listDelimiter></listDelimiter>
+          <value>${lockId}</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="d3a6b27c-ae03-473d-a82f-0d916afa9ea6">
+          <annotation></annotation>
+          <name>lock acquired</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>771e0e48-fd2d-49aa-80d7-f32e3945f979</refId>
+          </destination>
+          <source>
+            <refId>213ee5a1-0ebc-4c34-85c6-a678e1534a68</refId>
+          </source>
+          <positions>
+            <point>
+              <x>50.0</x>
+              <y>34.0</y>
+            </point>
+            <point>
+              <x>293.0</x>
+              <y>38.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>409.7660051658336</x>
+            <y>2.435591208028369</y>
+          </labelPosition>
+        </transition>
+        <transition id="66aa27d8-b671-4f1f-8f87-94bec4134437">
+          <annotation></annotation>
+          <name>failed to acquirelock</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>cacf3ba9-8ac3-44c9-a695-0b34ad90d7fa</refId>
+          </destination>
+          <source>
+            <refId>213ee5a1-0ebc-4c34-85c6-a678e1534a68</refId>
+          </source>
+          <positions>
+            <point>
+              <x>62.0</x>
+              <y>59.17355371900827</y>
+            </point>
+            <point>
+              <x>46.0</x>
+              <y>205.0</y>
+            </point>
+            <point>
+              <x>46.0</x>
+              <y>205.0</y>
+            </point>
+            <point>
+              <x>290.0</x>
+              <y>230.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>718.7577964340379</x>
+            <y>-3.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>d775dc59-0875-406c-af52-49e91577e1a9</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="59cd561c-cb04-4f49-96fe-700e3329e3f2">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="103245b1-8b97-4300-8622-2346a6d20a5f">
+            <annotation></annotation>
+            <name>Result Field: FailureMessage</name>
+            <fieldName>FailureMessage</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="cacf3ba9-8ac3-44c9-a695-0b34ad90d7fa">
+      <annotation></annotation>
+      <name>Error : failed to acquire lock</name>
+      <bounds>
+        <x>240.0</x>
+        <y>170.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="14a2fa3d-0445-4295-af84-4ad48e3faba8">
+          <annotation></annotation>
+          <fromContextKey>errorMessage</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>failureMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="8bee5bff-bdad-42f7-92fe-225a892f5366">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failed to acquire lock</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>cacf3ba9-8ac3-44c9-a695-0b34ad90d7fa</refId>
+          </destination>
+          <source>
+            <refId>cacf3ba9-8ac3-44c9-a695-0b34ad90d7fa</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="ec1d4210-13b8-47d6-ae63-28065dca6596">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>FailureMessage</contextKey>
+          <expression id="adf3f599-8e68-4a3f-93f1-01e3968fc85e">
+            <annotation></annotation>
+            <name>Input: failureMessage</name>
+            <fieldName>failureMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="771e0e48-fd2d-49aa-80d7-f32e3945f979">
+      <annotation></annotation>
+      <name>Resolved : lock acquired</name>
+      <bounds>
+        <x>243.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="c403ffa7-5325-48ae-bc32-98013359bee8">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>lock acquired</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>771e0e48-fd2d-49aa-80d7-f32e3945f979</refId>
+          </destination>
+          <source>
+            <refId>771e0e48-fd2d-49aa-80d7-f32e3945f979</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>213ee5a1-0ebc-4c34-85c6-a678e1534a68</startSteps>
+</flow>

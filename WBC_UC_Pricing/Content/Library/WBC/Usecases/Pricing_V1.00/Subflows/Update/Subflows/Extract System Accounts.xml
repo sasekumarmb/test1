@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="d9d4cc68-608f-4741-8a65-edc37e1a126b">
+  <descriptionCdata><![CDATA[d9d4cc68-608f-4741-8a65-edc37e1a126b.06d88322-3a89-41f2-a156-c27a99a795e9.description=Retrieves a system account username and password and stores the values as flow variables.\n\nInputs\:\n    accountName - The name of the system account. Starting with OO Platform version 10.20, the relative path of the system account can also be used. \n    flowVariable - The flow variables prefix to store the system account into. The operation will receive one input with the flow variable name to assign to, but will actually assign the account to two separate variables. So if the input flowVar was "sysAcct" then two flow vars will be created "sysAcctUsername" and "sysAcctPassword".\n\nResults\:\n    Result - A message indicating if the operation was successful or not.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Extract System Accounts</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="3810eb9c-6272-4312-8a9d-b64bf17ae3bd">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>lockId</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="6a632080-ae75-4508-989c-49e7f59a0c3c">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="d4c0dcef-b6a3-4162-8004-7d2941475533">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="39dda251-9a12-4fff-ab4d-ee167eacee2d">
+      <annotation></annotation>
+      <name>errorMessage</name>
+      <fieldName>errorMessage</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="2534e4c4-5de8-4898-91ff-4d25db316973">
+      <annotation></annotation>
+      <name>mssPassword</name>
+      <fieldName>mssPassword</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="f7c0d686-7673-4c01-8e57-10951bc1514d">
+      <annotation></annotation>
+      <name>mssUsername</name>
+      <fieldName>mssUsername</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="4db95e09-78bc-453a-8cd9-038d84ff38c7">
+      <annotation></annotation>
+      <name>sshRelayPassword</name>
+      <fieldName>sshRelayPassword</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="016c292c-a61c-4c1e-8913-5d692e11809f">
+      <annotation></annotation>
+      <name>sshRelayUsername</name>
+      <fieldName>sshRelayUsername</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="1500d1aa-d253-49a8-b49b-0bd210c0d121">
+      <annotation></annotation>
+      <name>xmuPassword</name>
+      <fieldName>xmuPassword</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="efd0149c-3815-473e-81e9-b928e4d24aae">
+      <annotation></annotation>
+      <name>xmuUsername</name>
+      <fieldName>xmuUsername</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="5b3690e0-56aa-4537-8bec-44d6e80f9285">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="5726932a-767a-42e4-9cc1-67ac14794929">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="11b04335-ea5b-4ba1-bd4d-8d847a58e8bf">
+      <annotation></annotation>
+      <name>Get System Accounts using Lock ID</name>
+      <bounds>
+        <x>210.0</x>
+        <y>20.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="fe82b01a-e82f-4c63-b68c-0b9f30b1ff07">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>lockId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c11646a8-f13a-436b-a8bb-be204bcd5f62">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>failureFlagValue</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>failure</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="8858a4ec-3a81-4ca1-a0db-f92e2cf43021">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>06d88322-3a89-41f2-a156-c27a99a795e9</refId>
+          </destination>
+          <source>
+            <refId>11b04335-ea5b-4ba1-bd4d-8d847a58e8bf</refId>
+          </source>
+          <positions>
+            <point>
+              <x>50.0</x>
+              <y>34.0</y>
+            </point>
+            <point>
+              <x>481.0</x>
+              <y>54.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="a18e28e0-960f-41fc-a3f3-8a18e62c9be6">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>23101bd6-2342-455e-b735-9166b22fa80a</refId>
+          </destination>
+          <source>
+            <refId>11b04335-ea5b-4ba1-bd4d-8d847a58e8bf</refId>
+          </source>
+          <positions>
+            <point>
+              <x>272.0</x>
+              <y>67.27602905569007</y>
+            </point>
+            <point>
+              <x>257.0</x>
+              <y>210.0</y>
+            </point>
+            <point>
+              <x>257.0</x>
+              <y>210.0</y>
+            </point>
+            <point>
+              <x>671.0</x>
+              <y>224.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ac1aa34e-9ff8-4df6-a9cf-be0e2c5dd8da</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="ccae5911-d701-4a17-8120-abd6282633c3">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="b4ebe32b-044b-44b5-9649-5d5583a89a7c">
+            <annotation></annotation>
+            <name>Result: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4a6e8034-b024-43cb-962b-6073b561676e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssPassword</contextKey>
+          <expression id="b03e40ad-89b4-441c-9289-9eba68780262">
+            <annotation></annotation>
+            <name>Result Field: mssOperatorPassword</name>
+            <fieldName>mssOperatorPassword</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="98dd1ee6-757e-4b82-a2ee-c4ea47362d3d">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>xmuPassword</contextKey>
+          <expression id="69e6cb95-f205-47f0-b739-55b6f9647b89">
+            <annotation></annotation>
+            <name>Result Field: mssXMUPassword</name>
+            <fieldName>mssXMUPassword</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="670f73f2-8c03-471d-90fc-e255eb22786b">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>mssUsername</contextKey>
+          <expression id="2300f995-23cd-4ff2-840b-d46a1752d518">
+            <annotation></annotation>
+            <name>Result Field: mssOperatorUsername</name>
+            <fieldName>mssOperatorUsername</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fcaf783d-9117-40b2-90e6-4ffa6ba3615f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>xmuUsername</contextKey>
+          <expression id="fe4e4932-37bd-46a6-b39e-812d3e8b0f44">
+            <annotation></annotation>
+            <name>Result Field: mssXMUUsername</name>
+            <fieldName>mssXMUUsername</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="86ee85e8-ed2b-473b-9875-77e81d3e240b">
+      <annotation></annotation>
+      <name>Resolved : success</name>
+      <bounds>
+        <x>621.0</x>
+        <y>20.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="ae67961a-6f04-4b20-bf11-e6d36adba6ea">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>xmuUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b09f2e67-909d-4b24-9f9e-8eb92909a185">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>xmuPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3113661c-476c-4ecf-b0a8-7a2d686c94d4">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="909e7b8f-9336-4deb-9c32-0cbc8e61197a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>mssPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2cfad543-44f8-4cfc-8356-3fc91a04b461">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>sshRelayUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="289e6cec-6cb6-40be-b70c-0b5d7bb9e750">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>sshRelayPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="65f38eb5-f2e2-4bb5-8463-e6cecf2f14ff">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>86ee85e8-ed2b-473b-9875-77e81d3e240b</refId>
+          </destination>
+          <source>
+            <refId>86ee85e8-ed2b-473b-9875-77e81d3e240b</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="50bb482a-890d-4eba-8fea-1f655496e2f7">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>sshRelayPassword</contextKey>
+          <expression id="81c84b04-52e0-4e6b-b274-2594426c1e4f">
+            <annotation></annotation>
+            <name>Input: sshRelayPassword</name>
+            <fieldName>sshRelayPassword</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f4455d75-e3a6-41f2-8c3a-c88f16d307ce">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>sshRelayUsername</contextKey>
+          <expression id="7c7e4184-2e06-47b4-91e9-e81658859ad6">
+            <annotation></annotation>
+            <name>Input: sshRelayUsername</name>
+            <fieldName>sshRelayUsername</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6770edb2-80d2-4acb-934a-9773d954a5f5">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>xmuUsername</contextKey>
+          <expression id="b887c1a6-5d44-48fe-b599-43524c0ce78f">
+            <annotation></annotation>
+            <name>Input: xmuUsername</name>
+            <fieldName>xmuUsername</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f103468e-1b87-471c-8d68-58da4802f866">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>xmuPassword</contextKey>
+          <expression id="6d64805f-b27e-4bca-a32f-ed6cc6037046">
+            <annotation></annotation>
+            <name>Input: xmuPassword</name>
+            <fieldName>xmuPassword</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fb897afd-150b-4b88-89cf-f097ac28d5c9">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>mssUsername</contextKey>
+          <expression id="99740d86-e3f1-46a2-b929-58d5f7d4a8a1">
+            <annotation></annotation>
+            <name>Input: mssUsername</name>
+            <fieldName>mssUsername</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4eac17e3-8fec-4636-bf5a-ce2dedd0dc0a">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>mssPassword</contextKey>
+          <expression id="aaf5513e-7075-471d-81ca-c67e3bc66b7e">
+            <annotation></annotation>
+            <name>Input: mssPassword</name>
+            <fieldName>mssPassword</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="23101bd6-2342-455e-b735-9166b22fa80a">
+      <annotation></annotation>
+      <name>Error : failure</name>
+      <bounds>
+        <x>621.0</x>
+        <y>174.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="8f647c31-81c5-4103-8951-de7f2a63d2eb">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>An error occured while picing mss account from account pool</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="8a7ae8b7-32f2-4075-8939-09cf58dcf140">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>23101bd6-2342-455e-b735-9166b22fa80a</refId>
+          </destination>
+          <source>
+            <refId>23101bd6-2342-455e-b735-9166b22fa80a</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="176cea77-f1d7-41cd-b8d3-aedf0161b474">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="59787b41-c39e-4a1b-8a13-a529d179fcc8">
+            <annotation></annotation>
+            <name>Input: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <step id="06d88322-3a89-41f2-a156-c27a99a795e9">
+      <annotation>d9d4cc68-608f-4741-8a65-edc37e1a126b.06d88322-3a89-41f2-a156-c27a99a795e9.description</annotation>
+      <name>Extract SSH Relay User</name>
+      <bounds>
+        <x>431.0</x>
+        <y>20.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="0f7f8916-1079-43ec-9b02-dfd445501fa6">
+        <baseIcon>scriptlet.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="0655e923-f8d5-4ab9-9b5e-858204259c9c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>accountName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>WBC/Utility Operations/MSS_V1.00/sshRelayUsername</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0e56e5be-b6ee-4a4b-86d0-6599d6039267">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flowVariable</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>sshRelay</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="f178ceb4-4792-4762-a8c2-fdc0a1848cc9">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>86ee85e8-ed2b-473b-9875-77e81d3e240b</refId>
+          </destination>
+          <source>
+            <refId>06d88322-3a89-41f2-a156-c27a99a795e9</refId>
+          </source>
+          <positions>
+            <point>
+              <x>440.0</x>
+              <y>64.0</y>
+            </point>
+            <point>
+              <x>571.0</x>
+              <y>57.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="7cd97036-8641-4534-8d5e-73741cb75e8c">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>23101bd6-2342-455e-b735-9166b22fa80a</refId>
+          </destination>
+          <source>
+            <refId>06d88322-3a89-41f2-a156-c27a99a795e9</refId>
+          </source>
+          <positions>
+            <point>
+              <x>493.0</x>
+              <y>83.9375</y>
+            </point>
+            <point>
+              <x>480.0</x>
+              <y>210.0</y>
+            </point>
+            <point>
+              <x>480.0</x>
+              <y>210.0</y>
+            </point>
+            <point>
+              <x>671.0</x>
+              <y>224.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>92691ce9-2262-45d8-b2c3-3ae7c44d7e47</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="cd8c1b21-37b4-467f-89fd-ef47858b1036">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="9ca89776-28d5-4dde-882d-abc596ed0dbb">
+            <annotation></annotation>
+            <name>Result Field: returnResult</name>
+            <fieldName>returnResult</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+  </steps>
+  <startSteps>11b04335-ea5b-4ba1-bd4d-8d847a58e8bf</startSteps>
+</flow>

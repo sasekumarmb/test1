@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="25c8cb68-6e6e-471a-9dba-ec01a7545a7d">
+  <descriptionCdata><![CDATA[25c8cb68-6e6e-471a-9dba-ec01a7545a7d.50f26a8d-b3d5-47f4-ae19-c78c2a681707.transition.description=loan is active
+25c8cb68-6e6e-471a-9dba-ec01a7545a7d.a149189c-a30d-4c12-a141-8cacfbf1931b.description=<pre> \nCheck to see if the value stored in a specified flow variable, denoted by key, is null.\n\nInputs\:\n    keyName - The key to check, i.e. the name of the flow variable. \n    trimSpaces - If set on "true" then all the whitespaces will be removed from the value stored. \nValid values\: true, false\nDefault value\: false\n\nReturns\: \n    The value in the specified key, i.e. flow variable with all whitespaces removed.\n\nResponses\:\n    isNull - If the key is a null pointer, i.e. the flow variable doesn't have an assigned value.\n    notNull - If some value is stored in the key, i.e the flow variable has a value assigned. \n\nNotes\: \n    1. If the "trimSpaces" input is set on "true" and the value from "keyName" contains only whitespaces then the response will be "isNull". \n    2. If the "trimSpaces" input is set on "false" and the value from "keyName" contains only whitespaces then the response will be "notNull". \n    3. If any other value than "true" or "false" is passed on "trimSpaces" input then the default value (false) will be used.\n</pre>
+25c8cb68-6e6e-471a-9dba-ec01a7545a7d.aa4a9101-3690-4825-b114-be1ac9167dfa.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+25c8cb68-6e6e-471a-9dba-ec01a7545a7d.cf4adb0e-d42a-4269-aa92-3740bff6d1db.transition.description=loan is active
+25c8cb68-6e6e-471a-9dba-ec01a7545a7d.e7c166ed-6962-47eb-9e08-6d9e8743b010.transition.description=loan is inactive
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Check Loan is Active</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="82971b82-5621-4587-ad0f-d4304ed7bed1">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>mssCloseDate</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="4a589cf8-1752-4b6e-a44d-0f0b12daad14">
+      <annotation></annotation>
+      <name>Loan is Active</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="f253ee65-91a3-4326-bf80-4307e1050406">
+      <annotation></annotation>
+      <name>Loan is inactive</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="6120cb2d-8e41-492c-a7ca-807cc10f0cf0">
+      <annotation></annotation>
+      <name>flagActiveLoan</name>
+      <fieldName>flagActiveLoan</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="5a256946-a9c1-4926-8556-30442383c5c8">
+      <annotation></annotation>
+      <name>loanStatus</name>
+      <fieldName>loanStatus</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="d8dcf252-de87-471a-9c58-e8513c3f7f4b">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="99f98fd2-790f-4b42-80ef-b9f644b69365">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="a149189c-a30d-4c12-a141-8cacfbf1931b">
+      <annotation>25c8cb68-6e6e-471a-9dba-ec01a7545a7d.a149189c-a30d-4c12-a141-8cacfbf1931b.description</annotation>
+      <name>mss close date is null?</name>
+      <bounds>
+        <x>70.0</x>
+        <y>240.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="3dbfdb6b-f2c9-4c36-95de-04b58b52215e">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="637ced39-1be4-4595-86d2-b10f207aa72e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keyName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>mssCloseDate</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8908ad69-ee63-4fec-844b-5a3d4a58b4a0">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>trimSpaces</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="cf4adb0e-d42a-4269-aa92-3740bff6d1db">
+          <annotation>25c8cb68-6e6e-471a-9dba-ec01a7545a7d.cf4adb0e-d42a-4269-aa92-3740bff6d1db.transition.description</annotation>
+          <name>loan is active</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>isNull</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a91f0650-952c-4b8b-a88c-16ccf4bd21e7</refId>
+          </destination>
+          <source>
+            <refId>a149189c-a30d-4c12-a141-8cacfbf1931b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>155.0</x>
+              <y>263.38495575221236</y>
+            </point>
+            <point>
+              <x>120.0</x>
+              <y>90.0</y>
+            </point>
+            <point>
+              <x>120.0</x>
+              <y>90.0</y>
+            </point>
+            <point>
+              <x>120.0</x>
+              <y>90.0</y>
+            </point>
+            <point>
+              <x>560.0</x>
+              <y>100.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>180.56007469420788</x>
+            <y>1.5799504352879217</y>
+          </labelPosition>
+        </transition>
+        <transition id="5c52347f-cc06-4bd7-a944-094b8ff78969">
+          <annotation></annotation>
+          <name>notNull</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>notNull</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>aa4a9101-3690-4825-b114-be1ac9167dfa</refId>
+          </destination>
+          <source>
+            <refId>a149189c-a30d-4c12-a141-8cacfbf1931b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>110.0</x>
+              <y>274.0</y>
+            </point>
+            <point>
+              <x>240.0</x>
+              <y>274.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>b9997f7f-d19c-4dc6-acc4-fa91a8644a38</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="aa4a9101-3690-4825-b114-be1ac9167dfa">
+      <annotation>25c8cb68-6e6e-471a-9dba-ec01a7545a7d.aa4a9101-3690-4825-b114-be1ac9167dfa.description</annotation>
+      <name>mss close date is null?</name>
+      <bounds>
+        <x>190.0</x>
+        <y>240.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="b47232ec-a528-4910-a353-6843755b2d93">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="18ba4c13-11ac-4282-8361-79a1b5c5461d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Exact Match</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0d323d92-620b-412e-8f2b-41bad651c461">
+          <annotation></annotation>
+          <fromContextKey>mssCloseDate</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1d0a98ad-2772-4995-8454-e36ce4b6e6c6">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>null</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a74c6e4d-6f9d-4244-b7c1-1a8530ec00f9">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="50f26a8d-b3d5-47f4-ae19-c78c2a681707">
+          <annotation>25c8cb68-6e6e-471a-9dba-ec01a7545a7d.50f26a8d-b3d5-47f4-ae19-c78c2a681707.transition.description</annotation>
+          <name>loan is active</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a91f0650-952c-4b8b-a88c-16ccf4bd21e7</refId>
+          </destination>
+          <source>
+            <refId>aa4a9101-3690-4825-b114-be1ac9167dfa</refId>
+          </source>
+          <positions>
+            <point>
+              <x>492.5</x>
+              <y>266.8975069252078</y>
+            </point>
+            <point>
+              <x>240.0</x>
+              <y>90.0</y>
+            </point>
+            <point>
+              <x>240.0</x>
+              <y>90.0</y>
+            </point>
+            <point>
+              <x>240.0</x>
+              <y>90.0</y>
+            </point>
+            <point>
+              <x>1160.0</x>
+              <y>80.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>278.7447460880526</x>
+            <y>4.343477775607781</y>
+          </labelPosition>
+        </transition>
+        <transition id="e7c166ed-6962-47eb-9e08-6d9e8743b010">
+          <annotation>25c8cb68-6e6e-471a-9dba-ec01a7545a7d.e7c166ed-6962-47eb-9e08-6d9e8743b010.transition.description</annotation>
+          <name>loan is inactive</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>32708fee-afdd-4752-a684-efa0e08121f9</refId>
+          </destination>
+          <source>
+            <refId>aa4a9101-3690-4825-b114-be1ac9167dfa</refId>
+          </source>
+          <positions>
+            <point>
+              <x>440.0</x>
+              <y>274.0</y>
+            </point>
+            <point>
+              <x>1160.0</x>
+              <y>274.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="a91f0650-952c-4b8b-a88c-16ccf4bd21e7">
+      <annotation></annotation>
+      <name>Resolved : Loan is Active</name>
+      <bounds>
+        <x>510.0</x>
+        <y>50.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="3f259e4d-dee6-486f-ae21-f17ea5abf820">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flagActiveLoan</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ea268ab5-806e-4d95-a240-c0e9f5ae8948">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>loanStatus</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>OPEN</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b2e8f974-502c-4191-ab1b-78dca58fd512">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Loan is Active</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a91f0650-952c-4b8b-a88c-16ccf4bd21e7</refId>
+          </destination>
+          <source>
+            <refId>a91f0650-952c-4b8b-a88c-16ccf4bd21e7</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="a06e0ebb-af2b-423a-bdeb-1cc53b2548bd">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>loanStatus</contextKey>
+          <expression id="fd9aeb34-eaa4-4cbb-92ef-290434ddd1d0">
+            <annotation></annotation>
+            <name>Input: loanStatus</name>
+            <fieldName>loanStatus</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="cf3def47-6abd-4ed6-86d7-bd0e83ce5af4">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flagActiveLoan</contextKey>
+          <expression id="a5f1ee4c-be8c-487a-ac0a-09468a1b6ef7">
+            <annotation></annotation>
+            <name>Input: flagActiveLoan</name>
+            <fieldName>flagActiveLoan</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="32708fee-afdd-4752-a684-efa0e08121f9">
+      <annotation></annotation>
+      <name>No Action Taken : Loan is inactive</name>
+      <bounds>
+        <x>510.0</x>
+        <y>240.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="01bc32fb-1204-4e35-ad09-2e5caf57ad1e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>flagActiveLoan</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>False</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5e983b98-fc1b-4924-9697-74e517b1a3bb">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>loanStatus</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>CLOSED</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="e13496b2-6f7b-459b-b7fc-6577af584e0b">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Loan is inactive</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>32708fee-afdd-4752-a684-efa0e08121f9</refId>
+          </destination>
+          <source>
+            <refId>32708fee-afdd-4752-a684-efa0e08121f9</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>NO_ACTION_TAKEN</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="9572761d-5c6c-4e77-9920-f8b69375ea97">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>loanStatus</contextKey>
+          <expression id="4619d5a1-4afc-42f4-9d3c-f113f049dc94">
+            <annotation></annotation>
+            <name>Input: loanStatus</name>
+            <fieldName>loanStatus</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="e8cf63e6-c528-4a8c-935f-0ce034c05020">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>flagActiveLoan</contextKey>
+          <expression id="4413af1e-02ec-451c-94ef-963a4a26a202">
+            <annotation></annotation>
+            <name>Input: flagActiveLoan</name>
+            <fieldName>flagActiveLoan</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+  </steps>
+  <startSteps>a149189c-a30d-4c12-a141-8cacfbf1931b</startSteps>
+</flow>

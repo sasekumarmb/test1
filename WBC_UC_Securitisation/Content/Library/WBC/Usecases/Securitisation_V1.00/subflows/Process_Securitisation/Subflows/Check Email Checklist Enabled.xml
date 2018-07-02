@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="c5eef47c-6bae-424c-8da5-536ab4f5795e">
+  <descriptionCdata><![CDATA[c5eef47c-6bae-424c-8da5-536ab4f5795e.3aeedd03-90fe-4b33-8ccd-5eb5f713be20.transition.description=sent check list
+c5eef47c-6bae-424c-8da5-536ab4f5795e.8ad2e2ef-ba47-4826-867f-0ad21a67c309.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+c5eef47c-6bae-424c-8da5-536ab4f5795e.b94b25d6-2e5d-4728-9300-7388a2d19b63.transition.description=don't send check list
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Check Email Checklist Enabled</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="53edb269-9633-4951-9ed6-faef55e0b296">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>checklistEnabled</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="e901dc9c-10ac-46d4-aaf0-418bca7034a0">
+      <annotation></annotation>
+      <name>send checklist</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="09b13aaa-07d7-4178-913f-e14fe8384cd3">
+      <annotation></annotation>
+      <name>Don&apos;t send  checklist</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="4d9ed016-b240-4130-93be-507aea91c506">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="35cc959d-5354-44f4-9c67-51862f83b4b3">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="8ad2e2ef-ba47-4826-867f-0ad21a67c309">
+      <annotation>c5eef47c-6bae-424c-8da5-536ab4f5795e.8ad2e2ef-ba47-4826-867f-0ad21a67c309.description</annotation>
+      <name>checklistEnabled ?</name>
+      <bounds>
+        <x>286.0</x>
+        <y>140.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="29851429-1869-47d0-a4a9-635136cfdce6">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="c382985b-e546-47d4-8530-ced45e31cffc">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Exact Match</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6d68f96c-3aee-45ea-a61a-c44eabecefec">
+          <annotation></annotation>
+          <fromContextKey>checklistEnabled</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="74397ada-7792-43af-8522-617a742ce39d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>TRUE</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3c454574-bc09-4499-915e-90f73e41c48d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="3aeedd03-90fe-4b33-8ccd-5eb5f713be20">
+          <annotation>c5eef47c-6bae-424c-8da5-536ab4f5795e.3aeedd03-90fe-4b33-8ccd-5eb5f713be20.transition.description</annotation>
+          <name>sent check list</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>421262a8-248b-4776-a55d-584fb4023477</refId>
+          </destination>
+          <source>
+            <refId>8ad2e2ef-ba47-4826-867f-0ad21a67c309</refId>
+          </source>
+          <positions>
+            <point>
+              <x>336.0</x>
+              <y>174.0</y>
+            </point>
+            <point>
+              <x>551.0</x>
+              <y>153.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="b94b25d6-2e5d-4728-9300-7388a2d19b63">
+          <annotation>c5eef47c-6bae-424c-8da5-536ab4f5795e.b94b25d6-2e5d-4728-9300-7388a2d19b63.transition.description</annotation>
+          <name>don&apos;t send check list</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3f9258cf-1459-42a0-b691-db10433bab8f</refId>
+          </destination>
+          <source>
+            <refId>8ad2e2ef-ba47-4826-867f-0ad21a67c309</refId>
+          </source>
+          <positions>
+            <point>
+              <x>336.0</x>
+              <y>174.0</y>
+            </point>
+            <point>
+              <x>553.0</x>
+              <y>313.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="3f9258cf-1459-42a0-b691-db10433bab8f">
+      <annotation></annotation>
+      <name>Error : Don&apos;t send  checklist</name>
+      <bounds>
+        <x>503.0</x>
+        <y>279.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="680283ac-5349-4e5e-ab34-2237e71ca075">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>Don&apos;t send  checklist</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3f9258cf-1459-42a0-b691-db10433bab8f</refId>
+          </destination>
+          <source>
+            <refId>3f9258cf-1459-42a0-b691-db10433bab8f</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="421262a8-248b-4776-a55d-584fb4023477">
+      <annotation></annotation>
+      <name>Resolved : send checklist</name>
+      <bounds>
+        <x>501.0</x>
+        <y>119.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="7edfd28c-a020-4fd7-a635-4d914da8869d">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>send checklist</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>421262a8-248b-4776-a55d-584fb4023477</refId>
+          </destination>
+          <source>
+            <refId>421262a8-248b-4776-a55d-584fb4023477</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>8ad2e2ef-ba47-4826-867f-0ad21a67c309</startSteps>
+</flow>

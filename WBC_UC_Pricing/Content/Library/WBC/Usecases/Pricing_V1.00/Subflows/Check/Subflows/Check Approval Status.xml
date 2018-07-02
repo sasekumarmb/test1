@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="0ea228c9-c2e7-40f8-be50-b4bd7122363d">
+  <descriptionCdata><![CDATA[0ea228c9-c2e7-40f8-be50-b4bd7122363d.0b4d1aec-d244-41ef-9780-05ee0d3e2484.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+0ea228c9-c2e7-40f8-be50-b4bd7122363d.496d1a86-6ad4-40fc-9f6d-ddcb3a4139bc.transition.description=accepted
+0ea228c9-c2e7-40f8-be50-b4bd7122363d.b0aa6446-83d2-4635-ab46-6c65baa716e2.transition.description=withdrawn
+0ea228c9-c2e7-40f8-be50-b4bd7122363d.description=<pre>\nThis flow checks Approval Status column based on input parameters Approval Status, \u201CApproved\u201D, and Comments. If column does not match the value, call Set_SLS_Flag module to return \u201CWithdrawn\u201D flag.\n\nInputs\:\n   approvalStatus\:The approvalStatus Value\n   approvalValue \: By default the value is set to\u201CAccepted\u201D\n   flagValue \:By default the value is set to \u201CNot to be loaded\u201D\n\n\n\nResponses\:\n    success - The operation completed as stated in the description.\n\n</pre>
+]]></descriptionCdata>
+  <annotation>0ea228c9-c2e7-40f8-be50-b4bd7122363d.description</annotation>
+  <name>Check Approval Status</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="3ed05a92-9d76-47af-ae96-830a79f4e763">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>approvalStatus</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4651a997-5d8a-4f22-add1-a4603f65163b">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>approvalValue</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>Approved</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="12517f33-516a-4f6d-9438-3916c9283bb9">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>flagValue</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>Withdrawn</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="1043b0b7-83db-46cd-83fe-7359294b46ec">
+      <annotation></annotation>
+      <name>approved</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="6869caec-ae65-413e-986e-902e72c7f44b">
+      <annotation></annotation>
+      <name>withdrawn</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="3a5f8812-f5eb-42dc-b6cb-775c0398262a">
+      <annotation></annotation>
+      <name>approvalFlag</name>
+      <fieldName>approvalFlag</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="a829361f-bfc1-4a5b-a55f-8c4e843ca80b">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="ad689f00-3be3-446b-8ce5-c4e0c928c1ac">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="0b4d1aec-d244-41ef-9780-05ee0d3e2484">
+      <annotation>0ea228c9-c2e7-40f8-be50-b4bd7122363d.0b4d1aec-d244-41ef-9780-05ee0d3e2484.description</annotation>
+      <name>Check Approval Status</name>
+      <bounds>
+        <x>21.0</x>
+        <y>45.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="97788eb3-5321-43f1-a617-e38343f38f5c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Exact Match</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b86f243e-12a9-4462-80ee-d5f062b1bf23">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${approvalStatus}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="43571d46-be71-4299-a6fb-c79c9cdedcc5">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${approvalValue}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="060b1dfb-f063-48bd-a1e0-a21dc3aa8b6e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>True</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="496d1a86-6ad4-40fc-9f6d-ddcb3a4139bc">
+          <annotation>0ea228c9-c2e7-40f8-be50-b4bd7122363d.496d1a86-6ad4-40fc-9f6d-ddcb3a4139bc.transition.description</annotation>
+          <name>accepted</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>44db9e9b-62e9-46ce-8b20-8e53c7002249</refId>
+          </destination>
+          <source>
+            <refId>0b4d1aec-d244-41ef-9780-05ee0d3e2484</refId>
+          </source>
+          <positions>
+            <point>
+              <x>123.5</x>
+              <y>104.85355648535565</y>
+            </point>
+            <point>
+              <x>70.0</x>
+              <y>261.0</y>
+            </point>
+            <point>
+              <x>70.0</x>
+              <y>261.0</y>
+            </point>
+            <point>
+              <x>308.0</x>
+              <y>278.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="b0aa6446-83d2-4635-ab46-6c65baa716e2">
+          <annotation>0ea228c9-c2e7-40f8-be50-b4bd7122363d.b0aa6446-83d2-4635-ab46-6c65baa716e2.transition.description</annotation>
+          <name>withdrawn</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>121a3698-85bc-4fce-b83a-3772415bcb48</refId>
+          </destination>
+          <source>
+            <refId>0b4d1aec-d244-41ef-9780-05ee0d3e2484</refId>
+          </source>
+          <positions>
+            <point>
+              <x>71.0</x>
+              <y>79.0</y>
+            </point>
+            <point>
+              <x>440.0</x>
+              <y>34.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="44db9e9b-62e9-46ce-8b20-8e53c7002249">
+      <annotation></annotation>
+      <name>Resolved : approved</name>
+      <bounds>
+        <x>258.0</x>
+        <y>226.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="eb571785-904f-4f6a-9533-2ccaf2e71436">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>approvalFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="8d45377b-03b0-491c-8008-6ede61d90b7f">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>approved</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>44db9e9b-62e9-46ce-8b20-8e53c7002249</refId>
+          </destination>
+          <source>
+            <refId>44db9e9b-62e9-46ce-8b20-8e53c7002249</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="b2d78921-e1cc-4e9b-8033-1f6f72ea1bfa">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>approvalFlag</contextKey>
+          <expression id="ff215093-12be-4152-9038-e244602551ae">
+            <annotation></annotation>
+            <name>Input: approvalFlag</name>
+            <fieldName>approvalFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <returnStep id="121a3698-85bc-4fce-b83a-3772415bcb48">
+      <annotation></annotation>
+      <name>Error : withdrawn</name>
+      <bounds>
+        <x>258.0</x>
+        <y>45.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="3657941d-f863-40e8-b836-868e60a3f868">
+          <annotation></annotation>
+          <fromContextKey>flagValue</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>approvalFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b3c42aed-552e-4891-aa6e-689e0c1b1c87">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>withdrawn</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>121a3698-85bc-4fce-b83a-3772415bcb48</refId>
+          </destination>
+          <source>
+            <refId>121a3698-85bc-4fce-b83a-3772415bcb48</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="f669bddd-829e-4c73-a1a2-5511753749a5">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>approvalFlag</contextKey>
+          <expression id="ddecfd42-a825-4d79-9767-f752eb3e7606">
+            <annotation></annotation>
+            <name>Input: approvalFlag</name>
+            <fieldName>approvalFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+  </steps>
+  <startSteps>0b4d1aec-d244-41ef-9780-05ee0d3e2484</startSteps>
+</flow>

@@ -1,0 +1,1796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="e8a8ca17-3f36-4228-bae0-49d6c06dc044">
+  <descriptionCdata><![CDATA[e8a8ca17-3f36-4228-bae0-49d6c06dc044.02c06be6-b8e1-4a69-bfab-a6b03a96ba2b.transition.description=some psw emails
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.0aab0f22-c2c3-47ba-a913-d12f27dff431.description=<pre> \nCheck to see if the value stored in a specified flow variable, denoted by key, is null.\n\nInputs\:\n    keyName - The key to check, i.e. the name of the flow variable. \n    trimSpaces - If set on "true" then all the whitespaces will be removed from the value stored. \nValid values\: true, false\nDefault value\: false\n\nReturns\: \n    The value in the specified key, i.e. flow variable with all whitespaces removed.\n\nResponses\:\n    isNull - If the key is a null pointer, i.e. the flow variable doesn't have an assigned value.\n    notNull - If some value is stored in the key, i.e the flow variable has a value assigned. \n\nNotes\: \n    1. If the "trimSpaces" input is set on "true" and the value from "keyName" contains only whitespaces then the response will be "isNull". \n    2. If the "trimSpaces" input is set on "false" and the value from "keyName" contains only whitespaces then the response will be "notNull". \n    3. If any other value than "true" or "false" is passed on "trimSpaces" input then the default value (false) will be used.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.314da0af-eed7-41f9-a800-716cdaa97e42.transition.description=valid sender
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.33e86d2f-e93c-4200-9df7-07343837bc4b.description=<pre>This Flow fetches the Folder ID from the mailbox based  on the Folder path.\n\nInputs\:\n\n    ewsEndPoint - ews end point url to connect to exchange server fusing API call.\nExample\: https\://casarray01.edscs-npe.local/EWS/Exchange.asmx\n    username\t- Exchange username \n    password\t- Exchange user password\n    path\t- Mailbox folder path\nExample\: Group Mailboxes\\Westpac Automation\\Pricing\\Inbound\n\nResults\:\n    inboundFolderID - Folder ID is retrieved from the mail box.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.3dd1c130-6a2a-4873-8173-f904b47c1217.description=<pre>This Flow fetches the Email ID from the mailbox based  on the folder ID.\n\nInputs\:\n\n    ewsEndPoint - ews end point url to connect to exchange server fusing API call.\nExample\: https\://casarray01.edscs-npe.local/EWS/Exchange.asmx\n    \n    version - Exchange version\nExample\: Exchange2010_SP2\n\n    username\t- Exchange username \n    password\t- Exchange user password\n    folderID\t- Mailbox folder ID\n\n\nResults\:\n    emailID - email ID is retrieved from the mail box.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.6ebe9dfc-1d7e-4383-ba0e-a0da311d1d9e.description=<pre>\nThis operation adds a flow variable to the local context. The variable is available in the current flow and its child flows.\n\nInputs\:\n    keyName - The name of the flow variable to add.\n    myValue - The value to assign to the flow variable.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of "myValue" input field.\n\nResponses\:\n    success - The operation completed as stated in the description.\n\nNote\:\n   If a flow variable with the same name already exists, its value will be overwritten.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.95c5bc69-6803-470e-b9b7-d6a1de6ef57f.description=<pre>Useful Op to keep a running results.\nTakes a string input (resultText) and appends this to a global context key of "runningResults". As a result, the context key whose name is in the keyName input will be appended with the string from the input resultText.\n\nInput Parameters\:\nkeyName - name of context key to append to\nresultText - string input to append\ndelimiter - (leave blank for none) the delimiter to put between what is already in keyName before appending resultText\n\nResponses\:\nsuccess - assigned the context variable\n\nReturns\:\nThe value of the context variable it appended to.\n\nContext\:\nrunningResults\n\nScriptlet Example\:\ncurrentResults \= scriptletContext.get("runningResults");\n\nif (currentResults \=\= null) {\n   currentResults \= resultText;\n} else {\n   currentResults +\= resultText;\n}\n\n\nscriptletContext.putGlobal("runningResults", currentResults);</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.9b525e67-ba8a-4919-bfaf-41ec24b0a6e6.description=<pre>This operation iterates through a list of values. It is not recommended to modify the value of the "list" and "separator" inputs during the iteration process.\n\nInputs\:\n    list - The list to iterate through.\n    separator - A delimiter separating the list elements.\nDefault value\: \u2018,\u2019 (comma) \n\nResults\:\n    resultString - The current list element (if the response is "has more").\n\nResponses\:\n    has more - Another value was found in the list and it has been returned.\n    no more - The iterator has gone through the entire list. This response is returned once per list iteration.  A subsequent call to the List iterator operation restarts the list iteration process.\n    failure - The operation completed unsuccessfully.\n\nNote\:\n   The position of the iterator in the list is tracked by each step's unique identifier. Therefore, you can simultaneously iterate through the same list from multiple steps.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.bb8f8dd9-46fe-4135-a3af-708edabf06b9.transition.description=no product switch mails
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.c611d4cd-d6e1-443f-80a6-f7c8d7eb5c1b.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.ce059e9e-85a9-4286-a2ae-44b1598b2913.description=<pre>This Flow fetches the Folder ID from the mailbox based  on the Folder path.\n\nInputs\:\n\n    ewsEndPoint - ews end point url to connect to exchange server fusing API call.\nExample\: https\://casarray01.edscs-npe.local/EWS/Exchange.asmx\n    username\t- Exchange username \n    password\t- Exchange user password\n    path\t- Mailbox folder path\nExample\: Group Mailboxes\\Westpac Automation\\Pricing\\Inbound\n\nResults\:\n    inboundFolderID - Folder ID is retrieved from the mail box.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.de379849-3906-41f9-ab49-8dfa1eb0acdd.description=<pre>This Flow fetches the Email details from the mailbox based  on the email ID.\n\nInputs\:\n\n    ewsEndPoint - ews end point url to connect to exchange server fusing API call.\nExample\: https\://casarray01.edscs-npe.local/EWS/Exchange.asmx\n    \n    version - Exchange version\nExample\: Exchange2010_SP2\n\n    username\t- Exchange username \n    password\t- Exchange user password\n    emailID\t- email ID\n\n\nResults\:\n    attachmentIds     - Email Attachments IDs\n    body\t           - Body of the email\n    dateTimeSent      - date when mail was recieved\n    hasAttachments  - true if email has attachments\n    isRead\t          - true if reading mail was successful\n    senderAddress   - email sender address\n    subject\t          - subject line of the email\n\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.df72c97f-0652-4945-a23b-30e01f6df790.transition.description=invalid sender
+e8a8ca17-3f36-4228-bae0-49d6c06dc044.e3f23356-d74e-4b45-9659-04e3def5a56c.description=<pre>This operation checks whether a string matches another string, using a specific matching rule. The "toMatch" input is the string that is checked for matching the "matchTo" expression. \n\nInputs\:\n    matchType - The type of match to perform.\nValid values\: Exact Match, Contains, Contains Once, Does Not Contain, Match All Words, Match No Words, Regex (The values are not case sensitive)\nDefault value\: Exact Match\n    toMatch - The string that is checked for matching.\n    matchTo - The string to match against.\nExample\: If "matchType" is \u201CRegEx\u201D, the "matchTo" input is a regular expression such as\: ^-?\\d+(([\\.,]\\d+)?)+$. \n    ignoreCase - Specifies whether to ignore case when matching or not.\nValid values\: False, True\nDefault value\: False\n\nResults\:\n    returnResult - This is the primary output. It contains the string "Matches" if the "toMatch" string matches the "matchTo" string. Otherwise, it contains the string "Does Not Match".  \n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n</pre>
+]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Get ProductSwitch Emails</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="8e3f7164-9a26-4b1e-b027-e6e4f89fa913">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>limit</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="a96af1ec-21e0-4208-90d3-d11ede3ac0d1">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="8c29251c-99ba-445a-a336-d7017e8cf0b9">
+      <annotation></annotation>
+      <name>no emails</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="83d66815-da4e-42ba-83f3-ec5b80cda52d">
+      <annotation></annotation>
+      <name>only product switch emails</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="8b2b36d6-f3b3-4583-bfdd-51d0f5b6663e">
+      <annotation></annotation>
+      <name>automationFailureFlag</name>
+      <fieldName>automationFailureFlag</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="4e1db288-a823-4f75-b058-9cd4ce3f8de7">
+      <annotation></annotation>
+      <name>errorMessage</name>
+      <fieldName>errorMessage</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="56f6b125-c9ae-4200-9d88-d4a232f3c572">
+      <annotation></annotation>
+      <name>productSwitchEmailIds</name>
+      <fieldName>productSwitchEmailIds</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="2efabebb-2b6b-4885-9c35-fd4c37928f92">
+    <annotation></annotation>
+    <name>pricingEmailIds</name>
+    <fieldName>pricingEmailIds</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="7f542a75-7c0f-4576-ae61-8300824eb229">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="ce059e9e-85a9-4286-a2ae-44b1598b2913">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.ce059e9e-85a9-4286-a2ae-44b1598b2913.description</annotation>
+      <name>Get Inbound Folder ID</name>
+      <bounds>
+        <x>11.0</x>
+        <y>130.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="718792f1-24a2-4264-b290-980e16fb95d0">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="14cc038e-bba5-4995-8f9f-3bad76f76b57">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/ProductSwitch_V1.00/InboundFolder</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>path</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="a8d09f0f-995d-414d-89db-11ce1eab7885">
+          <annotation></annotation>
+          <name>folder id retrived</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>3dd1c130-6a2a-4873-8173-f904b47c1217</refId>
+          </destination>
+          <source>
+            <refId>ce059e9e-85a9-4286-a2ae-44b1598b2913</refId>
+          </source>
+          <positions>
+            <point>
+              <x>74.0</x>
+              <y>64.0</y>
+            </point>
+            <point>
+              <x>230.0</x>
+              <y>59.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>495.36207284256443</x>
+            <y>0.45144746918958956</y>
+          </labelPosition>
+        </transition>
+        <transition id="46714cae-d480-4282-801d-a10abd37e7f8">
+          <annotation></annotation>
+          <name>not found</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>not found</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>6ebe9dfc-1d7e-4383-ba0e-a0da311d1d9e</refId>
+          </destination>
+          <source>
+            <refId>ce059e9e-85a9-4286-a2ae-44b1598b2913</refId>
+          </source>
+          <positions>
+            <point>
+              <x>50.0</x>
+              <y>44.0</y>
+            </point>
+            <point>
+              <x>80.0</x>
+              <y>214.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>554.5545409408714</x>
+            <y>-1.6402480102056793</y>
+          </labelPosition>
+        </transition>
+        <transition id="38ad4a0d-7c89-42b3-bb81-a50fc37323d5">
+          <annotation></annotation>
+          <name>failed to get folder id</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </destination>
+          <source>
+            <refId>ce059e9e-85a9-4286-a2ae-44b1598b2913</refId>
+          </source>
+          <positions>
+            <point>
+              <x>61.0</x>
+              <y>44.0</y>
+            </point>
+            <point>
+              <x>61.0</x>
+              <y>401.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>dd83a805-8b74-4e8c-9002-00b4542e53a1</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="4aa56224-e1da-4d0e-911b-d90ef506808b">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="d6cdecfa-22f5-49fd-b821-db4ed3b54e8e">
+            <annotation></annotation>
+            <name>Result: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="91d16371-fd56-4ea3-b64b-8a33d8d767f1">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>inboundFolderId</contextKey>
+          <expression id="af566c6f-3838-4adc-b9b4-fc30ce50ed70">
+            <annotation></annotation>
+            <name>Result: folderId</name>
+            <fieldName>folderId</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="3dd1c130-6a2a-4873-8173-f904b47c1217">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.3dd1c130-6a2a-4873-8173-f904b47c1217.description</annotation>
+      <name>Get Email IDs from Inbound Folder</name>
+      <bounds>
+        <x>180.0</x>
+        <y>130.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="30b8f8d0-802b-479a-8682-a1f170eb543a">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="bf48f4ea-15e6-4ad0-baa2-aa3499595d35">
+          <annotation></annotation>
+          <fromContextKey>inboundFolderId</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>folderId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4948658f-9186-4c5e-b13a-1f61b8a9eb34">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>limit</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="1eb4fac2-3ce5-423b-9799-198979e80849">
+          <annotation></annotation>
+          <name>emails retrived</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9b525e67-ba8a-4919-bfaf-41ec24b0a6e6</refId>
+          </destination>
+          <source>
+            <refId>3dd1c130-6a2a-4873-8173-f904b47c1217</refId>
+          </source>
+          <positions>
+            <point>
+              <x>230.0</x>
+              <y>59.0</y>
+            </point>
+            <point>
+              <x>406.0</x>
+              <y>105.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="496540c0-b7f2-4fca-9b6e-70b5f450ca24">
+          <annotation></annotation>
+          <name>failed to get folder id</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </destination>
+          <source>
+            <refId>3dd1c130-6a2a-4873-8173-f904b47c1217</refId>
+          </source>
+          <positions>
+            <point>
+              <x>230.0</x>
+              <y>44.0</y>
+            </point>
+            <point>
+              <x>61.0</x>
+              <y>401.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="16e4dc43-e14e-467d-94aa-d59db2c42eaf">
+          <annotation></annotation>
+          <name>no emails found</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>no emails found</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>23ee07dc-766f-41bf-b985-2d2bf74b82b4</refId>
+          </destination>
+          <source>
+            <refId>3dd1c130-6a2a-4873-8173-f904b47c1217</refId>
+          </source>
+          <positions>
+            <point>
+              <x>214.5</x>
+              <y>141.97339246119734</y>
+            </point>
+            <point>
+              <x>230.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>230.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>390.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>600.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>870.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>1050.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>1050.0</x>
+              <y>50.0</y>
+            </point>
+            <point>
+              <x>1130.0</x>
+              <y>54.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>ec7a4d02-187f-4740-a87b-2cac15f70e26</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="f4d592b1-f3bb-40fc-8d5c-da983f06722e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="cefd8235-7958-41a9-b63c-16d309ca662a">
+            <annotation></annotation>
+            <name>Result: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="53f30ee8-e80c-4f3d-b922-184e8bffb1b0">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>emailIds</contextKey>
+          <expression id="b4b5948d-0582-411f-bc5b-d200073c8743">
+            <annotation></annotation>
+            <name>Result: emailIds</name>
+            <fieldName>emailIds</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="de379849-3906-41f9-ab49-8dfa1eb0acdd">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.de379849-3906-41f9-ab49-8dfa1eb0acdd.description</annotation>
+      <name>Get Email</name>
+      <bounds>
+        <x>383.0</x>
+        <y>300.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="81a8636e-a6ca-405e-a62c-2a764a7b0ce0">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="3e8a163f-7b33-4c95-8bb1-c56ab0c19365">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>emailId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b3297164-6be6-4bfd-ac3c-e6b0afb72647">
+          <annotation></annotation>
+          <name>failed to get email</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </destination>
+          <source>
+            <refId>de379849-3906-41f9-ab49-8dfa1eb0acdd</refId>
+          </source>
+          <positions>
+            <point>
+              <x>493.0</x>
+              <y>214.0</y>
+            </point>
+            <point>
+              <x>61.0</x>
+              <y>401.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>482.5651433666522</x>
+            <y>0.8006486523767229</y>
+          </labelPosition>
+        </transition>
+        <transition id="d78643ba-ff06-464c-9830-2f302c12e6a9">
+          <annotation></annotation>
+          <name>email retrived</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>e3f23356-d74e-4b45-9659-04e3def5a56c</refId>
+          </destination>
+          <source>
+            <refId>de379849-3906-41f9-ab49-8dfa1eb0acdd</refId>
+          </source>
+          <positions>
+            <point>
+              <x>433.0</x>
+              <y>334.0</y>
+            </point>
+            <point>
+              <x>260.0</x>
+              <y>520.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>c04a22a4-e747-48c9-901c-fe8323bd0dcc</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="877ce9aa-413e-4cca-ade3-766c20b30324">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="970af9a7-fc18-4609-b13a-d78b5536712f">
+            <annotation></annotation>
+            <name>Result Field: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="18bc111c-4c99-4e18-8dd8-fff6b37d9c1e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>senderAddress</contextKey>
+          <expression id="edff39d5-8234-4a0e-87db-6b9b0085d28a">
+            <annotation></annotation>
+            <name>Result: senderAddress</name>
+            <fieldName>senderAddress</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="f428a941-af30-4b05-8f47-2b5fc6e621c5">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>subject</contextKey>
+          <expression id="f7066a8f-b7c3-41c9-84b1-d92ebbd4aa3c">
+            <annotation></annotation>
+            <name>Result: subject</name>
+            <fieldName>subject</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="9b525e67-ba8a-4919-bfaf-41ec24b0a6e6">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.9b525e67-ba8a-4919-bfaf-41ec24b0a6e6.description</annotation>
+      <name>List Iterator</name>
+      <bounds>
+        <x>383.0</x>
+        <y>130.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="fc746795-4d3a-4a2d-80fb-004ce862bc81">
+        <baseIcon>wrench.png</baseIcon>
+        <basePath>utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers>
+          <iconSpec id="abd497ba-af56-4c75-9dee-33aab77ac632">
+            <baseIcon>iterate.png</baseIcon>
+            <basePath>Annotations</basePath>
+            <readOnly>false</readOnly>
+            <layers/>
+          </iconSpec>
+        </layers>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="e44340c2-80db-4830-8ad9-5d2e140cc910">
+          <annotation></annotation>
+          <fromContextKey>emailIds</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>list</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ae3af0c7-c765-49b8-9449-5eb9a6b99143">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>separator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>,</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="37439611-5e09-45c8-84cb-3559deaaa362">
+          <annotation></annotation>
+          <name>has more</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>has more</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>de379849-3906-41f9-ab49-8dfa1eb0acdd</refId>
+          </destination>
+          <source>
+            <refId>9b525e67-ba8a-4919-bfaf-41ec24b0a6e6</refId>
+          </source>
+          <positions>
+            <point>
+              <x>406.0</x>
+              <y>105.0</y>
+            </point>
+            <point>
+              <x>291.0</x>
+              <y>211.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="aff3a3a3-c99c-4aaa-897e-a9b68b824b7f">
+          <annotation></annotation>
+          <name>no more</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>no more</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>0aab0f22-c2c3-47ba-a913-d12f27dff431</refId>
+          </destination>
+          <source>
+            <refId>9b525e67-ba8a-4919-bfaf-41ec24b0a6e6</refId>
+          </source>
+          <positions>
+            <point>
+              <x>493.0</x>
+              <y>44.0</y>
+            </point>
+            <point>
+              <x>800.0</x>
+              <y>154.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="a3425323-be4e-4e30-9024-af440a8f8779">
+          <annotation></annotation>
+          <name>automation failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </destination>
+          <source>
+            <refId>9b525e67-ba8a-4919-bfaf-41ec24b0a6e6</refId>
+          </source>
+          <positions>
+            <point>
+              <x>493.0</x>
+              <y>44.0</y>
+            </point>
+            <point>
+              <x>61.0</x>
+              <y>401.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>cd75ca75-e64e-4b1e-9fe9-8dbc76f03865</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="dbf286e1-f85b-40e7-836a-43e677c68bc2">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>emailId</contextKey>
+          <expression id="f602c178-da2c-4c20-b0bc-325e23ac4d4d">
+            <annotation></annotation>
+            <name>Result: ss</name>
+            <fieldName>ss</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="c611d4cd-d6e1-443f-80a6-f7c8d7eb5c1b">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.c611d4cd-d6e1-443f-80a6-f7c8d7eb5c1b.description</annotation>
+      <name>Check Subject</name>
+      <bounds>
+        <x>643.0</x>
+        <y>430.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="d9b4de09-d82d-459c-adb1-2d3b2ef99021">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="99927f3b-4566-4e95-ace5-caa136dfe3f0">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Contains</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d62c8b4a-3b1b-4ccb-811f-a55e82d759d7">
+          <annotation></annotation>
+          <fromContextKey>subject</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="23529522-e7c5-4e9b-921b-cd85a475dc9b">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/ProductSwitch_V1.00/PSSubjectLine</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ca4645ed-8d29-4d74-ac16-889a876d5082">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="b9c19815-a73e-4044-9602-2e1990e67821">
+          <annotation></annotation>
+          <name>valid pricing email</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>95c5bc69-6803-470e-b9b7-d6a1de6ef57f</refId>
+          </destination>
+          <source>
+            <refId>c611d4cd-d6e1-443f-80a6-f7c8d7eb5c1b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>359.0</x>
+              <y>405.0</y>
+            </point>
+            <point>
+              <x>503.0</x>
+              <y>264.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="088de1b5-f8e4-40ca-b1c6-ce71cb011d10">
+          <annotation></annotation>
+          <name>unverified email</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>33e86d2f-e93c-4200-9df7-07343837bc4b</refId>
+          </destination>
+          <source>
+            <refId>c611d4cd-d6e1-443f-80a6-f7c8d7eb5c1b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>433.0</x>
+              <y>521.0</y>
+            </point>
+            <point>
+              <x>710.0</x>
+              <y>694.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="95c5bc69-6803-470e-b9b7-d6a1de6ef57f">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.95c5bc69-6803-470e-b9b7-d6a1de6ef57f.description</annotation>
+      <name>ProductSwicth Email List</name>
+      <bounds>
+        <x>643.0</x>
+        <y>300.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="cb5480ff-74fb-4c6f-9bd3-4847c8e300ba">
+        <baseIcon>jar.png</baseIcon>
+        <basePath>Others/</basePath>
+        <readOnly>false</readOnly>
+        <layers>
+          <iconSpec id="e5167b46-8868-4880-bfdd-269fed15ea35">
+            <baseIcon>add.png</baseIcon>
+            <basePath>Annotations/</basePath>
+            <readOnly>false</readOnly>
+            <layers/>
+          </iconSpec>
+        </layers>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="a4d8bfda-1c27-43af-93a7-7d6a4827b7ed">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keyName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>productSwitchEmailIds</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3507093d-7233-426c-9db7-41e7f7b8cc9d">
+          <annotation></annotation>
+          <fromContextKey>emailId</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>resultText</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ac9aa4f6-238d-49a8-ac51-6271a7bef7b6">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>delimiter</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>,</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="2b94b316-9346-4668-a786-b4bfeed295a8">
+          <annotation></annotation>
+          <name>go to next</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9b525e67-ba8a-4919-bfaf-41ec24b0a6e6</refId>
+          </destination>
+          <source>
+            <refId>95c5bc69-6803-470e-b9b7-d6a1de6ef57f</refId>
+          </source>
+          <positions>
+            <point>
+              <x>519.0</x>
+              <y>285.0</y>
+            </point>
+            <point>
+              <x>406.0</x>
+              <y>105.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f6e6cb22-1802-4fca-9f9b-4c699c486aa6</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="347e2df6-483e-4f84-bc58-782c8b94ef53">
+      <annotation></annotation>
+      <name>Error : failure</name>
+      <bounds>
+        <x>180.0</x>
+        <y>300.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="511320ff-e084-488a-a8be-fa7c56afeb44">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>errorMessage</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2c33d5a6-c987-4d20-b1a8-52b95f0b804a">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>automationFailureFlag</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="ab049acc-9a81-499e-a98e-df864e557298">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </destination>
+          <source>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="ccd28c83-4c25-45e2-ac25-4fd5ab34566f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>automationFailureFlag</contextKey>
+          <expression id="4a6ad841-d836-4156-9096-053d569a6d1b">
+            <annotation></annotation>
+            <name>Input: automationFailureFlag</name>
+            <fieldName>automationFailureFlag</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="3ac32d63-bfba-4c46-92d8-0d8f49735d92">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="fb817114-4833-49a7-9979-b4ac14cf1f55">
+            <annotation></annotation>
+            <name>Input: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <step id="6ebe9dfc-1d7e-4383-ba0e-a0da311d1d9e">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.6ebe9dfc-1d7e-4383-ba0e-a0da311d1d9e.description</annotation>
+      <name>Set Error Message</name>
+      <bounds>
+        <x>11.0</x>
+        <y>300.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="eadd03a1-0df8-49be-abd4-dfd4e6522b03">
+        <baseIcon>jar.png</baseIcon>
+        <basePath>Others/</basePath>
+        <readOnly>false</readOnly>
+        <layers>
+          <iconSpec id="392eb619-45d0-4f11-848c-008f26ab0beb">
+            <baseIcon>edit.png</baseIcon>
+            <basePath>Annotations/</basePath>
+            <readOnly>false</readOnly>
+            <layers/>
+          </iconSpec>
+        </layers>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="6ba0ad23-f5a2-4b2e-8d11-8b3a395159ed">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keyName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>errorMessage</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7314e7c4-c080-485a-a27c-f12b3db304c5">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>myValue</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>An error occured while retrieving the folder id for folder &quot;${WBC/Usecases/ProductSwitch_V1.00/InboundFolder}&quot;</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="75bfe180-f8c1-45dc-94bb-025f24ca03b3">
+          <annotation></annotation>
+          <name>set failure flag</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>347e2df6-483e-4f84-bc58-782c8b94ef53</refId>
+          </destination>
+          <source>
+            <refId>6ebe9dfc-1d7e-4383-ba0e-a0da311d1d9e</refId>
+          </source>
+          <positions>
+            <point>
+              <x>61.0</x>
+              <y>214.0</y>
+            </point>
+            <point>
+              <x>61.0</x>
+              <y>401.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f3112e9d-ed88-47bf-be86-2f99e8541a33</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="0aab0f22-c2c3-47ba-a913-d12f27dff431">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.0aab0f22-c2c3-47ba-a913-d12f27dff431.description</annotation>
+      <name>Check Verified EmailId List</name>
+      <bounds>
+        <x>750.0</x>
+        <y>130.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="b2f9e2d6-3339-45ac-945e-de63c6ff3100">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="be4422bd-5514-4f05-bfe9-873ff9da52bd">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keyName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>productSwitchEmailIds</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f60297dc-8650-44e2-b0b8-2e902af1b910">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>trimSpaces</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="bb8f8dd9-46fe-4135-a3af-708edabf06b9">
+          <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.bb8f8dd9-46fe-4135-a3af-708edabf06b9.transition.description</annotation>
+          <name>no product switch mails</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>isNull</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>23ee07dc-766f-41bf-b985-2d2bf74b82b4</refId>
+          </destination>
+          <source>
+            <refId>0aab0f22-c2c3-47ba-a913-d12f27dff431</refId>
+          </source>
+          <positions>
+            <point>
+              <x>800.0</x>
+              <y>164.0</y>
+            </point>
+            <point>
+              <x>1090.0</x>
+              <y>49.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="02c06be6-b8e1-4a69-bfab-a6b03a96ba2b">
+          <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.02c06be6-b8e1-4a69-bfab-a6b03a96ba2b.transition.description</annotation>
+          <name>some psw emails</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>notNull</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>41756051-e881-4633-ad0d-bedc7222644f</refId>
+          </destination>
+          <source>
+            <refId>0aab0f22-c2c3-47ba-a913-d12f27dff431</refId>
+          </source>
+          <positions>
+            <point>
+              <x>800.0</x>
+              <y>164.0</y>
+            </point>
+            <point>
+              <x>1090.0</x>
+              <y>334.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>b9997f7f-d19c-4dc6-acc4-fa91a8644a38</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="23ee07dc-766f-41bf-b985-2d2bf74b82b4">
+      <annotation></annotation>
+      <name>No Action Taken : no emails</name>
+      <bounds>
+        <x>1040.0</x>
+        <y>15.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="41f4b647-7b20-4fd2-85d1-34bb9a05e4b7">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>no emails</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>23ee07dc-766f-41bf-b985-2d2bf74b82b4</refId>
+          </destination>
+          <source>
+            <refId>23ee07dc-766f-41bf-b985-2d2bf74b82b4</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>NO_ACTION_TAKEN</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="41756051-e881-4633-ad0d-bedc7222644f">
+      <annotation></annotation>
+      <name>Resolved : only product switch emails</name>
+      <bounds>
+        <x>1040.0</x>
+        <y>300.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="fc459265-5f64-4c85-9c19-a2ac058d56ff">
+          <annotation></annotation>
+          <fromContextKey>productSwitchEmailIds</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>productSwitchEmailIds</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="bc35fa04-7f46-49c6-a4a6-0b25eab71945">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>only product switch emails</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>41756051-e881-4633-ad0d-bedc7222644f</refId>
+          </destination>
+          <source>
+            <refId>41756051-e881-4633-ad0d-bedc7222644f</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments>
+        <flowVariableAssignment id="fff008b5-4054-49c9-a18a-b71899d3b0d4">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>productSwitchEmailIds</contextKey>
+          <expression id="f0150421-6c83-4a88-ba67-5e3485b8bc1a">
+            <annotation></annotation>
+            <name>Input: productSwitchEmailIds</name>
+            <fieldName>productSwitchEmailIds</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+    </returnStep>
+    <step id="e3f23356-d74e-4b45-9659-04e3def5a56c">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.e3f23356-d74e-4b45-9659-04e3def5a56c.description</annotation>
+      <name>Check Email Sender</name>
+      <bounds>
+        <x>383.0</x>
+        <y>430.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="eb5da0ca-9ef7-47ac-b3dd-653306db3bb4">
+        <baseIcon>compare.png</baseIcon>
+        <basePath>Utilities</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="a1950743-1f03-4d51-b50b-4fe3cd3a9a7b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>RegEx</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4375f5e0-9ce6-4bdf-bbe6-fe1e2b6cb656">
+          <annotation></annotation>
+          <fromContextKey>senderAddress</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>toMatch</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7d78bbf2-8254-4a9b-a3a9-23bc98745612">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/ProductSwitch_V1.00/PSApprovedSenders</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>matchTo</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7a27029e-b527-4636-aba5-b03674b212ef">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>ignoreCase</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="314da0af-eed7-41f9-a800-716cdaa97e42">
+          <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.314da0af-eed7-41f9-a800-716cdaa97e42.transition.description</annotation>
+          <name>valid sender</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>c611d4cd-d6e1-443f-80a6-f7c8d7eb5c1b</refId>
+          </destination>
+          <source>
+            <refId>e3f23356-d74e-4b45-9659-04e3def5a56c</refId>
+          </source>
+          <positions>
+            <point>
+              <x>260.0</x>
+              <y>514.0</y>
+            </point>
+            <point>
+              <x>433.0</x>
+              <y>521.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="df72c97f-0652-4945-a23b-30e01f6df790">
+          <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.df72c97f-0652-4945-a23b-30e01f6df790.transition.description</annotation>
+          <name>invalid sender</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>33e86d2f-e93c-4200-9df7-07343837bc4b</refId>
+          </destination>
+          <source>
+            <refId>e3f23356-d74e-4b45-9659-04e3def5a56c</refId>
+          </source>
+          <positions>
+            <point>
+              <x>260.0</x>
+              <y>520.0</y>
+            </point>
+            <point>
+              <x>710.0</x>
+              <y>694.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>f1dafb35-6463-4a1b-8f87-8aa748497bed</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="33e86d2f-e93c-4200-9df7-07343837bc4b">
+      <annotation>e8a8ca17-3f36-4228-bae0-49d6c06dc044.33e86d2f-e93c-4200-9df7-07343837bc4b.description</annotation>
+      <name>Move Email To  Unverified Folder</name>
+      <bounds>
+        <x>513.0</x>
+        <y>300.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="3d5a3926-c118-41b2-8591-d58e1d254d99">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>true</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="aa8fd09d-f5c9-4308-9a5c-1d753f00ea82">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>folderId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e5ebfb2a-61b4-4704-a585-413ddd8d52ef">
+          <annotation></annotation>
+          <fromContextKey>WBC/Usecases/Email_V1.00/pathUnverified</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>folderPath</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c8cc42b0-4eeb-4da8-801d-c170ddcd8dd2">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>emailId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="fc61b5f7-7630-48ac-ae51-4c60a7eaa976">
+          <annotation></annotation>
+          <name>done</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>done</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9b525e67-ba8a-4919-bfaf-41ec24b0a6e6</refId>
+          </destination>
+          <source>
+            <refId>33e86d2f-e93c-4200-9df7-07343837bc4b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>563.0</x>
+              <y>334.0</y>
+            </point>
+            <point>
+              <x>433.0</x>
+              <y>164.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>521a0fd9-d651-41e3-862f-76bc28361f39</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="2c82ab92-78ca-4b3a-99dd-a7c952d06722">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>folderId</contextKey>
+          <expression id="366c6e37-8fda-4b4e-b18c-8d51ef2185a3">
+            <annotation></annotation>
+            <name>Result: folderId</name>
+            <fieldName>folderId</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a72393d4-3061-4771-b238-6b04a82d948f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>errorMessage</contextKey>
+          <expression id="fafc50ec-befc-4cfe-99ad-3c11fc46832e">
+            <annotation></annotation>
+            <name>Result: errorMessage</name>
+            <fieldName>errorMessage</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+  </steps>
+  <startSteps>ce059e9e-85a9-4286-a2ae-44b1598b2913</startSteps>
+</flow>
